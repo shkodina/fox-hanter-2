@@ -7,11 +7,12 @@ void setTimer(Timer * g_timer, char hh, char mm, char ss){
 	g_timer->state = OFF;
 }
 
+
 char decTimer(Timer * g_timer){
 	if (g_timer->time[SS] == 0 &&
 		g_timer->time[MM] == 0 &&
 		g_timer->time[HH] == 0)
-		return 1;	
+		return ELAPSED;	
 
 	if (!g_timer->time[SS]--){
 		g_timer->time[SS] = TIMEMAX;
@@ -22,7 +23,12 @@ char decTimer(Timer * g_timer){
 		}
 	}
 	
-	return 0;
+	if (g_timer->time[SS] <= SOMEMORESECONDS &&
+		g_timer->time[MM] == 0 &&
+		g_timer->time[HH] == 0)
+		return SOMEMORE;	
+
+	return ALOTOFTIME;
 }
 
 void resetTimer(Timer * g_timer){

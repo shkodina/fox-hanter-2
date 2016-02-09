@@ -10,6 +10,7 @@
 #include <util/delay.h>
 
 #include "led.h"
+#include "zum.h"
 #include "timer.h"
 #include "sevenseg.h"
 #include "commonmakros.h"
@@ -37,10 +38,20 @@ volatile unsigned int g_timeout_in_timer_setup = 0;
 //----------------------------------------------------------------
 
 void makeBoom(){
-	for (int i = 0; i < 30000; i++){
+	UPBIT(DDRA, 7);
+	UPBIT(PORTA, 7);
+	ledOFF();
+	zumOFF();
+
+	for (int i = 0; i < 600; i++){ // 600 * 50ms = 3000ms = 3s
 		ledTugle();
 		_delay_ms(50);
 	}
+	DOWNBIT(PORTA, 7);
+	ledOFF();
+	zumOFF();
+
+
 }
 
 //---------------------------------------------------------------
@@ -67,15 +78,40 @@ void setupTIMER2 (void)
 
 ISR (TIMER2_OVF_vect)
 {
+	static char was_boom = 0;
+	if (was_boom)
+		return;
+
 	cli();
 
-	//ledTugle();
 	g_timeout_in_timer_setup++;
 
-	if (g_timer.state == ON)
-		if(decTimer( & g_timer))
-			makeBoom();
 
+enum TimerSignal {NONE = 0, SOMEMORE = 1, ELAPSED = 3};
+
+
+	if (g_timer.state == ON){
+		switch (decTimer( & g_timer)){
+
+			case ELAPSED: 
+				makeBoom();
+				was_boom = 1;
+				return;
+				break;
+
+			case SOMEMORE :
+				ledOn();
+				zumOn();
+				break;
+
+			default:
+				ledTugle();
+				zumTugle();
+				break;
+		}	
+		
+
+	}
  	sei();
 }
 
@@ -87,7 +123,9 @@ void workSevenSeg(){
 
 char workButtons(){
 
-	
+	if (g_timer.state == ON)
+		return FALSE;	
+
 	static char cur_state = NONE;
 	static char cur_time_pos = HH;
 
@@ -215,12 +253,13 @@ int main(){
 
 
 	initLed();
+	initZum();
 	initSevenSeg();
 	initButtons();
 
-	startDelayWithAnime(2000); // initial start
+	startDelayWithAnime(3000); // initial start
 
-	setTimer(&g_timer, 1, 23, 45); // set timer default value
+	setTimer(&g_timer, 0, 12, 23); // set timer default value
 
 	setupTIMER1();
 	setupTIMER2();
@@ -258,7 +297,7 @@ int main(){
 		UINT8 len = Receive_Packet(rx_buf, MAX_PACKET_LEN);
 		if (len > 0){
 			if (rx_buf[POINTNUMBERPOSITION] == DETONATORPOINTNUMBER){
-				ledTugle();
+				//ledTugle();
 				per_part_packs[SLIDESTATISTICPARTSCOUNT - 1]++;
 			}
 		}

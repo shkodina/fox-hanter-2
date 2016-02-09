@@ -1,6 +1,9 @@
 #ifndef MY_TIMER_H
 #define MY_TIMER_H
 
+enum TimerSignal {ALOTOFTIME = 0, SOMEMORE = 1, ELAPSED = 3};
+#define SOMEMORESECONDS 10
+
 enum TimerState {ON, OFF};
 enum TimerBorders {TIMEMIN = 0, TIMEMAX = 59};
 enum TimePosition {SS = 2, MM = 1, HH = 0 };

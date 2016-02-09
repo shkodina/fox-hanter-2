@@ -37,7 +37,7 @@ HEX_EEPROM_FLAGS += --change-section-lma .eeprom=0 --no-change-warnings
 
 
 ## Objects that must be built in order to link
-OBJECTS = main.o timer.o sevenseg.o buttons.o led.o rf73_spi.o 
+OBJECTS = main.o timer.o sevenseg.o buttons.o rf73_spi.o 
 
 ## Objects explicitly added by the user
 LINKONLYOBJECTS = 
@@ -56,9 +56,6 @@ sevenseg.o: ../sevenseg.c
 	$(CC) $(INCLUDES) $(CFLAGS) -c  $<
 
 buttons.o: ../buttons.c
-	$(CC) $(INCLUDES) $(CFLAGS) -c  $<
-
-led.o: ../led.c
 	$(CC) $(INCLUDES) $(CFLAGS) -c  $<
 
 rf73_spi.o: ../rf73_spi.c

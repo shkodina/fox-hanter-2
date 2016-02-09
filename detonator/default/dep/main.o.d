@@ -19,8 +19,8 @@ main.o: ../main.c \
  c:\program\ files\atmel\avr\ tools\avr\ toolchain\bin\../lib/gcc/avr/4.5.1/../../../../avr/include/string.h \
  c:\program\ files\atmel\avr\ tools\avr\ toolchain\bin\../lib/gcc/avr/4.5.1/../../../../avr/include/util/delay.h \
  c:\program\ files\atmel\avr\ tools\avr\ toolchain\bin\../lib/gcc/avr/4.5.1/../../../../avr/include/util/delay_basic.h \
- ../led.h ../commonmakros.h ../timer.h ../sevenseg.h ../buttons.h \
- ../rf73_spi.h
+ ../led.h ../commonmakros.h ../zum.h ../timer.h ../sevenseg.h \
+ ../buttons.h ../rf73_spi.h
 
 c:\program\ files\atmel\avr\ tools\avr\ toolchain\bin\../lib/gcc/avr/4.5.1/../../../../avr/include/avr/io.h:
 
@@ -65,6 +65,8 @@ c:\program\ files\atmel\avr\ tools\avr\ toolchain\bin\../lib/gcc/avr/4.5.1/../..
 ../led.h:
 
 ../commonmakros.h:
+
+../zum.h:
 
 ../timer.h:
 

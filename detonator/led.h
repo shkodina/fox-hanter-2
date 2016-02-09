@@ -21,4 +21,10 @@ inline void ledOFF(){
 inline void ledTugle(){
 	INVBIT(LEDPORT, LEDPIN) ;
 }
+
+void initLed(){
+	LEDDDRPORT |= 1 << LEDPIN;
+	ledOFF();
+}
+
 #endif 
