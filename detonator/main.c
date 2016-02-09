@@ -2,6 +2,8 @@
 #include <avr/interrupt.h>
 #include <avr/sleep.h>
 
+
+
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
@@ -16,6 +18,7 @@
 #include "commonmakros.h"
 #include "buttons.h"
 #include "rf73_spi.h"
+#include "useeeprom.h"
 
 
 //----------------------------------------------------------------
@@ -24,9 +27,9 @@
 #define POINTNUMBERPOSITION 1
 #define POINTPOWERPOSITION 2
 
-#define STATISTICCOUNT 300 // unit sent 6 packs per sec, in 300 * 10 ms it will sent 18 packs
-#define PACKSTOSTOP 2
-#define PACKSTOSTART 9
+#define STATISTICCOUNT 500 // unit sent 6 packs per sec, in 500 * 10 ms it will sent 30 packs
+#define PACKSTOSTOP 1
+#define PACKSTOSTART 2
 
 #define SLIDESTATISTICPARTSCOUNT 6 
 
@@ -177,6 +180,9 @@ char workButtons(){
 
 			if (g_timeout_in_timer_setup > MAXTIMEOUTINTIMERSETUP){
 				cur_state = NONE;
+
+				writeInitTimeToEEPROM(g_timer.time_init, TIMEPOSITIONSCOUNT);
+
 				return FALSE;
 			}
 
@@ -259,7 +265,10 @@ int main(){
 
 	startDelayWithAnime(3000); // initial start
 
-	setTimer(&g_timer, 0, 12, 23); // set timer default value
+	char initialTimeForTimer[TIMEPOSITIONSCOUNT];
+	readInitTimeFromEEPROM(initialTimeForTimer, TIMEPOSITIONSCOUNT);
+
+	setTimer(&g_timer, initialTimeForTimer[HH], initialTimeForTimer[MM], initialTimeForTimer[SS]); // set timer default value
 
 	setupTIMER1();
 	setupTIMER2();

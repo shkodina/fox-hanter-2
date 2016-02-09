@@ -3,35 +3,35 @@
 
 Sections:
 Idx Name          Size      VMA       LMA       File off  Algn
-  0 .text         00000c10  00000000  00000000  00000094  2**1
+  0 .text         00000c8c  00000000  00000000  00000094  2**1
                   CONTENTS, ALLOC, LOAD, READONLY, CODE
-  1 .data         0000008e  00800060  00000c10  00000ca4  2**0
+  1 .data         0000008e  00800060  00000c8c  00000d20  2**0
                   CONTENTS, ALLOC, LOAD, DATA
-  2 .bss          00000019  008000ee  008000ee  00000d32  2**0
+  2 .bss          00000019  008000ee  008000ee  00000dae  2**0
                   ALLOC
-  3 .stab         000006cc  00000000  00000000  00000d34  2**2
+  3 .stab         00000948  00000000  00000000  00000db0  2**2
                   CONTENTS, READONLY, DEBUGGING
-  4 .stabstr      00000085  00000000  00000000  00001400  2**0
+  4 .stabstr      000001b0  00000000  00000000  000016f8  2**0
                   CONTENTS, READONLY, DEBUGGING
-  5 .debug_aranges 000000a0  00000000  00000000  00001485  2**0
+  5 .debug_aranges 000000a0  00000000  00000000  000018a8  2**0
                   CONTENTS, READONLY, DEBUGGING
-  6 .debug_pubnames 00000457  00000000  00000000  00001525  2**0
+  6 .debug_pubnames 0000048c  00000000  00000000  00001948  2**0
                   CONTENTS, READONLY, DEBUGGING
-  7 .debug_info   00001691  00000000  00000000  0000197c  2**0
+  7 .debug_info   0000173b  00000000  00000000  00001dd4  2**0
                   CONTENTS, READONLY, DEBUGGING
-  8 .debug_abbrev 0000096d  00000000  00000000  0000300d  2**0
+  8 .debug_abbrev 00000976  00000000  00000000  0000350f  2**0
                   CONTENTS, READONLY, DEBUGGING
-  9 .debug_line   00001183  00000000  00000000  0000397a  2**0
+  9 .debug_line   000011ce  00000000  00000000  00003e85  2**0
                   CONTENTS, READONLY, DEBUGGING
- 10 .debug_frame  000002e0  00000000  00000000  00004b00  2**2
+ 10 .debug_frame  00000300  00000000  00000000  00005054  2**2
                   CONTENTS, READONLY, DEBUGGING
- 11 .debug_str    00000767  00000000  00000000  00004de0  2**0
+ 11 .debug_str    000007ce  00000000  00000000  00005354  2**0
                   CONTENTS, READONLY, DEBUGGING
- 12 .debug_loc    00000b7f  00000000  00000000  00005547  2**0
+ 12 .debug_loc    00000beb  00000000  00000000  00005b22  2**0
                   CONTENTS, READONLY, DEBUGGING
- 13 .debug_pubtypes 0000022e  00000000  00000000  000060c6  2**0
+ 13 .debug_pubtypes 0000023d  00000000  00000000  0000670d  2**0
                   CONTENTS, READONLY, DEBUGGING
- 14 .debug_ranges 00000048  00000000  00000000  000062f4  2**0
+ 14 .debug_ranges 00000048  00000000  00000000  0000694a  2**0
                   CONTENTS, READONLY, DEBUGGING
 
 Disassembly of section .text:
@@ -41,11 +41,11 @@ Disassembly of section .text:
    4:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
    8:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
    c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
-  10:	0c 94 7b 00 	jmp	0xf6	; 0xf6 <__vector_4>
+  10:	0c 94 89 00 	jmp	0x112	; 0x112 <__vector_4>
   14:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
   18:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
   1c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
-  20:	0c 94 44 01 	jmp	0x288	; 0x288 <__vector_8>
+  20:	0c 94 57 01 	jmp	0x2ae	; 0x2ae <__vector_8>
   24:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
   28:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
   2c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
@@ -71,7 +71,7 @@ Disassembly of section .text:
   60:	10 e0       	ldi	r17, 0x00	; 0
   62:	a0 e6       	ldi	r26, 0x60	; 96
   64:	b0 e0       	ldi	r27, 0x00	; 0
-  66:	e0 e1       	ldi	r30, 0x10	; 16
+  66:	ec e8       	ldi	r30, 0x8C	; 140
   68:	fc e0       	ldi	r31, 0x0C	; 12
   6a:	02 c0       	rjmp	.+4      	; 0x70 <__do_copy_data+0x10>
   6c:	05 90       	lpm	r0, Z+
@@ -93,8 +93,8 @@ Disassembly of section .text:
   80:	a7 30       	cpi	r26, 0x07	; 7
   82:	b1 07       	cpc	r27, r17
   84:	e1 f7       	brne	.-8      	; 0x7e <.do_clear_bss_loop>
-  86:	0e 94 ce 01 	call	0x39c	; 0x39c <main>
-  8a:	0c 94 06 06 	jmp	0xc0c	; 0xc0c <_exit>
+  86:	0e 94 e1 01 	call	0x3c2	; 0x3c2 <main>
+  8a:	0c 94 44 06 	jmp	0xc88	; 0xc88 <_exit>
 
 0000008e <__bad_interrupt>:
   8e:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
@@ -145,2458 +145,2546 @@ void initZum(){
 }
   9c:	08 95       	ret
 
-0000009e <makeBoom>:
+0000009e <writeInitTimeToEEPROM>:
+#include <avr/eeprom.h>
+#include "commonmakros.h"
+
+enum EepromAddr {STARTADR = 1, SSADR = 1, MMADR = 2, HHADR = 3};
+
+void writeInitTimeToEEPROM(char * time, char count){
+  9e:	46 2f       	mov	r20, r22
+	eeprom_write_block (time, STARTADR, count);
+  a0:	61 e0       	ldi	r22, 0x01	; 1
+  a2:	70 e0       	ldi	r23, 0x00	; 0
+  a4:	50 e0       	ldi	r21, 0x00	; 0
+  a6:	0e 94 2d 06 	call	0xc5a	; 0xc5a <__eewr_block_m16>
+}
+  aa:	08 95       	ret
+
+000000ac <readInitTimeFromEEPROM>:
+
+void readInitTimeFromEEPROM(char * time, char count){
+  ac:	46 2f       	mov	r20, r22
+	eeprom_read_block (time, STARTADR, count);
+  ae:	61 e0       	ldi	r22, 0x01	; 1
+  b0:	70 e0       	ldi	r23, 0x00	; 0
+  b2:	50 e0       	ldi	r21, 0x00	; 0
+  b4:	0e 94 1d 06 	call	0xc3a	; 0xc3a <__eerd_block_m16>
+}
+  b8:	08 95       	ret
+
+000000ba <makeBoom>:
 #define MAXTIMEOUTINTIMERSETUP 10
 
 //----------------------------------------------------------------
 
 void makeBoom(){
 	UPBIT(DDRA, 7);
-  9e:	d7 9a       	sbi	0x1a, 7	; 26
+  ba:	d7 9a       	sbi	0x1a, 7	; 26
 	UPBIT(PORTA, 7);
-  a0:	df 9a       	sbi	0x1b, 7	; 27
+  bc:	df 9a       	sbi	0x1b, 7	; 27
 inline void ledOn(){
 	UPBIT(LEDPORT, LEDPIN);
 }
 
 inline void ledOFF(){
 	DOWNBIT(LEDPORT, LEDPIN);
-  a2:	dd 98       	cbi	0x1b, 5	; 27
+  be:	dd 98       	cbi	0x1b, 5	; 27
 inline void zumOn(){
 	UPBIT(ZUMPORT, ZUMPIN);
 }
 
 inline void zumOFF(){
 	DOWNBIT(ZUMPORT, ZUMPIN);
-  a4:	de 98       	cbi	0x1b, 6	; 27
-  a6:	88 e5       	ldi	r24, 0x58	; 88
-  a8:	92 e0       	ldi	r25, 0x02	; 2
+  c0:	de 98       	cbi	0x1b, 6	; 27
+  c2:	88 e5       	ldi	r24, 0x58	; 88
+  c4:	92 e0       	ldi	r25, 0x02	; 2
 }
 
 inline void ledTugle(){
 	INVBIT(LEDPORT, LEDPIN) ;
-  aa:	30 e2       	ldi	r19, 0x20	; 32
-  ac:	2b b3       	in	r18, 0x1b	; 27
-  ae:	23 27       	eor	r18, r19
-  b0:	2b bb       	out	0x1b, r18	; 27
+  c6:	30 e2       	ldi	r19, 0x20	; 32
+  c8:	2b b3       	in	r18, 0x1b	; 27
+  ca:	23 27       	eor	r18, r19
+  cc:	2b bb       	out	0x1b, r18	; 27
 	#else
 		//round up by default
 		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
 	#endif
 
 	__builtin_avr_delay_cycles(__ticks_dc);
-  b2:	e3 ed       	ldi	r30, 0xD3	; 211
-  b4:	f0 e3       	ldi	r31, 0x30	; 48
-  b6:	31 97       	sbiw	r30, 0x01	; 1
-  b8:	f1 f7       	brne	.-4      	; 0xb6 <makeBoom+0x18>
-  ba:	00 c0       	rjmp	.+0      	; 0xbc <makeBoom+0x1e>
-  bc:	00 00       	nop
-  be:	01 97       	sbiw	r24, 0x01	; 1
+  ce:	e3 ed       	ldi	r30, 0xD3	; 211
+  d0:	f0 e3       	ldi	r31, 0x30	; 48
+  d2:	31 97       	sbiw	r30, 0x01	; 1
+  d4:	f1 f7       	brne	.-4      	; 0xd2 <makeBoom+0x18>
+  d6:	00 c0       	rjmp	.+0      	; 0xd8 <makeBoom+0x1e>
+  d8:	00 00       	nop
+  da:	01 97       	sbiw	r24, 0x01	; 1
 	ledOFF();
 	zumOFF();
 
 	for (int i = 0; i < 600; i++){ // 600 * 50ms = 3000ms = 3s
-  c0:	a9 f7       	brne	.-22     	; 0xac <makeBoom+0xe>
+  dc:	a9 f7       	brne	.-22     	; 0xc8 <makeBoom+0xe>
 		ledTugle();
 		_delay_ms(50);
 	}
 	DOWNBIT(PORTA, 7);
-  c2:	df 98       	cbi	0x1b, 7	; 27
+  de:	df 98       	cbi	0x1b, 7	; 27
 inline void ledOn(){
 	UPBIT(LEDPORT, LEDPIN);
 }
 
 inline void ledOFF(){
 	DOWNBIT(LEDPORT, LEDPIN);
-  c4:	dd 98       	cbi	0x1b, 5	; 27
-  c6:	de 98       	cbi	0x1b, 6	; 27
+  e0:	dd 98       	cbi	0x1b, 5	; 27
+  e2:	de 98       	cbi	0x1b, 6	; 27
 	ledOFF();
 	zumOFF();
 
 
 }
-  c8:	08 95       	ret
+  e4:	08 95       	ret
 
-000000ca <setupTIMER1>:
+000000e6 <setupTIMER1>:
 
 //---------------------------------------------------------------
 
 void setupTIMER1 (void)
 {
      TCCR1B = (1<<CS12);
-  ca:	84 e0       	ldi	r24, 0x04	; 4
-  cc:	8e bd       	out	0x2e, r24	; 46
+  e6:	84 e0       	ldi	r24, 0x04	; 4
+  e8:	8e bd       	out	0x2e, r24	; 46
      TCNT1 = 65536-10;        
-  ce:	86 ef       	ldi	r24, 0xF6	; 246
-  d0:	9f ef       	ldi	r25, 0xFF	; 255
-  d2:	9d bd       	out	0x2d, r25	; 45
-  d4:	8c bd       	out	0x2c, r24	; 44
+  ea:	86 ef       	ldi	r24, 0xF6	; 246
+  ec:	9f ef       	ldi	r25, 0xFF	; 255
+  ee:	9d bd       	out	0x2d, r25	; 45
+  f0:	8c bd       	out	0x2c, r24	; 44
      TIMSK |= (1<<TOIE1);
-  d6:	89 b7       	in	r24, 0x39	; 57
-  d8:	84 60       	ori	r24, 0x04	; 4
-  da:	89 bf       	out	0x39, r24	; 57
+  f2:	89 b7       	in	r24, 0x39	; 57
+  f4:	84 60       	ori	r24, 0x04	; 4
+  f6:	89 bf       	out	0x39, r24	; 57
 }
-  dc:	08 95       	ret
+  f8:	08 95       	ret
 
-000000de <setupTIMER2>:
+000000fa <setupTIMER2>:
 
 //---------------------------------------------------------------
 
 void setupTIMER2 (void)
 {
 	TIMSK &=~(1<<OCIE2 | 1<< TOIE2);	
-  de:	89 b7       	in	r24, 0x39	; 57
-  e0:	8f 73       	andi	r24, 0x3F	; 63
-  e2:	89 bf       	out	0x39, r24	; 57
+  fa:	89 b7       	in	r24, 0x39	; 57
+  fc:	8f 73       	andi	r24, 0x3F	; 63
+  fe:	89 bf       	out	0x39, r24	; 57
 	ASSR  = 1<<AS2;				
-  e4:	88 e0       	ldi	r24, 0x08	; 8
-  e6:	82 bd       	out	0x22, r24	; 34
+ 100:	88 e0       	ldi	r24, 0x08	; 8
+ 102:	82 bd       	out	0x22, r24	; 34
 	TCNT2 = 0;
-  e8:	14 bc       	out	0x24, r1	; 36
+ 104:	14 bc       	out	0x24, r1	; 36
 	TCCR2 = 5<<CS20; 
-  ea:	85 e0       	ldi	r24, 0x05	; 5
-  ec:	85 bd       	out	0x25, r24	; 37
+ 106:	85 e0       	ldi	r24, 0x05	; 5
+ 108:	85 bd       	out	0x25, r24	; 37
 	TIMSK |= 1<< TOIE2;
-  ee:	89 b7       	in	r24, 0x39	; 57
-  f0:	80 64       	ori	r24, 0x40	; 64
-  f2:	89 bf       	out	0x39, r24	; 57
+ 10a:	89 b7       	in	r24, 0x39	; 57
+ 10c:	80 64       	ori	r24, 0x40	; 64
+ 10e:	89 bf       	out	0x39, r24	; 57
 }
-  f4:	08 95       	ret
+ 110:	08 95       	ret
 
-000000f6 <__vector_4>:
+00000112 <__vector_4>:
 
 //---------------------------------------------------------------
 
 ISR (TIMER2_OVF_vect)
 {
-  f6:	1f 92       	push	r1
-  f8:	0f 92       	push	r0
-  fa:	0f b6       	in	r0, 0x3f	; 63
-  fc:	0f 92       	push	r0
-  fe:	11 24       	eor	r1, r1
- 100:	2f 93       	push	r18
- 102:	3f 93       	push	r19
- 104:	4f 93       	push	r20
- 106:	5f 93       	push	r21
- 108:	6f 93       	push	r22
- 10a:	7f 93       	push	r23
- 10c:	8f 93       	push	r24
- 10e:	9f 93       	push	r25
- 110:	af 93       	push	r26
- 112:	bf 93       	push	r27
- 114:	ef 93       	push	r30
- 116:	ff 93       	push	r31
+ 112:	1f 92       	push	r1
+ 114:	0f 92       	push	r0
+ 116:	0f b6       	in	r0, 0x3f	; 63
+ 118:	0f 92       	push	r0
+ 11a:	11 24       	eor	r1, r1
+ 11c:	2f 93       	push	r18
+ 11e:	3f 93       	push	r19
+ 120:	4f 93       	push	r20
+ 122:	5f 93       	push	r21
+ 124:	6f 93       	push	r22
+ 126:	7f 93       	push	r23
+ 128:	8f 93       	push	r24
+ 12a:	9f 93       	push	r25
+ 12c:	af 93       	push	r26
+ 12e:	bf 93       	push	r27
+ 130:	ef 93       	push	r30
+ 132:	ff 93       	push	r31
 	static char was_boom = 0;
 	if (was_boom)
- 118:	80 91 f2 00 	lds	r24, 0x00F2
- 11c:	88 23       	and	r24, r24
- 11e:	41 f5       	brne	.+80     	; 0x170 <__vector_4+0x7a>
+ 134:	80 91 f2 00 	lds	r24, 0x00F2
+ 138:	88 23       	and	r24, r24
+ 13a:	41 f5       	brne	.+80     	; 0x18c <__vector_4+0x7a>
 		return;
 
 	cli();
- 120:	f8 94       	cli
+ 13c:	f8 94       	cli
 
 	g_timeout_in_timer_setup++;
- 122:	80 91 ee 00 	lds	r24, 0x00EE
- 126:	90 91 ef 00 	lds	r25, 0x00EF
- 12a:	01 96       	adiw	r24, 0x01	; 1
- 12c:	90 93 ef 00 	sts	0x00EF, r25
- 130:	80 93 ee 00 	sts	0x00EE, r24
+ 13e:	80 91 ee 00 	lds	r24, 0x00EE
+ 142:	90 91 ef 00 	lds	r25, 0x00EF
+ 146:	01 96       	adiw	r24, 0x01	; 1
+ 148:	90 93 ef 00 	sts	0x00EF, r25
+ 14c:	80 93 ee 00 	sts	0x00EE, r24
 
 
 enum TimerSignal {NONE = 0, SOMEMORE = 1, ELAPSED = 3};
 
 
 	if (g_timer.state == ON){
- 134:	80 91 fd 00 	lds	r24, 0x00FD
- 138:	88 23       	and	r24, r24
- 13a:	c9 f4       	brne	.+50     	; 0x16e <__vector_4+0x78>
+ 150:	80 91 fd 00 	lds	r24, 0x00FD
+ 154:	88 23       	and	r24, r24
+ 156:	c9 f4       	brne	.+50     	; 0x18a <__vector_4+0x78>
 		switch (decTimer( & g_timer)){
- 13c:	87 ef       	ldi	r24, 0xF7	; 247
- 13e:	90 e0       	ldi	r25, 0x00	; 0
- 140:	0e 94 4b 02 	call	0x496	; 0x496 <decTimer>
- 144:	81 30       	cpi	r24, 0x01	; 1
- 146:	41 f0       	breq	.+16     	; 0x158 <__vector_4+0x62>
- 148:	83 30       	cpi	r24, 0x03	; 3
- 14a:	49 f4       	brne	.+18     	; 0x15e <__vector_4+0x68>
+ 158:	87 ef       	ldi	r24, 0xF7	; 247
+ 15a:	90 e0       	ldi	r25, 0x00	; 0
+ 15c:	0e 94 62 02 	call	0x4c4	; 0x4c4 <decTimer>
+ 160:	81 30       	cpi	r24, 0x01	; 1
+ 162:	41 f0       	breq	.+16     	; 0x174 <__vector_4+0x62>
+ 164:	83 30       	cpi	r24, 0x03	; 3
+ 166:	49 f4       	brne	.+18     	; 0x17a <__vector_4+0x68>
 
 			case ELAPSED: 
 				makeBoom();
- 14c:	0e 94 4f 00 	call	0x9e	; 0x9e <makeBoom>
+ 168:	0e 94 5d 00 	call	0xba	; 0xba <makeBoom>
 				was_boom = 1;
- 150:	81 e0       	ldi	r24, 0x01	; 1
- 152:	80 93 f2 00 	sts	0x00F2, r24
+ 16c:	81 e0       	ldi	r24, 0x01	; 1
+ 16e:	80 93 f2 00 	sts	0x00F2, r24
 				return;
- 156:	0c c0       	rjmp	.+24     	; 0x170 <__vector_4+0x7a>
+ 172:	0c c0       	rjmp	.+24     	; 0x18c <__vector_4+0x7a>
 #define LEDPIN 5
 
 void initLed();
 
 inline void ledOn(){
 	UPBIT(LEDPORT, LEDPIN);
- 158:	dd 9a       	sbi	0x1b, 5	; 27
+ 174:	dd 9a       	sbi	0x1b, 5	; 27
 #define ZUMPIN 6
 
 void initZum();
 
 inline void zumOn(){
 	UPBIT(ZUMPORT, ZUMPIN);
- 15a:	de 9a       	sbi	0x1b, 6	; 27
+ 176:	de 9a       	sbi	0x1b, 6	; 27
 				break;
 
 			case SOMEMORE :
 				ledOn();
 				zumOn();
 				break;
- 15c:	08 c0       	rjmp	.+16     	; 0x16e <__vector_4+0x78>
+ 178:	08 c0       	rjmp	.+16     	; 0x18a <__vector_4+0x78>
 inline void ledOFF(){
 	DOWNBIT(LEDPORT, LEDPIN);
 }
 
 inline void ledTugle(){
 	INVBIT(LEDPORT, LEDPIN) ;
- 15e:	8b b3       	in	r24, 0x1b	; 27
- 160:	90 e2       	ldi	r25, 0x20	; 32
- 162:	89 27       	eor	r24, r25
- 164:	8b bb       	out	0x1b, r24	; 27
+ 17a:	8b b3       	in	r24, 0x1b	; 27
+ 17c:	90 e2       	ldi	r25, 0x20	; 32
+ 17e:	89 27       	eor	r24, r25
+ 180:	8b bb       	out	0x1b, r24	; 27
 inline void zumOFF(){
 	DOWNBIT(ZUMPORT, ZUMPIN);
 }
 
 inline void zumTugle(){
 	INVBIT(ZUMPORT, ZUMPIN) ;
- 166:	8b b3       	in	r24, 0x1b	; 27
- 168:	90 e4       	ldi	r25, 0x40	; 64
- 16a:	89 27       	eor	r24, r25
- 16c:	8b bb       	out	0x1b, r24	; 27
+ 182:	8b b3       	in	r24, 0x1b	; 27
+ 184:	90 e4       	ldi	r25, 0x40	; 64
+ 186:	89 27       	eor	r24, r25
+ 188:	8b bb       	out	0x1b, r24	; 27
 				break;
 		}	
 		
 
 	}
  	sei();
- 16e:	78 94       	sei
+ 18a:	78 94       	sei
 }
- 170:	ff 91       	pop	r31
- 172:	ef 91       	pop	r30
- 174:	bf 91       	pop	r27
- 176:	af 91       	pop	r26
- 178:	9f 91       	pop	r25
- 17a:	8f 91       	pop	r24
- 17c:	7f 91       	pop	r23
- 17e:	6f 91       	pop	r22
- 180:	5f 91       	pop	r21
- 182:	4f 91       	pop	r20
- 184:	3f 91       	pop	r19
- 186:	2f 91       	pop	r18
- 188:	0f 90       	pop	r0
- 18a:	0f be       	out	0x3f, r0	; 63
- 18c:	0f 90       	pop	r0
- 18e:	1f 90       	pop	r1
- 190:	18 95       	reti
+ 18c:	ff 91       	pop	r31
+ 18e:	ef 91       	pop	r30
+ 190:	bf 91       	pop	r27
+ 192:	af 91       	pop	r26
+ 194:	9f 91       	pop	r25
+ 196:	8f 91       	pop	r24
+ 198:	7f 91       	pop	r23
+ 19a:	6f 91       	pop	r22
+ 19c:	5f 91       	pop	r21
+ 19e:	4f 91       	pop	r20
+ 1a0:	3f 91       	pop	r19
+ 1a2:	2f 91       	pop	r18
+ 1a4:	0f 90       	pop	r0
+ 1a6:	0f be       	out	0x3f, r0	; 63
+ 1a8:	0f 90       	pop	r0
+ 1aa:	1f 90       	pop	r1
+ 1ac:	18 95       	reti
 
-00000192 <workSevenSeg>:
+000001ae <workSevenSeg>:
 
 //---------------------------------------------------------------
 
 void workSevenSeg(){
 	sevenSegShowGTimerTime(&g_timer);
- 192:	87 ef       	ldi	r24, 0xF7	; 247
- 194:	90 e0       	ldi	r25, 0x00	; 0
- 196:	0e 94 7b 03 	call	0x6f6	; 0x6f6 <sevenSegShowGTimerTime>
+ 1ae:	87 ef       	ldi	r24, 0xF7	; 247
+ 1b0:	90 e0       	ldi	r25, 0x00	; 0
+ 1b2:	0e 94 92 03 	call	0x724	; 0x724 <sevenSegShowGTimerTime>
 }
- 19a:	08 95       	ret
+ 1b6:	08 95       	ret
 
-0000019c <workButtons>:
+000001b8 <workButtons>:
 
 char workButtons(){
- 19c:	1f 93       	push	r17
+ 1b8:	1f 93       	push	r17
 
 	if (g_timer.state == ON)
- 19e:	80 91 fd 00 	lds	r24, 0x00FD
- 1a2:	88 23       	and	r24, r24
- 1a4:	09 f4       	brne	.+2      	; 0x1a8 <workButtons+0xc>
- 1a6:	6b c0       	rjmp	.+214    	; 0x27e <workButtons+0xe2>
+ 1ba:	80 91 fd 00 	lds	r24, 0x00FD
+ 1be:	88 23       	and	r24, r24
+ 1c0:	09 f4       	brne	.+2      	; 0x1c4 <workButtons+0xc>
+ 1c2:	70 c0       	rjmp	.+224    	; 0x2a4 <workButtons+0xec>
 		return FALSE;	
 
 	static char cur_state = NONE;
 	static char cur_time_pos = HH;
 
 	switch (getButtonWorkTheame()) {
- 1a8:	0e 94 de 03 	call	0x7bc	; 0x7bc <getButtonWorkTheame>
- 1ac:	18 2f       	mov	r17, r24
- 1ae:	81 30       	cpi	r24, 0x01	; 1
- 1b0:	49 f0       	breq	.+18     	; 0x1c4 <workButtons+0x28>
- 1b2:	81 30       	cpi	r24, 0x01	; 1
- 1b4:	08 f4       	brcc	.+2      	; 0x1b8 <workButtons+0x1c>
- 1b6:	50 c0       	rjmp	.+160    	; 0x258 <workButtons+0xbc>
- 1b8:	82 30       	cpi	r24, 0x02	; 2
- 1ba:	79 f0       	breq	.+30     	; 0x1da <workButtons+0x3e>
- 1bc:	83 30       	cpi	r24, 0x03	; 3
- 1be:	09 f0       	breq	.+2      	; 0x1c2 <workButtons+0x26>
- 1c0:	5e c0       	rjmp	.+188    	; 0x27e <workButtons+0xe2>
- 1c2:	2c c0       	rjmp	.+88     	; 0x21c <workButtons+0x80>
+ 1c4:	0e 94 f5 03 	call	0x7ea	; 0x7ea <getButtonWorkTheame>
+ 1c8:	18 2f       	mov	r17, r24
+ 1ca:	81 30       	cpi	r24, 0x01	; 1
+ 1cc:	49 f0       	breq	.+18     	; 0x1e0 <workButtons+0x28>
+ 1ce:	81 30       	cpi	r24, 0x01	; 1
+ 1d0:	08 f4       	brcc	.+2      	; 0x1d4 <workButtons+0x1c>
+ 1d2:	50 c0       	rjmp	.+160    	; 0x274 <workButtons+0xbc>
+ 1d4:	82 30       	cpi	r24, 0x02	; 2
+ 1d6:	79 f0       	breq	.+30     	; 0x1f6 <workButtons+0x3e>
+ 1d8:	83 30       	cpi	r24, 0x03	; 3
+ 1da:	09 f0       	breq	.+2      	; 0x1de <workButtons+0x26>
+ 1dc:	63 c0       	rjmp	.+198    	; 0x2a4 <workButtons+0xec>
+ 1de:	2c c0       	rjmp	.+88     	; 0x238 <workButtons+0x80>
 
 	case SETTIMER:
 		stopTimer(&g_timer);
- 1c4:	87 ef       	ldi	r24, 0xF7	; 247
- 1c6:	90 e0       	ldi	r25, 0x00	; 0
- 1c8:	0e 94 88 02 	call	0x510	; 0x510 <stopTimer>
+ 1e0:	87 ef       	ldi	r24, 0xF7	; 247
+ 1e2:	90 e0       	ldi	r25, 0x00	; 0
+ 1e4:	0e 94 9f 02 	call	0x53e	; 0x53e <stopTimer>
 
 		cur_state = SETTIMER;
- 1cc:	10 93 f1 00 	sts	0x00F1, r17
+ 1e8:	10 93 f1 00 	sts	0x00F1, r17
 		g_timeout_in_timer_setup = 0;
- 1d0:	10 92 ef 00 	sts	0x00EF, r1
- 1d4:	10 92 ee 00 	sts	0x00EE, r1
- 1d8:	38 c0       	rjmp	.+112    	; 0x24a <workButtons+0xae>
+ 1ec:	10 92 ef 00 	sts	0x00EF, r1
+ 1f0:	10 92 ee 00 	sts	0x00EE, r1
+ 1f4:	38 c0       	rjmp	.+112    	; 0x266 <workButtons+0xae>
 		return TRUE;
 		break;
 
 
 	case INCRISEVALUE:
 		if (cur_state == NONE)
- 1da:	80 91 f1 00 	lds	r24, 0x00F1
- 1de:	88 23       	and	r24, r24
- 1e0:	41 f4       	brne	.+16     	; 0x1f2 <workButtons+0x56>
+ 1f6:	80 91 f1 00 	lds	r24, 0x00F1
+ 1fa:	88 23       	and	r24, r24
+ 1fc:	41 f4       	brne	.+16     	; 0x20e <workButtons+0x56>
 			g_timer.state = g_timer.state == ON ? OFF : ON;
- 1e2:	90 91 fd 00 	lds	r25, 0x00FD
- 1e6:	81 e0       	ldi	r24, 0x01	; 1
- 1e8:	91 11       	cpse	r25, r1
- 1ea:	80 e0       	ldi	r24, 0x00	; 0
- 1ec:	80 93 fd 00 	sts	0x00FD, r24
- 1f0:	46 c0       	rjmp	.+140    	; 0x27e <workButtons+0xe2>
+ 1fe:	90 91 fd 00 	lds	r25, 0x00FD
+ 202:	81 e0       	ldi	r24, 0x01	; 1
+ 204:	91 11       	cpse	r25, r1
+ 206:	80 e0       	ldi	r24, 0x00	; 0
+ 208:	80 93 fd 00 	sts	0x00FD, r24
+ 20c:	4b c0       	rjmp	.+150    	; 0x2a4 <workButtons+0xec>
 		else{
 			g_timeout_in_timer_setup = 0;
- 1f2:	10 92 ef 00 	sts	0x00EF, r1
- 1f6:	10 92 ee 00 	sts	0x00EE, r1
+ 20e:	10 92 ef 00 	sts	0x00EF, r1
+ 212:	10 92 ee 00 	sts	0x00EE, r1
 			if (g_timer.time_init[cur_time_pos]++ == TIMEMAX)
- 1fa:	e0 91 f0 00 	lds	r30, 0x00F0
- 1fe:	f0 e0       	ldi	r31, 0x00	; 0
- 200:	e9 50       	subi	r30, 0x09	; 9
- 202:	ff 4f       	sbci	r31, 0xFF	; 255
- 204:	83 81       	ldd	r24, Z+3	; 0x03
- 206:	98 2f       	mov	r25, r24
- 208:	9f 5f       	subi	r25, 0xFF	; 255
- 20a:	93 83       	std	Z+3, r25	; 0x03
- 20c:	8b 33       	cpi	r24, 0x3B	; 59
- 20e:	09 f4       	brne	.+2      	; 0x212 <workButtons+0x76>
+ 216:	e0 91 f0 00 	lds	r30, 0x00F0
+ 21a:	f0 e0       	ldi	r31, 0x00	; 0
+ 21c:	e9 50       	subi	r30, 0x09	; 9
+ 21e:	ff 4f       	sbci	r31, 0xFF	; 255
+ 220:	83 81       	ldd	r24, Z+3	; 0x03
+ 222:	98 2f       	mov	r25, r24
+ 224:	9f 5f       	subi	r25, 0xFF	; 255
+ 226:	93 83       	std	Z+3, r25	; 0x03
+ 228:	8b 33       	cpi	r24, 0x3B	; 59
+ 22a:	09 f4       	brne	.+2      	; 0x22e <workButtons+0x76>
 				g_timer.time_init[cur_time_pos] = TIMEMIN;
- 210:	13 82       	std	Z+3, r1	; 0x03
+ 22c:	13 82       	std	Z+3, r1	; 0x03
 			resetTimer(&g_timer);		
- 212:	87 ef       	ldi	r24, 0xF7	; 247
- 214:	90 e0       	ldi	r25, 0x00	; 0
- 216:	0e 94 7b 02 	call	0x4f6	; 0x4f6 <resetTimer>
- 21a:	17 c0       	rjmp	.+46     	; 0x24a <workButtons+0xae>
+ 22e:	87 ef       	ldi	r24, 0xF7	; 247
+ 230:	90 e0       	ldi	r25, 0x00	; 0
+ 232:	0e 94 92 02 	call	0x524	; 0x524 <resetTimer>
+ 236:	17 c0       	rjmp	.+46     	; 0x266 <workButtons+0xae>
 		}
 		break;
 
 
 	case NEXTPOSITION:
 		if (cur_state == NONE)
- 21c:	80 91 f1 00 	lds	r24, 0x00F1
- 220:	88 23       	and	r24, r24
- 222:	29 f4       	brne	.+10     	; 0x22e <workButtons+0x92>
+ 238:	80 91 f1 00 	lds	r24, 0x00F1
+ 23c:	88 23       	and	r24, r24
+ 23e:	29 f4       	brne	.+10     	; 0x24a <workButtons+0x92>
 			resetTimer(&g_timer);
- 224:	87 ef       	ldi	r24, 0xF7	; 247
- 226:	90 e0       	ldi	r25, 0x00	; 0
- 228:	0e 94 7b 02 	call	0x4f6	; 0x4f6 <resetTimer>
- 22c:	28 c0       	rjmp	.+80     	; 0x27e <workButtons+0xe2>
+ 240:	87 ef       	ldi	r24, 0xF7	; 247
+ 242:	90 e0       	ldi	r25, 0x00	; 0
+ 244:	0e 94 92 02 	call	0x524	; 0x524 <resetTimer>
+ 248:	2d c0       	rjmp	.+90     	; 0x2a4 <workButtons+0xec>
 		else{
 			g_timeout_in_timer_setup = 0;
- 22e:	10 92 ef 00 	sts	0x00EF, r1
- 232:	10 92 ee 00 	sts	0x00EE, r1
+ 24a:	10 92 ef 00 	sts	0x00EF, r1
+ 24e:	10 92 ee 00 	sts	0x00EE, r1
 			if( cur_time_pos++ == TIMEPOSITIONSCOUNT - 1)
- 236:	80 91 f0 00 	lds	r24, 0x00F0
- 23a:	98 2f       	mov	r25, r24
- 23c:	9f 5f       	subi	r25, 0xFF	; 255
- 23e:	90 93 f0 00 	sts	0x00F0, r25
- 242:	82 30       	cpi	r24, 0x02	; 2
- 244:	11 f4       	brne	.+4      	; 0x24a <workButtons+0xae>
+ 252:	80 91 f0 00 	lds	r24, 0x00F0
+ 256:	98 2f       	mov	r25, r24
+ 258:	9f 5f       	subi	r25, 0xFF	; 255
+ 25a:	90 93 f0 00 	sts	0x00F0, r25
+ 25e:	82 30       	cpi	r24, 0x02	; 2
+ 260:	11 f4       	brne	.+4      	; 0x266 <workButtons+0xae>
 				cur_time_pos = HH;
- 246:	10 92 f0 00 	sts	0x00F0, r1
+ 262:	10 92 f0 00 	sts	0x00F0, r1
 			sevenSegShowGTimerInit(&g_timer, cur_time_pos);
- 24a:	87 ef       	ldi	r24, 0xF7	; 247
- 24c:	90 e0       	ldi	r25, 0x00	; 0
- 24e:	60 91 f0 00 	lds	r22, 0x00F0
- 252:	0e 94 80 03 	call	0x700	; 0x700 <sevenSegShowGTimerInit>
- 256:	15 c0       	rjmp	.+42     	; 0x282 <workButtons+0xe6>
+ 266:	87 ef       	ldi	r24, 0xF7	; 247
+ 268:	90 e0       	ldi	r25, 0x00	; 0
+ 26a:	60 91 f0 00 	lds	r22, 0x00F0
+ 26e:	0e 94 97 03 	call	0x72e	; 0x72e <sevenSegShowGTimerInit>
+ 272:	1a c0       	rjmp	.+52     	; 0x2a8 <workButtons+0xf0>
 		}
 		break;
 
 
 	case NONE:
 		if (cur_state == SETTIMER){ 
- 258:	80 91 f1 00 	lds	r24, 0x00F1
- 25c:	81 30       	cpi	r24, 0x01	; 1
- 25e:	79 f4       	brne	.+30     	; 0x27e <workButtons+0xe2>
+ 274:	80 91 f1 00 	lds	r24, 0x00F1
+ 278:	81 30       	cpi	r24, 0x01	; 1
+ 27a:	a1 f4       	brne	.+40     	; 0x2a4 <workButtons+0xec>
 		
 			sevenSegShowGTimerInit(&g_timer, cur_time_pos);
- 260:	87 ef       	ldi	r24, 0xF7	; 247
- 262:	90 e0       	ldi	r25, 0x00	; 0
- 264:	60 91 f0 00 	lds	r22, 0x00F0
- 268:	0e 94 80 03 	call	0x700	; 0x700 <sevenSegShowGTimerInit>
+ 27c:	87 ef       	ldi	r24, 0xF7	; 247
+ 27e:	90 e0       	ldi	r25, 0x00	; 0
+ 280:	60 91 f0 00 	lds	r22, 0x00F0
+ 284:	0e 94 97 03 	call	0x72e	; 0x72e <sevenSegShowGTimerInit>
 
 			if (g_timeout_in_timer_setup > MAXTIMEOUTINTIMERSETUP){
- 26c:	80 91 ee 00 	lds	r24, 0x00EE
- 270:	90 91 ef 00 	lds	r25, 0x00EF
- 274:	8b 30       	cpi	r24, 0x0B	; 11
- 276:	91 05       	cpc	r25, r1
- 278:	20 f0       	brcs	.+8      	; 0x282 <workButtons+0xe6>
+ 288:	80 91 ee 00 	lds	r24, 0x00EE
+ 28c:	90 91 ef 00 	lds	r25, 0x00EF
+ 290:	8b 30       	cpi	r24, 0x0B	; 11
+ 292:	91 05       	cpc	r25, r1
+ 294:	48 f0       	brcs	.+18     	; 0x2a8 <workButtons+0xf0>
 				cur_state = NONE;
- 27a:	10 92 f1 00 	sts	0x00F1, r1
+ 296:	10 92 f1 00 	sts	0x00F1, r1
+
+				writeInitTimeToEEPROM(g_timer.time_init, TIMEPOSITIONSCOUNT);
+ 29a:	8a ef       	ldi	r24, 0xFA	; 250
+ 29c:	90 e0       	ldi	r25, 0x00	; 0
+ 29e:	63 e0       	ldi	r22, 0x03	; 3
+ 2a0:	0e 94 4f 00 	call	0x9e	; 0x9e <writeInitTimeToEEPROM>
 		break;
 	default:
 		break;
 	}
 
 	return FALSE;
- 27e:	80 e0       	ldi	r24, 0x00	; 0
- 280:	01 c0       	rjmp	.+2      	; 0x284 <workButtons+0xe8>
-			if (g_timeout_in_timer_setup > MAXTIMEOUTINTIMERSETUP){
-				cur_state = NONE;
+ 2a4:	80 e0       	ldi	r24, 0x00	; 0
+ 2a6:	01 c0       	rjmp	.+2      	; 0x2aa <workButtons+0xf2>
+				writeInitTimeToEEPROM(g_timer.time_init, TIMEPOSITIONSCOUNT);
+
 				return FALSE;
 			}
 
 			return TRUE;
- 282:	81 e0       	ldi	r24, 0x01	; 1
+ 2a8:	81 e0       	ldi	r24, 0x01	; 1
 	default:
 		break;
 	}
 
 	return FALSE;
 }
- 284:	1f 91       	pop	r17
- 286:	08 95       	ret
+ 2aa:	1f 91       	pop	r17
+ 2ac:	08 95       	ret
 
-00000288 <__vector_8>:
+000002ae <__vector_8>:
 
 //-----------------------------------------------------------------
 
 ISR (TIMER1_OVF_vect)
 {
- 288:	1f 92       	push	r1
- 28a:	0f 92       	push	r0
- 28c:	0f b6       	in	r0, 0x3f	; 63
- 28e:	0f 92       	push	r0
- 290:	11 24       	eor	r1, r1
- 292:	2f 93       	push	r18
- 294:	3f 93       	push	r19
- 296:	4f 93       	push	r20
- 298:	5f 93       	push	r21
- 29a:	6f 93       	push	r22
- 29c:	7f 93       	push	r23
- 29e:	8f 93       	push	r24
- 2a0:	9f 93       	push	r25
- 2a2:	af 93       	push	r26
- 2a4:	bf 93       	push	r27
- 2a6:	ef 93       	push	r30
- 2a8:	ff 93       	push	r31
+ 2ae:	1f 92       	push	r1
+ 2b0:	0f 92       	push	r0
+ 2b2:	0f b6       	in	r0, 0x3f	; 63
+ 2b4:	0f 92       	push	r0
+ 2b6:	11 24       	eor	r1, r1
+ 2b8:	2f 93       	push	r18
+ 2ba:	3f 93       	push	r19
+ 2bc:	4f 93       	push	r20
+ 2be:	5f 93       	push	r21
+ 2c0:	6f 93       	push	r22
+ 2c2:	7f 93       	push	r23
+ 2c4:	8f 93       	push	r24
+ 2c6:	9f 93       	push	r25
+ 2c8:	af 93       	push	r26
+ 2ca:	bf 93       	push	r27
+ 2cc:	ef 93       	push	r30
+ 2ce:	ff 93       	push	r31
 	if(!workButtons())
- 2aa:	0e 94 ce 00 	call	0x19c	; 0x19c <workButtons>
- 2ae:	88 23       	and	r24, r24
- 2b0:	11 f4       	brne	.+4      	; 0x2b6 <__vector_8+0x2e>
+ 2d0:	0e 94 dc 00 	call	0x1b8	; 0x1b8 <workButtons>
+ 2d4:	88 23       	and	r24, r24
+ 2d6:	11 f4       	brne	.+4      	; 0x2dc <__vector_8+0x2e>
 		workSevenSeg();
- 2b2:	0e 94 c9 00 	call	0x192	; 0x192 <workSevenSeg>
+ 2d8:	0e 94 d7 00 	call	0x1ae	; 0x1ae <workSevenSeg>
 
 
 	// run timer
 	TCNT1 = 65536-10; //  31220;
- 2b6:	86 ef       	ldi	r24, 0xF6	; 246
- 2b8:	9f ef       	ldi	r25, 0xFF	; 255
- 2ba:	9d bd       	out	0x2d, r25	; 45
- 2bc:	8c bd       	out	0x2c, r24	; 44
+ 2dc:	86 ef       	ldi	r24, 0xF6	; 246
+ 2de:	9f ef       	ldi	r25, 0xFF	; 255
+ 2e0:	9d bd       	out	0x2d, r25	; 45
+ 2e2:	8c bd       	out	0x2c, r24	; 44
     TCCR1B = (1<<CS12);
- 2be:	84 e0       	ldi	r24, 0x04	; 4
- 2c0:	8e bd       	out	0x2e, r24	; 46
+ 2e4:	84 e0       	ldi	r24, 0x04	; 4
+ 2e6:	8e bd       	out	0x2e, r24	; 46
     TIMSK |= (1<<TOIE1);
- 2c2:	89 b7       	in	r24, 0x39	; 57
- 2c4:	84 60       	ori	r24, 0x04	; 4
- 2c6:	89 bf       	out	0x39, r24	; 57
+ 2e8:	89 b7       	in	r24, 0x39	; 57
+ 2ea:	84 60       	ori	r24, 0x04	; 4
+ 2ec:	89 bf       	out	0x39, r24	; 57
 
 
 }
- 2c8:	ff 91       	pop	r31
- 2ca:	ef 91       	pop	r30
- 2cc:	bf 91       	pop	r27
- 2ce:	af 91       	pop	r26
- 2d0:	9f 91       	pop	r25
- 2d2:	8f 91       	pop	r24
- 2d4:	7f 91       	pop	r23
- 2d6:	6f 91       	pop	r22
- 2d8:	5f 91       	pop	r21
- 2da:	4f 91       	pop	r20
- 2dc:	3f 91       	pop	r19
- 2de:	2f 91       	pop	r18
- 2e0:	0f 90       	pop	r0
- 2e2:	0f be       	out	0x3f, r0	; 63
- 2e4:	0f 90       	pop	r0
- 2e6:	1f 90       	pop	r1
- 2e8:	18 95       	reti
+ 2ee:	ff 91       	pop	r31
+ 2f0:	ef 91       	pop	r30
+ 2f2:	bf 91       	pop	r27
+ 2f4:	af 91       	pop	r26
+ 2f6:	9f 91       	pop	r25
+ 2f8:	8f 91       	pop	r24
+ 2fa:	7f 91       	pop	r23
+ 2fc:	6f 91       	pop	r22
+ 2fe:	5f 91       	pop	r21
+ 300:	4f 91       	pop	r20
+ 302:	3f 91       	pop	r19
+ 304:	2f 91       	pop	r18
+ 306:	0f 90       	pop	r0
+ 308:	0f be       	out	0x3f, r0	; 63
+ 30a:	0f 90       	pop	r0
+ 30c:	1f 90       	pop	r1
+ 30e:	18 95       	reti
 
-000002ea <startDelayWithAnime>:
+00000310 <startDelayWithAnime>:
 
 //---------------------------------------------------------------
 
 
 
 void startDelayWithAnime(unsigned int wait_time){
- 2ea:	af 92       	push	r10
- 2ec:	bf 92       	push	r11
- 2ee:	cf 92       	push	r12
- 2f0:	df 92       	push	r13
- 2f2:	ef 92       	push	r14
- 2f4:	ff 92       	push	r15
- 2f6:	0f 93       	push	r16
- 2f8:	1f 93       	push	r17
- 2fa:	df 93       	push	r29
- 2fc:	cf 93       	push	r28
- 2fe:	00 d0       	rcall	.+0      	; 0x300 <startDelayWithAnime+0x16>
- 300:	00 d0       	rcall	.+0      	; 0x302 <startDelayWithAnime+0x18>
- 302:	00 d0       	rcall	.+0      	; 0x304 <startDelayWithAnime+0x1a>
- 304:	cd b7       	in	r28, 0x3d	; 61
- 306:	de b7       	in	r29, 0x3e	; 62
+ 310:	af 92       	push	r10
+ 312:	bf 92       	push	r11
+ 314:	cf 92       	push	r12
+ 316:	df 92       	push	r13
+ 318:	ef 92       	push	r14
+ 31a:	ff 92       	push	r15
+ 31c:	0f 93       	push	r16
+ 31e:	1f 93       	push	r17
+ 320:	df 93       	push	r29
+ 322:	cf 93       	push	r28
+ 324:	00 d0       	rcall	.+0      	; 0x326 <startDelayWithAnime+0x16>
+ 326:	00 d0       	rcall	.+0      	; 0x328 <startDelayWithAnime+0x18>
+ 328:	00 d0       	rcall	.+0      	; 0x32a <startDelayWithAnime+0x1a>
+ 32a:	cd b7       	in	r28, 0x3d	; 61
+ 32c:	de b7       	in	r29, 0x3e	; 62
 
 	
 	char bar[BARLEN]; 
 
 	for (char t = 0; t < 6; t++)
 		bar[t] = 0;
- 308:	19 82       	std	Y+1, r1	; 0x01
- 30a:	1a 82       	std	Y+2, r1	; 0x02
- 30c:	1b 82       	std	Y+3, r1	; 0x03
- 30e:	1c 82       	std	Y+4, r1	; 0x04
- 310:	1d 82       	std	Y+5, r1	; 0x05
- 312:	1e 82       	std	Y+6, r1	; 0x06
+ 32e:	19 82       	std	Y+1, r1	; 0x01
+ 330:	1a 82       	std	Y+2, r1	; 0x02
+ 332:	1b 82       	std	Y+3, r1	; 0x03
+ 334:	1c 82       	std	Y+4, r1	; 0x04
+ 336:	1d 82       	std	Y+5, r1	; 0x05
+ 338:	1e 82       	std	Y+6, r1	; 0x06
 
 	unsigned int periods = wait_time / BARBLOCKCOUNT;
- 314:	6c e0       	ldi	r22, 0x0C	; 12
- 316:	70 e0       	ldi	r23, 0x00	; 0
- 318:	0e 94 f2 05 	call	0xbe4	; 0xbe4 <__udivmodhi4>
- 31c:	5b 01       	movw	r10, r22
- 31e:	ee 24       	eor	r14, r14
- 320:	ff 24       	eor	r15, r15
+ 33a:	6c e0       	ldi	r22, 0x0C	; 12
+ 33c:	70 e0       	ldi	r23, 0x00	; 0
+ 33e:	0e 94 09 06 	call	0xc12	; 0xc12 <__udivmodhi4>
+ 342:	5b 01       	movw	r10, r22
+ 344:	ee 24       	eor	r14, r14
+ 346:	ff 24       	eor	r15, r15
 
 	for (char block = 0; block < BARBLOCKCOUNT; block++){
 		bar[block / 2] |= (block % 2) ? (prog_bar_2 | prog_bar_1) : prog_bar_2;
- 322:	8e 01       	movw	r16, r28
- 324:	0f 5f       	subi	r16, 0xFF	; 255
- 326:	1f 4f       	sbci	r17, 0xFF	; 255
- 328:	8e 2d       	mov	r24, r14
- 32a:	86 95       	lsr	r24
- 32c:	90 e0       	ldi	r25, 0x00	; 0
- 32e:	f8 01       	movw	r30, r16
- 330:	e8 0f       	add	r30, r24
- 332:	f9 1f       	adc	r31, r25
- 334:	30 81       	ld	r19, Z
- 336:	e0 fe       	sbrs	r14, 0
- 338:	02 c0       	rjmp	.+4      	; 0x33e <startDelayWithAnime+0x54>
- 33a:	2a ea       	ldi	r18, 0xAA	; 170
- 33c:	01 c0       	rjmp	.+2      	; 0x340 <startDelayWithAnime+0x56>
- 33e:	22 e2       	ldi	r18, 0x22	; 34
- 340:	80 0f       	add	r24, r16
- 342:	91 1f       	adc	r25, r17
- 344:	23 2b       	or	r18, r19
- 346:	fc 01       	movw	r30, r24
- 348:	20 83       	st	Z, r18
+ 348:	8e 01       	movw	r16, r28
+ 34a:	0f 5f       	subi	r16, 0xFF	; 255
+ 34c:	1f 4f       	sbci	r17, 0xFF	; 255
+ 34e:	8e 2d       	mov	r24, r14
+ 350:	86 95       	lsr	r24
+ 352:	90 e0       	ldi	r25, 0x00	; 0
+ 354:	f8 01       	movw	r30, r16
+ 356:	e8 0f       	add	r30, r24
+ 358:	f9 1f       	adc	r31, r25
+ 35a:	30 81       	ld	r19, Z
+ 35c:	e0 fe       	sbrs	r14, 0
+ 35e:	02 c0       	rjmp	.+4      	; 0x364 <startDelayWithAnime+0x54>
+ 360:	2a ea       	ldi	r18, 0xAA	; 170
+ 362:	01 c0       	rjmp	.+2      	; 0x366 <startDelayWithAnime+0x56>
+ 364:	22 e2       	ldi	r18, 0x22	; 34
+ 366:	80 0f       	add	r24, r16
+ 368:	91 1f       	adc	r25, r17
+ 36a:	23 2b       	or	r18, r19
+ 36c:	fc 01       	movw	r30, r24
+ 36e:	20 83       	st	Z, r18
 
 		for (unsigned int p = 0; p < periods; p++)
- 34a:	cc 24       	eor	r12, r12
- 34c:	dd 24       	eor	r13, r13
- 34e:	ca 14       	cp	r12, r10
- 350:	db 04       	cpc	r13, r11
- 352:	60 f4       	brcc	.+24     	; 0x36c <startDelayWithAnime+0x82>
+ 370:	cc 24       	eor	r12, r12
+ 372:	dd 24       	eor	r13, r13
+ 374:	ca 14       	cp	r12, r10
+ 376:	db 04       	cpc	r13, r11
+ 378:	60 f4       	brcc	.+24     	; 0x392 <startDelayWithAnime+0x82>
 			for (char i = 0; i < 2; i++){
 				sevenSegShowArrayCode(bar, BARLEN);
- 354:	c8 01       	movw	r24, r16
- 356:	66 e0       	ldi	r22, 0x06	; 6
- 358:	0e 94 c1 02 	call	0x582	; 0x582 <sevenSegShowArrayCode>
- 35c:	c8 01       	movw	r24, r16
- 35e:	66 e0       	ldi	r22, 0x06	; 6
- 360:	0e 94 c1 02 	call	0x582	; 0x582 <sevenSegShowArrayCode>
+ 37a:	c8 01       	movw	r24, r16
+ 37c:	66 e0       	ldi	r22, 0x06	; 6
+ 37e:	0e 94 d8 02 	call	0x5b0	; 0x5b0 <sevenSegShowArrayCode>
+ 382:	c8 01       	movw	r24, r16
+ 384:	66 e0       	ldi	r22, 0x06	; 6
+ 386:	0e 94 d8 02 	call	0x5b0	; 0x5b0 <sevenSegShowArrayCode>
 	unsigned int periods = wait_time / BARBLOCKCOUNT;
 
 	for (char block = 0; block < BARBLOCKCOUNT; block++){
 		bar[block / 2] |= (block % 2) ? (prog_bar_2 | prog_bar_1) : prog_bar_2;
 
 		for (unsigned int p = 0; p < periods; p++)
- 364:	08 94       	sec
- 366:	c1 1c       	adc	r12, r1
- 368:	d1 1c       	adc	r13, r1
- 36a:	f1 cf       	rjmp	.-30     	; 0x34e <startDelayWithAnime+0x64>
- 36c:	08 94       	sec
- 36e:	e1 1c       	adc	r14, r1
- 370:	f1 1c       	adc	r15, r1
+ 38a:	08 94       	sec
+ 38c:	c1 1c       	adc	r12, r1
+ 38e:	d1 1c       	adc	r13, r1
+ 390:	f1 cf       	rjmp	.-30     	; 0x374 <startDelayWithAnime+0x64>
+ 392:	08 94       	sec
+ 394:	e1 1c       	adc	r14, r1
+ 396:	f1 1c       	adc	r15, r1
 	for (char t = 0; t < 6; t++)
 		bar[t] = 0;
 
 	unsigned int periods = wait_time / BARBLOCKCOUNT;
 
 	for (char block = 0; block < BARBLOCKCOUNT; block++){
- 372:	fc e0       	ldi	r31, 0x0C	; 12
- 374:	ef 16       	cp	r14, r31
- 376:	f1 04       	cpc	r15, r1
- 378:	b9 f6       	brne	.-82     	; 0x328 <startDelayWithAnime+0x3e>
+ 398:	fc e0       	ldi	r31, 0x0C	; 12
+ 39a:	ef 16       	cp	r14, r31
+ 39c:	f1 04       	cpc	r15, r1
+ 39e:	b9 f6       	brne	.-82     	; 0x34e <startDelayWithAnime+0x3e>
 
 			}
 	}
 
 
 }
- 37a:	26 96       	adiw	r28, 0x06	; 6
- 37c:	0f b6       	in	r0, 0x3f	; 63
- 37e:	f8 94       	cli
- 380:	de bf       	out	0x3e, r29	; 62
- 382:	0f be       	out	0x3f, r0	; 63
- 384:	cd bf       	out	0x3d, r28	; 61
- 386:	cf 91       	pop	r28
- 388:	df 91       	pop	r29
- 38a:	1f 91       	pop	r17
- 38c:	0f 91       	pop	r16
- 38e:	ff 90       	pop	r15
- 390:	ef 90       	pop	r14
- 392:	df 90       	pop	r13
- 394:	cf 90       	pop	r12
- 396:	bf 90       	pop	r11
- 398:	af 90       	pop	r10
- 39a:	08 95       	ret
+ 3a0:	26 96       	adiw	r28, 0x06	; 6
+ 3a2:	0f b6       	in	r0, 0x3f	; 63
+ 3a4:	f8 94       	cli
+ 3a6:	de bf       	out	0x3e, r29	; 62
+ 3a8:	0f be       	out	0x3f, r0	; 63
+ 3aa:	cd bf       	out	0x3d, r28	; 61
+ 3ac:	cf 91       	pop	r28
+ 3ae:	df 91       	pop	r29
+ 3b0:	1f 91       	pop	r17
+ 3b2:	0f 91       	pop	r16
+ 3b4:	ff 90       	pop	r15
+ 3b6:	ef 90       	pop	r14
+ 3b8:	df 90       	pop	r13
+ 3ba:	cf 90       	pop	r12
+ 3bc:	bf 90       	pop	r11
+ 3be:	af 90       	pop	r10
+ 3c0:	08 95       	ret
 
-0000039c <main>:
+000003c2 <main>:
 
 
 //---------------------------------------------------------------
 
 
 int main(){
- 39c:	ef 92       	push	r14
- 39e:	ff 92       	push	r15
- 3a0:	0f 93       	push	r16
- 3a2:	1f 93       	push	r17
- 3a4:	df 93       	push	r29
- 3a6:	cf 93       	push	r28
- 3a8:	cd b7       	in	r28, 0x3d	; 61
- 3aa:	de b7       	in	r29, 0x3e	; 62
- 3ac:	a7 97       	sbiw	r28, 0x27	; 39
- 3ae:	0f b6       	in	r0, 0x3f	; 63
- 3b0:	f8 94       	cli
- 3b2:	de bf       	out	0x3e, r29	; 62
- 3b4:	0f be       	out	0x3f, r0	; 63
- 3b6:	cd bf       	out	0x3d, r28	; 61
+ 3c2:	ef 92       	push	r14
+ 3c4:	ff 92       	push	r15
+ 3c6:	0f 93       	push	r16
+ 3c8:	1f 93       	push	r17
+ 3ca:	df 93       	push	r29
+ 3cc:	cf 93       	push	r28
+ 3ce:	cd b7       	in	r28, 0x3d	; 61
+ 3d0:	de b7       	in	r29, 0x3e	; 62
+ 3d2:	aa 97       	sbiw	r28, 0x2a	; 42
+ 3d4:	0f b6       	in	r0, 0x3f	; 63
+ 3d6:	f8 94       	cli
+ 3d8:	de bf       	out	0x3e, r29	; 62
+ 3da:	0f be       	out	0x3f, r0	; 63
+ 3dc:	cd bf       	out	0x3d, r28	; 61
 	
 	unsigned char rx_buf[MAX_PACKET_LEN];
 
 	Init_Spi();
- 3b8:	0e 94 ff 03 	call	0x7fe	; 0x7fe <Init_Spi>
+ 3de:	0e 94 16 04 	call	0x82c	; 0x82c <Init_Spi>
 	RFM73_Initialize();
- 3bc:	0e 94 b4 04 	call	0x968	; 0x968 <RFM73_Initialize>
+ 3e2:	0e 94 cb 04 	call	0x996	; 0x996 <RFM73_Initialize>
 	SwitchToRxMode();
- 3c0:	0e 94 78 04 	call	0x8f0	; 0x8f0 <SwitchToRxMode>
+ 3e6:	0e 94 8f 04 	call	0x91e	; 0x91e <SwitchToRxMode>
 
 
 	initLed();
- 3c4:	0e 94 49 00 	call	0x92	; 0x92 <initLed>
+ 3ea:	0e 94 49 00 	call	0x92	; 0x92 <initLed>
 	initZum();
- 3c8:	0e 94 4c 00 	call	0x98	; 0x98 <initZum>
+ 3ee:	0e 94 4c 00 	call	0x98	; 0x98 <initZum>
 	initSevenSeg();
- 3cc:	0e 94 8c 02 	call	0x518	; 0x518 <initSevenSeg>
+ 3f2:	0e 94 a3 02 	call	0x546	; 0x546 <initSevenSeg>
 	initButtons();
- 3d0:	0e 94 99 03 	call	0x732	; 0x732 <initButtons>
+ 3f6:	0e 94 b0 03 	call	0x760	; 0x760 <initButtons>
 
 	startDelayWithAnime(3000); // initial start
- 3d4:	88 eb       	ldi	r24, 0xB8	; 184
- 3d6:	9b e0       	ldi	r25, 0x0B	; 11
- 3d8:	0e 94 75 01 	call	0x2ea	; 0x2ea <startDelayWithAnime>
+ 3fa:	88 eb       	ldi	r24, 0xB8	; 184
+ 3fc:	9b e0       	ldi	r25, 0x0B	; 11
+ 3fe:	0e 94 88 01 	call	0x310	; 0x310 <startDelayWithAnime>
 
-	setTimer(&g_timer, 0, 12, 23); // set timer default value
- 3dc:	87 ef       	ldi	r24, 0xF7	; 247
- 3de:	90 e0       	ldi	r25, 0x00	; 0
- 3e0:	60 e0       	ldi	r22, 0x00	; 0
- 3e2:	4c e0       	ldi	r20, 0x0C	; 12
- 3e4:	27 e1       	ldi	r18, 0x17	; 23
- 3e6:	0e 94 41 02 	call	0x482	; 0x482 <setTimer>
+	char initialTimeForTimer[TIMEPOSITIONSCOUNT];
+	readInitTimeFromEEPROM(initialTimeForTimer, TIMEPOSITIONSCOUNT);
+ 402:	ce 01       	movw	r24, r28
+ 404:	01 96       	adiw	r24, 0x01	; 1
+ 406:	63 e0       	ldi	r22, 0x03	; 3
+ 408:	0e 94 56 00 	call	0xac	; 0xac <readInitTimeFromEEPROM>
+
+	setTimer(&g_timer, initialTimeForTimer[HH], initialTimeForTimer[MM], initialTimeForTimer[SS]); // set timer default value
+ 40c:	87 ef       	ldi	r24, 0xF7	; 247
+ 40e:	90 e0       	ldi	r25, 0x00	; 0
+ 410:	69 81       	ldd	r22, Y+1	; 0x01
+ 412:	4a 81       	ldd	r20, Y+2	; 0x02
+ 414:	2b 81       	ldd	r18, Y+3	; 0x03
+ 416:	0e 94 58 02 	call	0x4b0	; 0x4b0 <setTimer>
 
 	setupTIMER1();
- 3ea:	0e 94 65 00 	call	0xca	; 0xca <setupTIMER1>
+ 41a:	0e 94 73 00 	call	0xe6	; 0xe6 <setupTIMER1>
 	setupTIMER2();
- 3ee:	0e 94 6f 00 	call	0xde	; 0xde <setupTIMER2>
+ 41e:	0e 94 7d 00 	call	0xfa	; 0xfa <setupTIMER2>
 	sei();
- 3f2:	78 94       	sei
+ 422:	78 94       	sei
 	char per_part_packs[SLIDESTATISTICPARTSCOUNT];
 	char per_part_len = STATISTICCOUNT / SLIDESTATISTICPARTSCOUNT;
 	char per_part_cout = 0;
 
 	for (char i = 0; i < SLIDESTATISTICPARTSCOUNT; i++ )
 		per_part_packs[i] = 0;
- 3f4:	19 82       	std	Y+1, r1	; 0x01
- 3f6:	1a 82       	std	Y+2, r1	; 0x02
- 3f8:	1b 82       	std	Y+3, r1	; 0x03
- 3fa:	1c 82       	std	Y+4, r1	; 0x04
- 3fc:	1d 82       	std	Y+5, r1	; 0x05
- 3fe:	1e 82       	std	Y+6, r1	; 0x06
- 400:	20 e0       	ldi	r18, 0x00	; 0
+ 424:	1c 82       	std	Y+4, r1	; 0x04
+ 426:	1d 82       	std	Y+5, r1	; 0x05
+ 428:	1e 82       	std	Y+6, r1	; 0x06
+ 42a:	1f 82       	std	Y+7, r1	; 0x07
+ 42c:	18 86       	std	Y+8, r1	; 0x08
+ 42e:	19 86       	std	Y+9, r1	; 0x09
+ 430:	20 e0       	ldi	r18, 0x00	; 0
 
 	while (1) {
 
 		if (per_part_cout++ >= per_part_len){
- 402:	7e 01       	movw	r14, r28
- 404:	08 94       	sec
- 406:	e1 1c       	adc	r14, r1
- 408:	f1 1c       	adc	r15, r1
+ 432:	84 e0       	ldi	r24, 0x04	; 4
+ 434:	e8 2e       	mov	r14, r24
+ 436:	f1 2c       	mov	r15, r1
+ 438:	ec 0e       	add	r14, r28
+ 43a:	fd 1e       	adc	r15, r29
 
 
 //---------------------------------------------------------------
 
 
 int main(){
- 40a:	8e 01       	movw	r16, r28
- 40c:	09 5f       	subi	r16, 0xF9	; 249
- 40e:	1f 4f       	sbci	r17, 0xFF	; 255
+ 43c:	8e 01       	movw	r16, r28
+ 43e:	06 5f       	subi	r16, 0xF6	; 246
+ 440:	1f 4f       	sbci	r17, 0xFF	; 255
 	for (char i = 0; i < SLIDESTATISTICPARTSCOUNT; i++ )
 		per_part_packs[i] = 0;
 
 	while (1) {
 
 		if (per_part_cout++ >= per_part_len){
- 410:	22 33       	cpi	r18, 0x32	; 50
- 412:	10 f4       	brcc	.+4      	; 0x418 <main+0x7c>
- 414:	2f 5f       	subi	r18, 0xFF	; 255
- 416:	20 c0       	rjmp	.+64     	; 0x458 <main+0xbc>
- 418:	f7 01       	movw	r30, r14
+ 442:	23 35       	cpi	r18, 0x53	; 83
+ 444:	10 f4       	brcc	.+4      	; 0x44a <main+0x88>
+ 446:	2f 5f       	subi	r18, 0xFF	; 255
+ 448:	1e c0       	rjmp	.+60     	; 0x486 <__stack+0x27>
+ 44a:	f7 01       	movw	r30, r14
 
 
 //---------------------------------------------------------------
 
 
 int main(){
- 41a:	80 e0       	ldi	r24, 0x00	; 0
+ 44c:	80 e0       	ldi	r24, 0x00	; 0
 
 		if (per_part_cout++ >= per_part_len){
 
 			char sum_packs = 0;
 			for (char i = 0; i < SLIDESTATISTICPARTSCOUNT; i++ )
 				sum_packs += per_part_packs[i];
- 41c:	91 91       	ld	r25, Z+
- 41e:	89 0f       	add	r24, r25
+ 44e:	91 91       	ld	r25, Z+
+ 450:	89 0f       	add	r24, r25
 	while (1) {
 
 		if (per_part_cout++ >= per_part_len){
 
 			char sum_packs = 0;
 			for (char i = 0; i < SLIDESTATISTICPARTSCOUNT; i++ )
- 420:	e0 17       	cp	r30, r16
- 422:	f1 07       	cpc	r31, r17
- 424:	d9 f7       	brne	.-10     	; 0x41c <main+0x80>
+ 452:	e0 17       	cp	r30, r16
+ 454:	f1 07       	cpc	r31, r17
+ 456:	d9 f7       	brne	.-10     	; 0x44e <main+0x8c>
 				sum_packs += per_part_packs[i];
 			
 			if (sum_packs >= PACKSTOSTART)
- 426:	89 30       	cpi	r24, 0x09	; 9
- 428:	28 f0       	brcs	.+10     	; 0x434 <main+0x98>
+ 458:	82 30       	cpi	r24, 0x02	; 2
+ 45a:	28 f0       	brcs	.+10     	; 0x466 <__stack+0x7>
 				startTimer(&g_timer);
- 42a:	87 ef       	ldi	r24, 0xF7	; 247
- 42c:	90 e0       	ldi	r25, 0x00	; 0
- 42e:	0e 94 85 02 	call	0x50a	; 0x50a <startTimer>
- 432:	06 c0       	rjmp	.+12     	; 0x440 <main+0xa4>
+ 45c:	87 ef       	ldi	r24, 0xF7	; 247
+ 45e:	90 e0       	ldi	r25, 0x00	; 0
+ 460:	0e 94 9c 02 	call	0x538	; 0x538 <startTimer>
+ 464:	04 c0       	rjmp	.+8      	; 0x46e <__stack+0xf>
 
 			if (sum_packs <= PACKSTOSTOP)
- 434:	83 30       	cpi	r24, 0x03	; 3
- 436:	20 f4       	brcc	.+8      	; 0x440 <main+0xa4>
 				stopTimer(&g_timer);
- 438:	87 ef       	ldi	r24, 0xF7	; 247
- 43a:	90 e0       	ldi	r25, 0x00	; 0
- 43c:	0e 94 88 02 	call	0x510	; 0x510 <stopTimer>
+ 466:	87 ef       	ldi	r24, 0xF7	; 247
+ 468:	90 e0       	ldi	r25, 0x00	; 0
+ 46a:	0e 94 9f 02 	call	0x53e	; 0x53e <stopTimer>
 
 			per_part_cout = 0;
 
 			for (char i = 0; i < SLIDESTATISTICPARTSCOUNT - 1; i++ )
 				per_part_packs[i] = per_part_packs[i+1];
- 440:	8a 81       	ldd	r24, Y+2	; 0x02
- 442:	89 83       	std	Y+1, r24	; 0x01
- 444:	8b 81       	ldd	r24, Y+3	; 0x03
- 446:	8a 83       	std	Y+2, r24	; 0x02
- 448:	8c 81       	ldd	r24, Y+4	; 0x04
- 44a:	8b 83       	std	Y+3, r24	; 0x03
- 44c:	8d 81       	ldd	r24, Y+5	; 0x05
- 44e:	8c 83       	std	Y+4, r24	; 0x04
- 450:	8e 81       	ldd	r24, Y+6	; 0x06
- 452:	8d 83       	std	Y+5, r24	; 0x05
+ 46e:	8d 81       	ldd	r24, Y+5	; 0x05
+ 470:	8c 83       	std	Y+4, r24	; 0x04
+ 472:	8e 81       	ldd	r24, Y+6	; 0x06
+ 474:	8d 83       	std	Y+5, r24	; 0x05
+ 476:	8f 81       	ldd	r24, Y+7	; 0x07
+ 478:	8e 83       	std	Y+6, r24	; 0x06
+ 47a:	88 85       	ldd	r24, Y+8	; 0x08
+ 47c:	8f 83       	std	Y+7, r24	; 0x07
+ 47e:	89 85       	ldd	r24, Y+9	; 0x09
+ 480:	88 87       	std	Y+8, r24	; 0x08
 
 			per_part_packs[SLIDESTATISTICPARTSCOUNT - 1] = 0;		
- 454:	1e 82       	std	Y+6, r1	; 0x06
+ 482:	19 86       	std	Y+9, r1	; 0x09
 				startTimer(&g_timer);
 
 			if (sum_packs <= PACKSTOSTOP)
 				stopTimer(&g_timer);
 
 			per_part_cout = 0;
- 456:	20 e0       	ldi	r18, 0x00	; 0
+ 484:	20 e0       	ldi	r18, 0x00	; 0
 				per_part_packs[i] = per_part_packs[i+1];
 
 			per_part_packs[SLIDESTATISTICPARTSCOUNT - 1] = 0;		
 		}
 
 		UINT8 len = Receive_Packet(rx_buf, MAX_PACKET_LEN);
- 458:	c8 01       	movw	r24, r16
- 45a:	60 e2       	ldi	r22, 0x20	; 32
- 45c:	2f a3       	std	Y+39, r18	; 0x27
- 45e:	0e 94 ba 05 	call	0xb74	; 0xb74 <Receive_Packet>
+ 486:	c8 01       	movw	r24, r16
+ 488:	60 e2       	ldi	r22, 0x20	; 32
+ 48a:	2a a7       	std	Y+42, r18	; 0x2a
+ 48c:	0e 94 d1 05 	call	0xba2	; 0xba2 <Receive_Packet>
 		if (len > 0){
- 462:	2f a1       	ldd	r18, Y+39	; 0x27
- 464:	88 23       	and	r24, r24
- 466:	31 f0       	breq	.+12     	; 0x474 <__stack+0x15>
+ 490:	2a a5       	ldd	r18, Y+42	; 0x2a
+ 492:	88 23       	and	r24, r24
+ 494:	31 f0       	breq	.+12     	; 0x4a2 <__stack+0x43>
 			if (rx_buf[POINTNUMBERPOSITION] == DETONATORPOINTNUMBER){
- 468:	88 85       	ldd	r24, Y+8	; 0x08
- 46a:	82 30       	cpi	r24, 0x02	; 2
- 46c:	19 f4       	brne	.+6      	; 0x474 <__stack+0x15>
+ 496:	8b 85       	ldd	r24, Y+11	; 0x0b
+ 498:	82 30       	cpi	r24, 0x02	; 2
+ 49a:	19 f4       	brne	.+6      	; 0x4a2 <__stack+0x43>
 				//ledTugle();
 				per_part_packs[SLIDESTATISTICPARTSCOUNT - 1]++;
- 46e:	8e 81       	ldd	r24, Y+6	; 0x06
- 470:	8f 5f       	subi	r24, 0xFF	; 255
- 472:	8e 83       	std	Y+6, r24	; 0x06
- 474:	83 ec       	ldi	r24, 0xC3	; 195
- 476:	99 e0       	ldi	r25, 0x09	; 9
- 478:	01 97       	sbiw	r24, 0x01	; 1
- 47a:	f1 f7       	brne	.-4      	; 0x478 <__stack+0x19>
- 47c:	00 c0       	rjmp	.+0      	; 0x47e <__stack+0x1f>
- 47e:	00 00       	nop
- 480:	c7 cf       	rjmp	.-114    	; 0x410 <main+0x74>
+ 49c:	89 85       	ldd	r24, Y+9	; 0x09
+ 49e:	8f 5f       	subi	r24, 0xFF	; 255
+ 4a0:	89 87       	std	Y+9, r24	; 0x09
+ 4a2:	83 ec       	ldi	r24, 0xC3	; 195
+ 4a4:	99 e0       	ldi	r25, 0x09	; 9
+ 4a6:	01 97       	sbiw	r24, 0x01	; 1
+ 4a8:	f1 f7       	brne	.-4      	; 0x4a6 <__stack+0x47>
+ 4aa:	00 c0       	rjmp	.+0      	; 0x4ac <__stack+0x4d>
+ 4ac:	00 00       	nop
+ 4ae:	c9 cf       	rjmp	.-110    	; 0x442 <main+0x80>
 
-00000482 <setTimer>:
+000004b0 <setTimer>:
 #include "timer.h"
 
 void setTimer(Timer * g_timer, char hh, char mm, char ss){
- 482:	fc 01       	movw	r30, r24
+ 4b0:	fc 01       	movw	r30, r24
 	g_timer->time[SS] = g_timer->time_init[SS] = ss;
- 484:	25 83       	std	Z+5, r18	; 0x05
- 486:	22 83       	std	Z+2, r18	; 0x02
+ 4b2:	25 83       	std	Z+5, r18	; 0x05
+ 4b4:	22 83       	std	Z+2, r18	; 0x02
 	g_timer->time[MM] = g_timer->time_init[MM] = mm;
- 488:	44 83       	std	Z+4, r20	; 0x04
- 48a:	41 83       	std	Z+1, r20	; 0x01
+ 4b6:	44 83       	std	Z+4, r20	; 0x04
+ 4b8:	41 83       	std	Z+1, r20	; 0x01
 	g_timer->time[HH] = g_timer->time_init[HH] = hh;
- 48c:	63 83       	std	Z+3, r22	; 0x03
- 48e:	60 83       	st	Z, r22
+ 4ba:	63 83       	std	Z+3, r22	; 0x03
+ 4bc:	60 83       	st	Z, r22
 	g_timer->state = OFF;
- 490:	81 e0       	ldi	r24, 0x01	; 1
- 492:	86 83       	std	Z+6, r24	; 0x06
+ 4be:	81 e0       	ldi	r24, 0x01	; 1
+ 4c0:	86 83       	std	Z+6, r24	; 0x06
 }
- 494:	08 95       	ret
+ 4c2:	08 95       	ret
 
-00000496 <decTimer>:
+000004c4 <decTimer>:
 
 
 char decTimer(Timer * g_timer){
- 496:	fc 01       	movw	r30, r24
+ 4c4:	fc 01       	movw	r30, r24
 	if (g_timer->time[SS] == 0 &&
- 498:	82 81       	ldd	r24, Z+2	; 0x02
- 49a:	88 23       	and	r24, r24
- 49c:	31 f4       	brne	.+12     	; 0x4aa <decTimer+0x14>
- 49e:	91 81       	ldd	r25, Z+1	; 0x01
- 4a0:	99 23       	and	r25, r25
- 4a2:	19 f4       	brne	.+6      	; 0x4aa <decTimer+0x14>
+ 4c6:	82 81       	ldd	r24, Z+2	; 0x02
+ 4c8:	88 23       	and	r24, r24
+ 4ca:	31 f4       	brne	.+12     	; 0x4d8 <decTimer+0x14>
+ 4cc:	91 81       	ldd	r25, Z+1	; 0x01
+ 4ce:	99 23       	and	r25, r25
+ 4d0:	19 f4       	brne	.+6      	; 0x4d8 <decTimer+0x14>
 		g_timer->time[MM] == 0 &&
- 4a4:	90 81       	ld	r25, Z
- 4a6:	99 23       	and	r25, r25
- 4a8:	01 f1       	breq	.+64     	; 0x4ea <decTimer+0x54>
+ 4d2:	90 81       	ld	r25, Z
+ 4d4:	99 23       	and	r25, r25
+ 4d6:	01 f1       	breq	.+64     	; 0x518 <decTimer+0x54>
 		g_timer->time[HH] == 0)
 		return ELAPSED;	
 
 	if (!g_timer->time[SS]--){
- 4aa:	98 2f       	mov	r25, r24
- 4ac:	91 50       	subi	r25, 0x01	; 1
- 4ae:	92 83       	std	Z+2, r25	; 0x02
- 4b0:	88 23       	and	r24, r24
- 4b2:	81 f4       	brne	.+32     	; 0x4d4 <decTimer+0x3e>
+ 4d8:	98 2f       	mov	r25, r24
+ 4da:	91 50       	subi	r25, 0x01	; 1
+ 4dc:	92 83       	std	Z+2, r25	; 0x02
+ 4de:	88 23       	and	r24, r24
+ 4e0:	81 f4       	brne	.+32     	; 0x502 <decTimer+0x3e>
 		g_timer->time[SS] = TIMEMAX;
- 4b4:	8b e3       	ldi	r24, 0x3B	; 59
- 4b6:	82 83       	std	Z+2, r24	; 0x02
+ 4e2:	8b e3       	ldi	r24, 0x3B	; 59
+ 4e4:	82 83       	std	Z+2, r24	; 0x02
 		if (!g_timer->time[MM]--){
- 4b8:	91 81       	ldd	r25, Z+1	; 0x01
- 4ba:	29 2f       	mov	r18, r25
- 4bc:	21 50       	subi	r18, 0x01	; 1
- 4be:	21 83       	std	Z+1, r18	; 0x01
- 4c0:	99 23       	and	r25, r25
- 4c2:	41 f4       	brne	.+16     	; 0x4d4 <decTimer+0x3e>
+ 4e6:	91 81       	ldd	r25, Z+1	; 0x01
+ 4e8:	29 2f       	mov	r18, r25
+ 4ea:	21 50       	subi	r18, 0x01	; 1
+ 4ec:	21 83       	std	Z+1, r18	; 0x01
+ 4ee:	99 23       	and	r25, r25
+ 4f0:	41 f4       	brne	.+16     	; 0x502 <decTimer+0x3e>
 			g_timer->time[MM] = TIMEMAX;
- 4c4:	81 83       	std	Z+1, r24	; 0x01
+ 4f2:	81 83       	std	Z+1, r24	; 0x01
 			if (!g_timer->time[HH]--)
- 4c6:	80 81       	ld	r24, Z
- 4c8:	98 2f       	mov	r25, r24
- 4ca:	91 50       	subi	r25, 0x01	; 1
- 4cc:	90 83       	st	Z, r25
- 4ce:	88 23       	and	r24, r24
- 4d0:	09 f4       	brne	.+2      	; 0x4d4 <decTimer+0x3e>
+ 4f4:	80 81       	ld	r24, Z
+ 4f6:	98 2f       	mov	r25, r24
+ 4f8:	91 50       	subi	r25, 0x01	; 1
+ 4fa:	90 83       	st	Z, r25
+ 4fc:	88 23       	and	r24, r24
+ 4fe:	09 f4       	brne	.+2      	; 0x502 <decTimer+0x3e>
 				g_timer->time[HH] = TIMEMIN;
- 4d2:	10 82       	st	Z, r1
+ 500:	10 82       	st	Z, r1
 		}
 	}
 	
 	if (g_timer->time[SS] <= SOMEMORESECONDS &&
- 4d4:	82 81       	ldd	r24, Z+2	; 0x02
- 4d6:	8b 30       	cpi	r24, 0x0B	; 11
- 4d8:	50 f4       	brcc	.+20     	; 0x4ee <decTimer+0x58>
- 4da:	81 81       	ldd	r24, Z+1	; 0x01
- 4dc:	88 23       	and	r24, r24
- 4de:	49 f4       	brne	.+18     	; 0x4f2 <decTimer+0x5c>
+ 502:	82 81       	ldd	r24, Z+2	; 0x02
+ 504:	8b 30       	cpi	r24, 0x0B	; 11
+ 506:	50 f4       	brcc	.+20     	; 0x51c <decTimer+0x58>
+ 508:	81 81       	ldd	r24, Z+1	; 0x01
+ 50a:	88 23       	and	r24, r24
+ 50c:	49 f4       	brne	.+18     	; 0x520 <decTimer+0x5c>
 	g_timer->time[HH] = g_timer->time_init[HH] = hh;
 	g_timer->state = OFF;
 }
 
 
 char decTimer(Timer * g_timer){
- 4e0:	81 e0       	ldi	r24, 0x01	; 1
- 4e2:	90 81       	ld	r25, Z
- 4e4:	99 23       	and	r25, r25
- 4e6:	31 f0       	breq	.+12     	; 0x4f4 <decTimer+0x5e>
- 4e8:	02 c0       	rjmp	.+4      	; 0x4ee <decTimer+0x58>
+ 50e:	81 e0       	ldi	r24, 0x01	; 1
+ 510:	90 81       	ld	r25, Z
+ 512:	99 23       	and	r25, r25
+ 514:	31 f0       	breq	.+12     	; 0x522 <decTimer+0x5e>
+ 516:	02 c0       	rjmp	.+4      	; 0x51c <decTimer+0x58>
 	if (g_timer->time[SS] == 0 &&
 		g_timer->time[MM] == 0 &&
 		g_timer->time[HH] == 0)
 		return ELAPSED;	
- 4ea:	83 e0       	ldi	r24, 0x03	; 3
- 4ec:	08 95       	ret
+ 518:	83 e0       	ldi	r24, 0x03	; 3
+ 51a:	08 95       	ret
 	if (g_timer->time[SS] <= SOMEMORESECONDS &&
 		g_timer->time[MM] == 0 &&
 		g_timer->time[HH] == 0)
 		return SOMEMORE;	
 
 	return ALOTOFTIME;
- 4ee:	80 e0       	ldi	r24, 0x00	; 0
- 4f0:	08 95       	ret
- 4f2:	80 e0       	ldi	r24, 0x00	; 0
+ 51c:	80 e0       	ldi	r24, 0x00	; 0
+ 51e:	08 95       	ret
+ 520:	80 e0       	ldi	r24, 0x00	; 0
 }
- 4f4:	08 95       	ret
+ 522:	08 95       	ret
 
-000004f6 <resetTimer>:
+00000524 <resetTimer>:
 
 void resetTimer(Timer * g_timer){
- 4f6:	fc 01       	movw	r30, r24
+ 524:	fc 01       	movw	r30, r24
 	setTimer(g_timer, g_timer->time_init[HH], g_timer->time_init[MM], g_timer->time_init[SS]);
- 4f8:	83 81       	ldd	r24, Z+3	; 0x03
- 4fa:	94 81       	ldd	r25, Z+4	; 0x04
+ 526:	83 81       	ldd	r24, Z+3	; 0x03
+ 528:	94 81       	ldd	r25, Z+4	; 0x04
 #include "timer.h"
 
 void setTimer(Timer * g_timer, char hh, char mm, char ss){
 	g_timer->time[SS] = g_timer->time_init[SS] = ss;
- 4fc:	25 81       	ldd	r18, Z+5	; 0x05
- 4fe:	22 83       	std	Z+2, r18	; 0x02
+ 52a:	25 81       	ldd	r18, Z+5	; 0x05
+ 52c:	22 83       	std	Z+2, r18	; 0x02
 	g_timer->time[MM] = g_timer->time_init[MM] = mm;
- 500:	91 83       	std	Z+1, r25	; 0x01
+ 52e:	91 83       	std	Z+1, r25	; 0x01
 	g_timer->time[HH] = g_timer->time_init[HH] = hh;
- 502:	80 83       	st	Z, r24
+ 530:	80 83       	st	Z, r24
 	g_timer->state = OFF;
- 504:	81 e0       	ldi	r24, 0x01	; 1
- 506:	86 83       	std	Z+6, r24	; 0x06
+ 532:	81 e0       	ldi	r24, 0x01	; 1
+ 534:	86 83       	std	Z+6, r24	; 0x06
 	return ALOTOFTIME;
 }
 
 void resetTimer(Timer * g_timer){
 	setTimer(g_timer, g_timer->time_init[HH], g_timer->time_init[MM], g_timer->time_init[SS]);
 }
- 508:	08 95       	ret
+ 536:	08 95       	ret
 
-0000050a <startTimer>:
+00000538 <startTimer>:
 
 void startTimer(Timer * g_timer){
 	g_timer->state = ON;
- 50a:	fc 01       	movw	r30, r24
- 50c:	16 82       	std	Z+6, r1	; 0x06
+ 538:	fc 01       	movw	r30, r24
+ 53a:	16 82       	std	Z+6, r1	; 0x06
 }
- 50e:	08 95       	ret
+ 53c:	08 95       	ret
 
-00000510 <stopTimer>:
+0000053e <stopTimer>:
 
 void stopTimer(Timer * g_timer){
 	g_timer->state = OFF;
- 510:	21 e0       	ldi	r18, 0x01	; 1
- 512:	fc 01       	movw	r30, r24
- 514:	26 83       	std	Z+6, r18	; 0x06
+ 53e:	21 e0       	ldi	r18, 0x01	; 1
+ 540:	fc 01       	movw	r30, r24
+ 542:	26 83       	std	Z+6, r18	; 0x06
 }
- 516:	08 95       	ret
+ 544:	08 95       	ret
 
-00000518 <initSevenSeg>:
+00000546 <initSevenSeg>:
 //*************************************************************************
 
 void initSevenSeg(){
 
 	// enable port and turn off leds on port
 	SEVENSEGCONFIGPORT = 0xFF;
- 518:	8f ef       	ldi	r24, 0xFF	; 255
- 51a:	81 bb       	out	0x11, r24	; 17
+ 546:	8f ef       	ldi	r24, 0xFF	; 255
+ 548:	81 bb       	out	0x11, r24	; 17
 	SEVENSEGPORT = 0x00;
- 51c:	12 ba       	out	0x12, r1	; 18
- 51e:	e0 e6       	ldi	r30, 0x60	; 96
- 520:	f0 e0       	ldi	r31, 0x00	; 0
+ 54a:	12 ba       	out	0x12, r1	; 18
+ 54c:	e0 e6       	ldi	r30, 0x60	; 96
+ 54e:	f0 e0       	ldi	r31, 0x00	; 0
 	
 	// enable port and turn off modules on port
 	for (char i = 0; i < SEVENSEGCOUNT; i++){
 		UPBIT(ENABLESEVENSEGCONFIGPORT, SevenSegSwichingAr[i]);
- 522:	81 e0       	ldi	r24, 0x01	; 1
- 524:	90 e0       	ldi	r25, 0x00	; 0
- 526:	44 b3       	in	r20, 0x14	; 20
+ 550:	81 e0       	ldi	r24, 0x01	; 1
+ 552:	90 e0       	ldi	r25, 0x00	; 0
+ 554:	44 b3       	in	r20, 0x14	; 20
 
 
 
 //*************************************************************************
 
 void initSevenSeg(){
- 528:	df 01       	movw	r26, r30
+ 556:	df 01       	movw	r26, r30
 	SEVENSEGCONFIGPORT = 0xFF;
 	SEVENSEGPORT = 0x00;
 	
 	// enable port and turn off modules on port
 	for (char i = 0; i < SEVENSEGCOUNT; i++){
 		UPBIT(ENABLESEVENSEGCONFIGPORT, SevenSegSwichingAr[i]);
- 52a:	9c 01       	movw	r18, r24
- 52c:	01 90       	ld	r0, Z+
- 52e:	02 c0       	rjmp	.+4      	; 0x534 <initSevenSeg+0x1c>
- 530:	22 0f       	add	r18, r18
- 532:	33 1f       	adc	r19, r19
- 534:	0a 94       	dec	r0
- 536:	e2 f7       	brpl	.-8      	; 0x530 <initSevenSeg+0x18>
- 538:	42 2b       	or	r20, r18
- 53a:	44 bb       	out	0x14, r20	; 20
+ 558:	9c 01       	movw	r18, r24
+ 55a:	01 90       	ld	r0, Z+
+ 55c:	02 c0       	rjmp	.+4      	; 0x562 <initSevenSeg+0x1c>
+ 55e:	22 0f       	add	r18, r18
+ 560:	33 1f       	adc	r19, r19
+ 562:	0a 94       	dec	r0
+ 564:	e2 f7       	brpl	.-8      	; 0x55e <initSevenSeg+0x18>
+ 566:	42 2b       	or	r20, r18
+ 568:	44 bb       	out	0x14, r20	; 20
 		DOWNBIT(ENABLESEVENSEGPORT, SevenSegSwichingAr[i]);
- 53c:	45 b3       	in	r20, 0x15	; 21
- 53e:	9c 01       	movw	r18, r24
- 540:	0c 90       	ld	r0, X
- 542:	02 c0       	rjmp	.+4      	; 0x548 <initSevenSeg+0x30>
- 544:	22 0f       	add	r18, r18
- 546:	33 1f       	adc	r19, r19
- 548:	0a 94       	dec	r0
- 54a:	e2 f7       	brpl	.-8      	; 0x544 <initSevenSeg+0x2c>
- 54c:	20 95       	com	r18
- 54e:	24 23       	and	r18, r20
- 550:	25 bb       	out	0x15, r18	; 21
+ 56a:	45 b3       	in	r20, 0x15	; 21
+ 56c:	9c 01       	movw	r18, r24
+ 56e:	0c 90       	ld	r0, X
+ 570:	02 c0       	rjmp	.+4      	; 0x576 <initSevenSeg+0x30>
+ 572:	22 0f       	add	r18, r18
+ 574:	33 1f       	adc	r19, r19
+ 576:	0a 94       	dec	r0
+ 578:	e2 f7       	brpl	.-8      	; 0x572 <initSevenSeg+0x2c>
+ 57a:	20 95       	com	r18
+ 57c:	24 23       	and	r18, r20
+ 57e:	25 bb       	out	0x15, r18	; 21
 	// enable port and turn off leds on port
 	SEVENSEGCONFIGPORT = 0xFF;
 	SEVENSEGPORT = 0x00;
 	
 	// enable port and turn off modules on port
 	for (char i = 0; i < SEVENSEGCOUNT; i++){
- 552:	20 e0       	ldi	r18, 0x00	; 0
- 554:	e6 36       	cpi	r30, 0x66	; 102
- 556:	f2 07       	cpc	r31, r18
- 558:	31 f7       	brne	.-52     	; 0x526 <initSevenSeg+0xe>
+ 580:	20 e0       	ldi	r18, 0x00	; 0
+ 582:	e6 36       	cpi	r30, 0x66	; 102
+ 584:	f2 07       	cpc	r31, r18
+ 586:	31 f7       	brne	.-52     	; 0x554 <initSevenSeg+0xe>
 	}
 
 
 //	DDRC = 0x3f;
 //	DDRD = 0xff;
 }
- 55a:	08 95       	ret
+ 588:	08 95       	ret
 
-0000055c <sevenSegShowCode>:
+0000058a <sevenSegShowCode>:
 
 //*************************************************************************
 
 void sevenSegShowCode(char number, char code ){
 	SEVENSEGPORT = code;
- 55c:	62 bb       	out	0x12, r22	; 18
+ 58a:	62 bb       	out	0x12, r22	; 18
 	UPBIT(ENABLESEVENSEGPORT, number);
- 55e:	95 b3       	in	r25, 0x15	; 21
- 560:	21 e0       	ldi	r18, 0x01	; 1
- 562:	30 e0       	ldi	r19, 0x00	; 0
- 564:	02 c0       	rjmp	.+4      	; 0x56a <sevenSegShowCode+0xe>
- 566:	22 0f       	add	r18, r18
- 568:	33 1f       	adc	r19, r19
- 56a:	8a 95       	dec	r24
- 56c:	e2 f7       	brpl	.-8      	; 0x566 <sevenSegShowCode+0xa>
- 56e:	92 2b       	or	r25, r18
- 570:	95 bb       	out	0x15, r25	; 21
+ 58c:	95 b3       	in	r25, 0x15	; 21
+ 58e:	21 e0       	ldi	r18, 0x01	; 1
+ 590:	30 e0       	ldi	r19, 0x00	; 0
+ 592:	02 c0       	rjmp	.+4      	; 0x598 <sevenSegShowCode+0xe>
+ 594:	22 0f       	add	r18, r18
+ 596:	33 1f       	adc	r19, r19
+ 598:	8a 95       	dec	r24
+ 59a:	e2 f7       	brpl	.-8      	; 0x594 <sevenSegShowCode+0xa>
+ 59c:	92 2b       	or	r25, r18
+ 59e:	95 bb       	out	0x15, r25	; 21
 	#else
 		//round up by default
 		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
 	#endif
 
 	__builtin_avr_delay_cycles(__ticks_dc);
- 572:	84 e6       	ldi	r24, 0x64	; 100
- 574:	8a 95       	dec	r24
- 576:	f1 f7       	brne	.-4      	; 0x574 <sevenSegShowCode+0x18>
+ 5a0:	84 e6       	ldi	r24, 0x64	; 100
+ 5a2:	8a 95       	dec	r24
+ 5a4:	f1 f7       	brne	.-4      	; 0x5a2 <sevenSegShowCode+0x18>
 	_delay_us(SLEEPINSEVENSEG);
 	DOWNBIT(ENABLESEVENSEGPORT, number);
- 578:	85 b3       	in	r24, 0x15	; 21
- 57a:	20 95       	com	r18
- 57c:	28 23       	and	r18, r24
- 57e:	25 bb       	out	0x15, r18	; 21
+ 5a6:	85 b3       	in	r24, 0x15	; 21
+ 5a8:	20 95       	com	r18
+ 5aa:	28 23       	and	r18, r24
+ 5ac:	25 bb       	out	0x15, r18	; 21
 }
- 580:	08 95       	ret
+ 5ae:	08 95       	ret
 
-00000582 <sevenSegShowArrayCode>:
+000005b0 <sevenSegShowArrayCode>:
 
 //*************************************************************************
 
 void sevenSegShowArrayCode(char * codes, char len ){
- 582:	ef 92       	push	r14
- 584:	ff 92       	push	r15
- 586:	0f 93       	push	r16
- 588:	1f 93       	push	r17
- 58a:	cf 93       	push	r28
- 58c:	df 93       	push	r29
- 58e:	06 2f       	mov	r16, r22
+ 5b0:	ef 92       	push	r14
+ 5b2:	ff 92       	push	r15
+ 5b4:	0f 93       	push	r16
+ 5b6:	1f 93       	push	r17
+ 5b8:	cf 93       	push	r28
+ 5ba:	df 93       	push	r29
+ 5bc:	06 2f       	mov	r16, r22
 	char count = (len > SEVENSEGCOUNT) ? SEVENSEGCOUNT : len;
- 590:	67 30       	cpi	r22, 0x07	; 7
- 592:	08 f0       	brcs	.+2      	; 0x596 <sevenSegShowArrayCode+0x14>
- 594:	06 e0       	ldi	r16, 0x06	; 6
- 596:	e8 2e       	mov	r14, r24
- 598:	e7 01       	movw	r28, r14
- 59a:	7e 01       	movw	r14, r28
- 59c:	f9 2e       	mov	r15, r25
- 59e:	e7 01       	movw	r28, r14
+ 5be:	67 30       	cpi	r22, 0x07	; 7
+ 5c0:	08 f0       	brcs	.+2      	; 0x5c4 <sevenSegShowArrayCode+0x14>
+ 5c2:	06 e0       	ldi	r16, 0x06	; 6
+ 5c4:	e8 2e       	mov	r14, r24
+ 5c6:	e7 01       	movw	r28, r14
+ 5c8:	7e 01       	movw	r14, r28
+ 5ca:	f9 2e       	mov	r15, r25
+ 5cc:	e7 01       	movw	r28, r14
 	for (char i = 0; i < count; i++)
- 5a0:	10 e0       	ldi	r17, 0x00	; 0
- 5a2:	05 c0       	rjmp	.+10     	; 0x5ae <sevenSegShowArrayCode+0x2c>
+ 5ce:	10 e0       	ldi	r17, 0x00	; 0
+ 5d0:	05 c0       	rjmp	.+10     	; 0x5dc <sevenSegShowArrayCode+0x2c>
 		sevenSegShowCode(i, codes[i]);
- 5a4:	69 91       	ld	r22, Y+
- 5a6:	81 2f       	mov	r24, r17
- 5a8:	0e 94 ae 02 	call	0x55c	; 0x55c <sevenSegShowCode>
+ 5d2:	69 91       	ld	r22, Y+
+ 5d4:	81 2f       	mov	r24, r17
+ 5d6:	0e 94 c5 02 	call	0x58a	; 0x58a <sevenSegShowCode>
 
 //*************************************************************************
 
 void sevenSegShowArrayCode(char * codes, char len ){
 	char count = (len > SEVENSEGCOUNT) ? SEVENSEGCOUNT : len;
 	for (char i = 0; i < count; i++)
- 5ac:	1f 5f       	subi	r17, 0xFF	; 255
- 5ae:	10 17       	cp	r17, r16
- 5b0:	c8 f3       	brcs	.-14     	; 0x5a4 <sevenSegShowArrayCode+0x22>
+ 5da:	1f 5f       	subi	r17, 0xFF	; 255
+ 5dc:	10 17       	cp	r17, r16
+ 5de:	c8 f3       	brcs	.-14     	; 0x5d2 <sevenSegShowArrayCode+0x22>
 		sevenSegShowCode(i, codes[i]);
 }
- 5b2:	df 91       	pop	r29
- 5b4:	cf 91       	pop	r28
- 5b6:	1f 91       	pop	r17
- 5b8:	0f 91       	pop	r16
- 5ba:	ff 90       	pop	r15
- 5bc:	ef 90       	pop	r14
- 5be:	08 95       	ret
+ 5e0:	df 91       	pop	r29
+ 5e2:	cf 91       	pop	r28
+ 5e4:	1f 91       	pop	r17
+ 5e6:	0f 91       	pop	r16
+ 5e8:	ff 90       	pop	r15
+ 5ea:	ef 90       	pop	r14
+ 5ec:	08 95       	ret
 
-000005c0 <sevenSegShowDigit>:
+000005ee <sevenSegShowDigit>:
 
 //*************************************************************************
 
 void sevenSegShowDigit(char * digits, char len, char point_mask, char blink_mask){
- 5c0:	7f 92       	push	r7
- 5c2:	8f 92       	push	r8
- 5c4:	9f 92       	push	r9
- 5c6:	af 92       	push	r10
- 5c8:	bf 92       	push	r11
- 5ca:	cf 92       	push	r12
- 5cc:	df 92       	push	r13
- 5ce:	ef 92       	push	r14
- 5d0:	ff 92       	push	r15
- 5d2:	0f 93       	push	r16
- 5d4:	1f 93       	push	r17
- 5d6:	cf 93       	push	r28
- 5d8:	df 93       	push	r29
- 5da:	76 2e       	mov	r7, r22
+ 5ee:	7f 92       	push	r7
+ 5f0:	8f 92       	push	r8
+ 5f2:	9f 92       	push	r9
+ 5f4:	af 92       	push	r10
+ 5f6:	bf 92       	push	r11
+ 5f8:	cf 92       	push	r12
+ 5fa:	df 92       	push	r13
+ 5fc:	ef 92       	push	r14
+ 5fe:	ff 92       	push	r15
+ 600:	0f 93       	push	r16
+ 602:	1f 93       	push	r17
+ 604:	cf 93       	push	r28
+ 606:	df 93       	push	r29
+ 608:	76 2e       	mov	r7, r22
 	static char in_blink_state = BLINKOFF;
 	static int times_for_switch = SLEEPINBLINK / SLEEPINSEVENSEG;
 	for (char i = 0; i < len; i++){
- 5dc:	30 e6       	ldi	r19, 0x60	; 96
- 5de:	e3 2e       	mov	r14, r19
- 5e0:	30 e0       	ldi	r19, 0x00	; 0
- 5e2:	f3 2e       	mov	r15, r19
- 5e4:	08 2f       	mov	r16, r24
- 5e6:	19 2f       	mov	r17, r25
- 5e8:	c0 e0       	ldi	r28, 0x00	; 0
- 5ea:	d0 e0       	ldi	r29, 0x00	; 0
+ 60a:	30 e6       	ldi	r19, 0x60	; 96
+ 60c:	e3 2e       	mov	r14, r19
+ 60e:	30 e0       	ldi	r19, 0x00	; 0
+ 610:	f3 2e       	mov	r15, r19
+ 612:	08 2f       	mov	r16, r24
+ 614:	19 2f       	mov	r17, r25
+ 616:	c0 e0       	ldi	r28, 0x00	; 0
+ 618:	d0 e0       	ldi	r29, 0x00	; 0
 
 		char code = (point_mask & (1 << i))	? (SevenSegCodes[digits[i]] | POINT) : SevenSegCodes[digits[i]] ;
- 5ec:	c4 2e       	mov	r12, r20
- 5ee:	dd 24       	eor	r13, r13
+ 61a:	c4 2e       	mov	r12, r20
+ 61c:	dd 24       	eor	r13, r13
 
 		code = ((blink_mask & (1 << i)) && (in_blink_state == BLINKOFF)) ? NOCODE : code;
- 5f0:	a2 2e       	mov	r10, r18
- 5f2:	bb 24       	eor	r11, r11
+ 61e:	a2 2e       	mov	r10, r18
+ 620:	bb 24       	eor	r11, r11
 		
 		if  (!times_for_switch--){
 			times_for_switch = SLEEPINBLINK / SLEEPINSEVENSEG;
- 5f4:	86 ea       	ldi	r24, 0xA6	; 166
- 5f6:	88 2e       	mov	r8, r24
- 5f8:	91 2c       	mov	r9, r1
+ 622:	86 ea       	ldi	r24, 0xA6	; 166
+ 624:	88 2e       	mov	r8, r24
+ 626:	91 2c       	mov	r9, r1
 //*************************************************************************
 
 void sevenSegShowDigit(char * digits, char len, char point_mask, char blink_mask){
 	static char in_blink_state = BLINKOFF;
 	static int times_for_switch = SLEEPINBLINK / SLEEPINSEVENSEG;
 	for (char i = 0; i < len; i++){
- 5fa:	43 c0       	rjmp	.+134    	; 0x682 <sevenSegShowDigit+0xc2>
- 5fc:	8c 2f       	mov	r24, r28
+ 628:	43 c0       	rjmp	.+134    	; 0x6b0 <sevenSegShowDigit+0xc2>
+ 62a:	8c 2f       	mov	r24, r28
 
 		char code = (point_mask & (1 << i))	? (SevenSegCodes[digits[i]] | POINT) : SevenSegCodes[digits[i]] ;
- 5fe:	96 01       	movw	r18, r12
- 600:	0c 2e       	mov	r0, r28
- 602:	02 c0       	rjmp	.+4      	; 0x608 <sevenSegShowDigit+0x48>
- 604:	35 95       	asr	r19
- 606:	27 95       	ror	r18
- 608:	0a 94       	dec	r0
- 60a:	e2 f7       	brpl	.-8      	; 0x604 <sevenSegShowDigit+0x44>
- 60c:	d8 01       	movw	r26, r16
- 60e:	ec 91       	ld	r30, X
- 610:	20 ff       	sbrs	r18, 0
- 612:	06 c0       	rjmp	.+12     	; 0x620 <sevenSegShowDigit+0x60>
- 614:	f0 e0       	ldi	r31, 0x00	; 0
- 616:	ea 59       	subi	r30, 0x9A	; 154
- 618:	ff 4f       	sbci	r31, 0xFF	; 255
- 61a:	60 81       	ld	r22, Z
- 61c:	61 60       	ori	r22, 0x01	; 1
- 61e:	04 c0       	rjmp	.+8      	; 0x628 <sevenSegShowDigit+0x68>
- 620:	f0 e0       	ldi	r31, 0x00	; 0
- 622:	ea 59       	subi	r30, 0x9A	; 154
- 624:	ff 4f       	sbci	r31, 0xFF	; 255
- 626:	60 81       	ld	r22, Z
+ 62c:	96 01       	movw	r18, r12
+ 62e:	0c 2e       	mov	r0, r28
+ 630:	02 c0       	rjmp	.+4      	; 0x636 <sevenSegShowDigit+0x48>
+ 632:	35 95       	asr	r19
+ 634:	27 95       	ror	r18
+ 636:	0a 94       	dec	r0
+ 638:	e2 f7       	brpl	.-8      	; 0x632 <sevenSegShowDigit+0x44>
+ 63a:	d8 01       	movw	r26, r16
+ 63c:	ec 91       	ld	r30, X
+ 63e:	20 ff       	sbrs	r18, 0
+ 640:	06 c0       	rjmp	.+12     	; 0x64e <sevenSegShowDigit+0x60>
+ 642:	f0 e0       	ldi	r31, 0x00	; 0
+ 644:	ea 59       	subi	r30, 0x9A	; 154
+ 646:	ff 4f       	sbci	r31, 0xFF	; 255
+ 648:	60 81       	ld	r22, Z
+ 64a:	61 60       	ori	r22, 0x01	; 1
+ 64c:	04 c0       	rjmp	.+8      	; 0x656 <sevenSegShowDigit+0x68>
+ 64e:	f0 e0       	ldi	r31, 0x00	; 0
+ 650:	ea 59       	subi	r30, 0x9A	; 154
+ 652:	ff 4f       	sbci	r31, 0xFF	; 255
+ 654:	60 81       	ld	r22, Z
 
 		code = ((blink_mask & (1 << i)) && (in_blink_state == BLINKOFF)) ? NOCODE : code;
- 628:	f5 01       	movw	r30, r10
- 62a:	02 c0       	rjmp	.+4      	; 0x630 <sevenSegShowDigit+0x70>
- 62c:	f5 95       	asr	r31
- 62e:	e7 95       	ror	r30
- 630:	8a 95       	dec	r24
- 632:	e2 f7       	brpl	.-8      	; 0x62c <sevenSegShowDigit+0x6c>
- 634:	e0 ff       	sbrs	r30, 0
- 636:	05 c0       	rjmp	.+10     	; 0x642 <sevenSegShowDigit+0x82>
- 638:	80 91 f3 00 	lds	r24, 0x00F3
- 63c:	88 23       	and	r24, r24
- 63e:	09 f4       	brne	.+2      	; 0x642 <sevenSegShowDigit+0x82>
- 640:	60 e0       	ldi	r22, 0x00	; 0
+ 656:	f5 01       	movw	r30, r10
+ 658:	02 c0       	rjmp	.+4      	; 0x65e <sevenSegShowDigit+0x70>
+ 65a:	f5 95       	asr	r31
+ 65c:	e7 95       	ror	r30
+ 65e:	8a 95       	dec	r24
+ 660:	e2 f7       	brpl	.-8      	; 0x65a <sevenSegShowDigit+0x6c>
+ 662:	e0 ff       	sbrs	r30, 0
+ 664:	05 c0       	rjmp	.+10     	; 0x670 <sevenSegShowDigit+0x82>
+ 666:	80 91 f3 00 	lds	r24, 0x00F3
+ 66a:	88 23       	and	r24, r24
+ 66c:	09 f4       	brne	.+2      	; 0x670 <sevenSegShowDigit+0x82>
+ 66e:	60 e0       	ldi	r22, 0x00	; 0
 		
 		if  (!times_for_switch--){
- 642:	80 91 70 00 	lds	r24, 0x0070
- 646:	90 91 71 00 	lds	r25, 0x0071
- 64a:	9c 01       	movw	r18, r24
- 64c:	21 50       	subi	r18, 0x01	; 1
- 64e:	30 40       	sbci	r19, 0x00	; 0
- 650:	30 93 71 00 	sts	0x0071, r19
- 654:	20 93 70 00 	sts	0x0070, r18
- 658:	00 97       	sbiw	r24, 0x00	; 0
- 65a:	59 f4       	brne	.+22     	; 0x672 <sevenSegShowDigit+0xb2>
+ 670:	80 91 70 00 	lds	r24, 0x0070
+ 674:	90 91 71 00 	lds	r25, 0x0071
+ 678:	9c 01       	movw	r18, r24
+ 67a:	21 50       	subi	r18, 0x01	; 1
+ 67c:	30 40       	sbci	r19, 0x00	; 0
+ 67e:	30 93 71 00 	sts	0x0071, r19
+ 682:	20 93 70 00 	sts	0x0070, r18
+ 686:	00 97       	sbiw	r24, 0x00	; 0
+ 688:	59 f4       	brne	.+22     	; 0x6a0 <sevenSegShowDigit+0xb2>
 			times_for_switch = SLEEPINBLINK / SLEEPINSEVENSEG;
- 65c:	90 92 71 00 	sts	0x0071, r9
- 660:	80 92 70 00 	sts	0x0070, r8
+ 68a:	90 92 71 00 	sts	0x0071, r9
+ 68e:	80 92 70 00 	sts	0x0070, r8
 			in_blink_state = in_blink_state == BLINKOFF ? BLINKON : BLINKOFF;
- 664:	81 e0       	ldi	r24, 0x01	; 1
- 666:	90 91 f3 00 	lds	r25, 0x00F3
- 66a:	91 11       	cpse	r25, r1
- 66c:	80 e0       	ldi	r24, 0x00	; 0
- 66e:	80 93 f3 00 	sts	0x00F3, r24
+ 692:	81 e0       	ldi	r24, 0x01	; 1
+ 694:	90 91 f3 00 	lds	r25, 0x00F3
+ 698:	91 11       	cpse	r25, r1
+ 69a:	80 e0       	ldi	r24, 0x00	; 0
+ 69c:	80 93 f3 00 	sts	0x00F3, r24
 		}
 		
 		sevenSegShowCode(SevenSegSwichingAr[i], code);
- 672:	d7 01       	movw	r26, r14
- 674:	8d 91       	ld	r24, X+
- 676:	7d 01       	movw	r14, r26
- 678:	0e 94 ae 02 	call	0x55c	; 0x55c <sevenSegShowCode>
- 67c:	21 96       	adiw	r28, 0x01	; 1
- 67e:	0f 5f       	subi	r16, 0xFF	; 255
- 680:	1f 4f       	sbci	r17, 0xFF	; 255
+ 6a0:	d7 01       	movw	r26, r14
+ 6a2:	8d 91       	ld	r24, X+
+ 6a4:	7d 01       	movw	r14, r26
+ 6a6:	0e 94 c5 02 	call	0x58a	; 0x58a <sevenSegShowCode>
+ 6aa:	21 96       	adiw	r28, 0x01	; 1
+ 6ac:	0f 5f       	subi	r16, 0xFF	; 255
+ 6ae:	1f 4f       	sbci	r17, 0xFF	; 255
 //*************************************************************************
 
 void sevenSegShowDigit(char * digits, char len, char point_mask, char blink_mask){
 	static char in_blink_state = BLINKOFF;
 	static int times_for_switch = SLEEPINBLINK / SLEEPINSEVENSEG;
 	for (char i = 0; i < len; i++){
- 682:	c7 15       	cp	r28, r7
- 684:	08 f4       	brcc	.+2      	; 0x688 <sevenSegShowDigit+0xc8>
- 686:	ba cf       	rjmp	.-140    	; 0x5fc <sevenSegShowDigit+0x3c>
+ 6b0:	c7 15       	cp	r28, r7
+ 6b2:	08 f4       	brcc	.+2      	; 0x6b6 <sevenSegShowDigit+0xc8>
+ 6b4:	ba cf       	rjmp	.-140    	; 0x62a <sevenSegShowDigit+0x3c>
 			in_blink_state = in_blink_state == BLINKOFF ? BLINKON : BLINKOFF;
 		}
 		
 		sevenSegShowCode(SevenSegSwichingAr[i], code);
 	}
 }
- 688:	df 91       	pop	r29
- 68a:	cf 91       	pop	r28
- 68c:	1f 91       	pop	r17
- 68e:	0f 91       	pop	r16
- 690:	ff 90       	pop	r15
- 692:	ef 90       	pop	r14
- 694:	df 90       	pop	r13
- 696:	cf 90       	pop	r12
- 698:	bf 90       	pop	r11
- 69a:	af 90       	pop	r10
- 69c:	9f 90       	pop	r9
- 69e:	8f 90       	pop	r8
- 6a0:	7f 90       	pop	r7
- 6a2:	08 95       	ret
+ 6b6:	df 91       	pop	r29
+ 6b8:	cf 91       	pop	r28
+ 6ba:	1f 91       	pop	r17
+ 6bc:	0f 91       	pop	r16
+ 6be:	ff 90       	pop	r15
+ 6c0:	ef 90       	pop	r14
+ 6c2:	df 90       	pop	r13
+ 6c4:	cf 90       	pop	r12
+ 6c6:	bf 90       	pop	r11
+ 6c8:	af 90       	pop	r10
+ 6ca:	9f 90       	pop	r9
+ 6cc:	8f 90       	pop	r8
+ 6ce:	7f 90       	pop	r7
+ 6d0:	08 95       	ret
 
-000006a4 <sevenSegShowGTimer>:
+000006d2 <sevenSegShowGTimer>:
 
 //*************************************************************************
 
 void sevenSegShowGTimer(char * g_timer_time, char len, char blink_mask){
- 6a4:	df 93       	push	r29
- 6a6:	cf 93       	push	r28
- 6a8:	00 d0       	rcall	.+0      	; 0x6aa <sevenSegShowGTimer+0x6>
- 6aa:	00 d0       	rcall	.+0      	; 0x6ac <sevenSegShowGTimer+0x8>
- 6ac:	00 d0       	rcall	.+0      	; 0x6ae <sevenSegShowGTimer+0xa>
- 6ae:	cd b7       	in	r28, 0x3d	; 61
- 6b0:	de b7       	in	r29, 0x3e	; 62
- 6b2:	fc 01       	movw	r30, r24
- 6b4:	24 2f       	mov	r18, r20
+ 6d2:	df 93       	push	r29
+ 6d4:	cf 93       	push	r28
+ 6d6:	00 d0       	rcall	.+0      	; 0x6d8 <sevenSegShowGTimer+0x6>
+ 6d8:	00 d0       	rcall	.+0      	; 0x6da <sevenSegShowGTimer+0x8>
+ 6da:	00 d0       	rcall	.+0      	; 0x6dc <sevenSegShowGTimer+0xa>
+ 6dc:	cd b7       	in	r28, 0x3d	; 61
+ 6de:	de b7       	in	r29, 0x3e	; 62
+ 6e0:	fc 01       	movw	r30, r24
+ 6e2:	24 2f       	mov	r18, r20
 	#define TIMEARRAYLEN 6 // TIMEPOSITIONSCOUNT * 2
 	char point_mask = 0b0001010; // h h. m m. s s in revert order
 	char time[TIMEARRAYLEN]; // 
 	for (char i = 0; i < TIMEPOSITIONSCOUNT; i++){
 		time[(i * 2)] = g_timer_time[i] / 10;
- 6b6:	80 81       	ld	r24, Z
- 6b8:	3a e0       	ldi	r19, 0x0A	; 10
- 6ba:	63 2f       	mov	r22, r19
- 6bc:	0e 94 e6 05 	call	0xbcc	; 0xbcc <__udivmodqi4>
- 6c0:	89 83       	std	Y+1, r24	; 0x01
+ 6e4:	80 81       	ld	r24, Z
+ 6e6:	3a e0       	ldi	r19, 0x0A	; 10
+ 6e8:	63 2f       	mov	r22, r19
+ 6ea:	0e 94 fd 05 	call	0xbfa	; 0xbfa <__udivmodqi4>
+ 6ee:	89 83       	std	Y+1, r24	; 0x01
 		time[(i * 2) + 1] = g_timer_time[i] % 10;
- 6c2:	9a 83       	std	Y+2, r25	; 0x02
+ 6f0:	9a 83       	std	Y+2, r25	; 0x02
 void sevenSegShowGTimer(char * g_timer_time, char len, char blink_mask){
 	#define TIMEARRAYLEN 6 // TIMEPOSITIONSCOUNT * 2
 	char point_mask = 0b0001010; // h h. m m. s s in revert order
 	char time[TIMEARRAYLEN]; // 
 	for (char i = 0; i < TIMEPOSITIONSCOUNT; i++){
 		time[(i * 2)] = g_timer_time[i] / 10;
- 6c4:	81 81       	ldd	r24, Z+1	; 0x01
- 6c6:	0e 94 e6 05 	call	0xbcc	; 0xbcc <__udivmodqi4>
- 6ca:	8b 83       	std	Y+3, r24	; 0x03
+ 6f2:	81 81       	ldd	r24, Z+1	; 0x01
+ 6f4:	0e 94 fd 05 	call	0xbfa	; 0xbfa <__udivmodqi4>
+ 6f8:	8b 83       	std	Y+3, r24	; 0x03
 		time[(i * 2) + 1] = g_timer_time[i] % 10;
- 6cc:	9c 83       	std	Y+4, r25	; 0x04
+ 6fa:	9c 83       	std	Y+4, r25	; 0x04
 void sevenSegShowGTimer(char * g_timer_time, char len, char blink_mask){
 	#define TIMEARRAYLEN 6 // TIMEPOSITIONSCOUNT * 2
 	char point_mask = 0b0001010; // h h. m m. s s in revert order
 	char time[TIMEARRAYLEN]; // 
 	for (char i = 0; i < TIMEPOSITIONSCOUNT; i++){
 		time[(i * 2)] = g_timer_time[i] / 10;
- 6ce:	82 81       	ldd	r24, Z+2	; 0x02
- 6d0:	0e 94 e6 05 	call	0xbcc	; 0xbcc <__udivmodqi4>
- 6d4:	8d 83       	std	Y+5, r24	; 0x05
+ 6fc:	82 81       	ldd	r24, Z+2	; 0x02
+ 6fe:	0e 94 fd 05 	call	0xbfa	; 0xbfa <__udivmodqi4>
+ 702:	8d 83       	std	Y+5, r24	; 0x05
 		time[(i * 2) + 1] = g_timer_time[i] % 10;
- 6d6:	9e 83       	std	Y+6, r25	; 0x06
+ 704:	9e 83       	std	Y+6, r25	; 0x06
 	}
 	sevenSegShowDigit(time, TIMEARRAYLEN, point_mask, blink_mask);
- 6d8:	ce 01       	movw	r24, r28
- 6da:	01 96       	adiw	r24, 0x01	; 1
- 6dc:	66 e0       	ldi	r22, 0x06	; 6
- 6de:	4a e0       	ldi	r20, 0x0A	; 10
- 6e0:	0e 94 e0 02 	call	0x5c0	; 0x5c0 <sevenSegShowDigit>
+ 706:	ce 01       	movw	r24, r28
+ 708:	01 96       	adiw	r24, 0x01	; 1
+ 70a:	66 e0       	ldi	r22, 0x06	; 6
+ 70c:	4a e0       	ldi	r20, 0x0A	; 10
+ 70e:	0e 94 f7 02 	call	0x5ee	; 0x5ee <sevenSegShowDigit>
 }
- 6e4:	26 96       	adiw	r28, 0x06	; 6
- 6e6:	0f b6       	in	r0, 0x3f	; 63
- 6e8:	f8 94       	cli
- 6ea:	de bf       	out	0x3e, r29	; 62
- 6ec:	0f be       	out	0x3f, r0	; 63
- 6ee:	cd bf       	out	0x3d, r28	; 61
- 6f0:	cf 91       	pop	r28
- 6f2:	df 91       	pop	r29
- 6f4:	08 95       	ret
+ 712:	26 96       	adiw	r28, 0x06	; 6
+ 714:	0f b6       	in	r0, 0x3f	; 63
+ 716:	f8 94       	cli
+ 718:	de bf       	out	0x3e, r29	; 62
+ 71a:	0f be       	out	0x3f, r0	; 63
+ 71c:	cd bf       	out	0x3d, r28	; 61
+ 71e:	cf 91       	pop	r28
+ 720:	df 91       	pop	r29
+ 722:	08 95       	ret
 
-000006f6 <sevenSegShowGTimerTime>:
+00000724 <sevenSegShowGTimerTime>:
 
 //*************************************************************************
 
 void sevenSegShowGTimerTime (Timer * g_timer){
 	char blink_mask = 0b00000000; // no blink
 	sevenSegShowGTimer(g_timer->time, TIMEPOSITIONSCOUNT, blink_mask);
- 6f6:	63 e0       	ldi	r22, 0x03	; 3
- 6f8:	40 e0       	ldi	r20, 0x00	; 0
- 6fa:	0e 94 52 03 	call	0x6a4	; 0x6a4 <sevenSegShowGTimer>
+ 724:	63 e0       	ldi	r22, 0x03	; 3
+ 726:	40 e0       	ldi	r20, 0x00	; 0
+ 728:	0e 94 69 03 	call	0x6d2	; 0x6d2 <sevenSegShowGTimer>
 }
- 6fe:	08 95       	ret
+ 72c:	08 95       	ret
 
-00000700 <sevenSegShowGTimerInit>:
+0000072e <sevenSegShowGTimerInit>:
 
 //*************************************************************************
 
 void sevenSegShowGTimerInit (Timer * g_timer, char blink_pos){
 	char blink_mask = 0b00000000; 
 	blink_mask |= (1 << (blink_pos * 2));
- 700:	70 e0       	ldi	r23, 0x00	; 0
- 702:	66 0f       	add	r22, r22
- 704:	77 1f       	adc	r23, r23
- 706:	21 e0       	ldi	r18, 0x01	; 1
- 708:	30 e0       	ldi	r19, 0x00	; 0
- 70a:	a9 01       	movw	r20, r18
- 70c:	06 2e       	mov	r0, r22
- 70e:	02 c0       	rjmp	.+4      	; 0x714 <sevenSegShowGTimerInit+0x14>
- 710:	44 0f       	add	r20, r20
- 712:	55 1f       	adc	r21, r21
- 714:	0a 94       	dec	r0
- 716:	e2 f7       	brpl	.-8      	; 0x710 <sevenSegShowGTimerInit+0x10>
+ 72e:	70 e0       	ldi	r23, 0x00	; 0
+ 730:	66 0f       	add	r22, r22
+ 732:	77 1f       	adc	r23, r23
+ 734:	21 e0       	ldi	r18, 0x01	; 1
+ 736:	30 e0       	ldi	r19, 0x00	; 0
+ 738:	a9 01       	movw	r20, r18
+ 73a:	06 2e       	mov	r0, r22
+ 73c:	02 c0       	rjmp	.+4      	; 0x742 <sevenSegShowGTimerInit+0x14>
+ 73e:	44 0f       	add	r20, r20
+ 740:	55 1f       	adc	r21, r21
+ 742:	0a 94       	dec	r0
+ 744:	e2 f7       	brpl	.-8      	; 0x73e <sevenSegShowGTimerInit+0x10>
 	blink_mask |= (1 << (blink_pos * 2 + 1));
- 718:	6f 5f       	subi	r22, 0xFF	; 255
- 71a:	7f 4f       	sbci	r23, 0xFF	; 255
- 71c:	02 c0       	rjmp	.+4      	; 0x722 <sevenSegShowGTimerInit+0x22>
- 71e:	22 0f       	add	r18, r18
- 720:	33 1f       	adc	r19, r19
- 722:	6a 95       	dec	r22
- 724:	e2 f7       	brpl	.-8      	; 0x71e <sevenSegShowGTimerInit+0x1e>
- 726:	42 2b       	or	r20, r18
+ 746:	6f 5f       	subi	r22, 0xFF	; 255
+ 748:	7f 4f       	sbci	r23, 0xFF	; 255
+ 74a:	02 c0       	rjmp	.+4      	; 0x750 <sevenSegShowGTimerInit+0x22>
+ 74c:	22 0f       	add	r18, r18
+ 74e:	33 1f       	adc	r19, r19
+ 750:	6a 95       	dec	r22
+ 752:	e2 f7       	brpl	.-8      	; 0x74c <sevenSegShowGTimerInit+0x1e>
+ 754:	42 2b       	or	r20, r18
 	sevenSegShowGTimer(g_timer->time_init, TIMEPOSITIONSCOUNT, blink_mask);
- 728:	03 96       	adiw	r24, 0x03	; 3
- 72a:	63 e0       	ldi	r22, 0x03	; 3
- 72c:	0e 94 52 03 	call	0x6a4	; 0x6a4 <sevenSegShowGTimer>
+ 756:	03 96       	adiw	r24, 0x03	; 3
+ 758:	63 e0       	ldi	r22, 0x03	; 3
+ 75a:	0e 94 69 03 	call	0x6d2	; 0x6d2 <sevenSegShowGTimer>
 }
- 730:	08 95       	ret
+ 75e:	08 95       	ret
 
-00000732 <initButtons>:
+00000760 <initButtons>:
 
 //-----------------------------------------------------------------------
 
 void initButtons(){
 	// enable buttons port to read
 	DOWNBIT(BUTTONCONFIGPORT, BUTTONSELECT);
- 732:	d3 98       	cbi	0x1a, 3	; 26
+ 760:	d3 98       	cbi	0x1a, 3	; 26
 	DOWNBIT(BUTTONCONFIGPORT, BUTTONSET);
- 734:	d4 98       	cbi	0x1a, 4	; 26
+ 762:	d4 98       	cbi	0x1a, 4	; 26
 }
- 736:	08 95       	ret
+ 764:	08 95       	ret
 
-00000738 <buttonGetCurState>:
+00000766 <buttonGetCurState>:
 
 //-----------------------------------------------------------------------
 
 char buttonGetCurState(char button){
 	return (BUTTONREADPORT & (1 << button)) == 0 ? PUSHED : RELEASED;
- 738:	29 b3       	in	r18, 0x19	; 25
- 73a:	30 e0       	ldi	r19, 0x00	; 0
- 73c:	02 c0       	rjmp	.+4      	; 0x742 <buttonGetCurState+0xa>
- 73e:	35 95       	asr	r19
- 740:	27 95       	ror	r18
- 742:	8a 95       	dec	r24
- 744:	e2 f7       	brpl	.-8      	; 0x73e <buttonGetCurState+0x6>
- 746:	81 e0       	ldi	r24, 0x01	; 1
- 748:	20 fd       	sbrc	r18, 0
- 74a:	80 e0       	ldi	r24, 0x00	; 0
+ 766:	29 b3       	in	r18, 0x19	; 25
+ 768:	30 e0       	ldi	r19, 0x00	; 0
+ 76a:	02 c0       	rjmp	.+4      	; 0x770 <buttonGetCurState+0xa>
+ 76c:	35 95       	asr	r19
+ 76e:	27 95       	ror	r18
+ 770:	8a 95       	dec	r24
+ 772:	e2 f7       	brpl	.-8      	; 0x76c <buttonGetCurState+0x6>
+ 774:	81 e0       	ldi	r24, 0x01	; 1
+ 776:	20 fd       	sbrc	r18, 0
+ 778:	80 e0       	ldi	r24, 0x00	; 0
 
 }
- 74c:	08 95       	ret
+ 77a:	08 95       	ret
 
-0000074e <buttonCheckOncePush>:
+0000077c <buttonCheckOncePush>:
 
 //-----------------------------------------------------------------------
 
 char buttonCheckOncePush(char * last_state, char button){
- 74e:	cf 93       	push	r28
- 750:	df 93       	push	r29
- 752:	ec 01       	movw	r28, r24
- 754:	86 2f       	mov	r24, r22
+ 77c:	cf 93       	push	r28
+ 77e:	df 93       	push	r29
+ 780:	ec 01       	movw	r28, r24
+ 782:	86 2f       	mov	r24, r22
 
 	if (buttonGetCurState(button) == RELEASED){ 
- 756:	0e 94 9c 03 	call	0x738	; 0x738 <buttonGetCurState>
- 75a:	88 23       	and	r24, r24
- 75c:	11 f4       	brne	.+4      	; 0x762 <buttonCheckOncePush+0x14>
+ 784:	0e 94 b3 03 	call	0x766	; 0x766 <buttonGetCurState>
+ 788:	88 23       	and	r24, r24
+ 78a:	11 f4       	brne	.+4      	; 0x790 <buttonCheckOncePush+0x14>
 		*last_state = RELEASED;
- 75e:	18 82       	st	Y, r1
+ 78c:	18 82       	st	Y, r1
 		return FALSE;
- 760:	07 c0       	rjmp	.+14     	; 0x770 <buttonCheckOncePush+0x22>
+ 78e:	07 c0       	rjmp	.+14     	; 0x79e <buttonCheckOncePush+0x22>
 	}else{
 		if (*last_state == RELEASED){
- 762:	88 81       	ld	r24, Y
- 764:	88 23       	and	r24, r24
- 766:	19 f4       	brne	.+6      	; 0x76e <buttonCheckOncePush+0x20>
+ 790:	88 81       	ld	r24, Y
+ 792:	88 23       	and	r24, r24
+ 794:	19 f4       	brne	.+6      	; 0x79c <buttonCheckOncePush+0x20>
 				*last_state = PUSHED;
- 768:	81 e0       	ldi	r24, 0x01	; 1
- 76a:	88 83       	st	Y, r24
+ 796:	81 e0       	ldi	r24, 0x01	; 1
+ 798:	88 83       	st	Y, r24
 				return TRUE;
- 76c:	01 c0       	rjmp	.+2      	; 0x770 <buttonCheckOncePush+0x22>
+ 79a:	01 c0       	rjmp	.+2      	; 0x79e <buttonCheckOncePush+0x22>
 		}
 	}
 
 	return FALSE;
- 76e:	80 e0       	ldi	r24, 0x00	; 0
+ 79c:	80 e0       	ldi	r24, 0x00	; 0
 }
- 770:	df 91       	pop	r29
- 772:	cf 91       	pop	r28
- 774:	08 95       	ret
+ 79e:	df 91       	pop	r29
+ 7a0:	cf 91       	pop	r28
+ 7a2:	08 95       	ret
 
-00000776 <buttonCheckTwoButAtOnceTimeOncePush>:
-
-//-----------------------------------------------------------------------
-
-char buttonCheckTwoButAtOnceTimeOncePush(char * last_state, char button1, char button2){
- 776:	0f 93       	push	r16
- 778:	1f 93       	push	r17
- 77a:	df 93       	push	r29
- 77c:	cf 93       	push	r28
- 77e:	0f 92       	push	r0
- 780:	cd b7       	in	r28, 0x3d	; 61
- 782:	de b7       	in	r29, 0x3e	; 62
- 784:	8c 01       	movw	r16, r24
- 786:	86 2f       	mov	r24, r22
-
-	if (buttonGetCurState(button1) == PUSHED &&
- 788:	49 83       	std	Y+1, r20	; 0x01
- 78a:	0e 94 9c 03 	call	0x738	; 0x738 <buttonGetCurState>
- 78e:	49 81       	ldd	r20, Y+1	; 0x01
- 790:	81 30       	cpi	r24, 0x01	; 1
- 792:	59 f4       	brne	.+22     	; 0x7aa <buttonCheckTwoButAtOnceTimeOncePush+0x34>
-		buttonGetCurState(button2) == PUSHED &&
- 794:	84 2f       	mov	r24, r20
- 796:	0e 94 9c 03 	call	0x738	; 0x738 <buttonGetCurState>
+000007a4 <buttonCheckTwoButAtOnceTimeOncePush>:
 
 //-----------------------------------------------------------------------
 
 char buttonCheckTwoButAtOnceTimeOncePush(char * last_state, char button1, char button2){
+ 7a4:	0f 93       	push	r16
+ 7a6:	1f 93       	push	r17
+ 7a8:	df 93       	push	r29
+ 7aa:	cf 93       	push	r28
+ 7ac:	0f 92       	push	r0
+ 7ae:	cd b7       	in	r28, 0x3d	; 61
+ 7b0:	de b7       	in	r29, 0x3e	; 62
+ 7b2:	8c 01       	movw	r16, r24
+ 7b4:	86 2f       	mov	r24, r22
 
 	if (buttonGetCurState(button1) == PUSHED &&
- 79a:	81 30       	cpi	r24, 0x01	; 1
- 79c:	31 f4       	brne	.+12     	; 0x7aa <buttonCheckTwoButAtOnceTimeOncePush+0x34>
+ 7b6:	49 83       	std	Y+1, r20	; 0x01
+ 7b8:	0e 94 b3 03 	call	0x766	; 0x766 <buttonGetCurState>
+ 7bc:	49 81       	ldd	r20, Y+1	; 0x01
+ 7be:	81 30       	cpi	r24, 0x01	; 1
+ 7c0:	59 f4       	brne	.+22     	; 0x7d8 <buttonCheckTwoButAtOnceTimeOncePush+0x34>
 		buttonGetCurState(button2) == PUSHED &&
- 79e:	f8 01       	movw	r30, r16
- 7a0:	90 81       	ld	r25, Z
- 7a2:	99 23       	and	r25, r25
- 7a4:	11 f4       	brne	.+4      	; 0x7aa <buttonCheckTwoButAtOnceTimeOncePush+0x34>
+ 7c2:	84 2f       	mov	r24, r20
+ 7c4:	0e 94 b3 03 	call	0x766	; 0x766 <buttonGetCurState>
+
+//-----------------------------------------------------------------------
+
+char buttonCheckTwoButAtOnceTimeOncePush(char * last_state, char button1, char button2){
+
+	if (buttonGetCurState(button1) == PUSHED &&
+ 7c8:	81 30       	cpi	r24, 0x01	; 1
+ 7ca:	31 f4       	brne	.+12     	; 0x7d8 <buttonCheckTwoButAtOnceTimeOncePush+0x34>
+		buttonGetCurState(button2) == PUSHED &&
+ 7cc:	f8 01       	movw	r30, r16
+ 7ce:	90 81       	ld	r25, Z
+ 7d0:	99 23       	and	r25, r25
+ 7d2:	11 f4       	brne	.+4      	; 0x7d8 <buttonCheckTwoButAtOnceTimeOncePush+0x34>
 		*last_state == RELEASED) {
 			*last_state = PUSHED;
- 7a6:	80 83       	st	Z, r24
+ 7d4:	80 83       	st	Z, r24
 			return TRUE;
- 7a8:	03 c0       	rjmp	.+6      	; 0x7b0 <buttonCheckTwoButAtOnceTimeOncePush+0x3a>
+ 7d6:	03 c0       	rjmp	.+6      	; 0x7de <buttonCheckTwoButAtOnceTimeOncePush+0x3a>
 	}
 
 	*last_state = RELEASED;
- 7aa:	f8 01       	movw	r30, r16
- 7ac:	10 82       	st	Z, r1
+ 7d8:	f8 01       	movw	r30, r16
+ 7da:	10 82       	st	Z, r1
 	return FALSE;
- 7ae:	80 e0       	ldi	r24, 0x00	; 0
+ 7dc:	80 e0       	ldi	r24, 0x00	; 0
 }
- 7b0:	0f 90       	pop	r0
- 7b2:	cf 91       	pop	r28
- 7b4:	df 91       	pop	r29
- 7b6:	1f 91       	pop	r17
- 7b8:	0f 91       	pop	r16
- 7ba:	08 95       	ret
+ 7de:	0f 90       	pop	r0
+ 7e0:	cf 91       	pop	r28
+ 7e2:	df 91       	pop	r29
+ 7e4:	1f 91       	pop	r17
+ 7e6:	0f 91       	pop	r16
+ 7e8:	08 95       	ret
 
-000007bc <getButtonWorkTheame>:
+000007ea <getButtonWorkTheame>:
 
 //-----------------------------------------------------------------------
 
 char getButtonWorkTheame(){
- 7bc:	1f 93       	push	r17
+ 7ea:	1f 93       	push	r17
 	static const char but_pos[BUTTONSCOUNT] = {BPOS_SELECT, BPOS_SET};
 	static const char but[BUTTONSCOUNT] = {BUTTONSELECT, BUTTONSET};
 
 	char once_pushed_state[BUTTONSCOUNT];
 
 	if (buttonCheckTwoButAtOnceTimeOncePush(&last_state_of_pair_buttons, BUTTONSELECT, BUTTONSET) == TRUE)
- 7be:	84 ef       	ldi	r24, 0xF4	; 244
- 7c0:	90 e0       	ldi	r25, 0x00	; 0
- 7c2:	63 e0       	ldi	r22, 0x03	; 3
- 7c4:	44 e0       	ldi	r20, 0x04	; 4
- 7c6:	0e 94 bb 03 	call	0x776	; 0x776 <buttonCheckTwoButAtOnceTimeOncePush>
- 7ca:	81 30       	cpi	r24, 0x01	; 1
- 7cc:	89 f0       	breq	.+34     	; 0x7f0 <getButtonWorkTheame+0x34>
+ 7ec:	84 ef       	ldi	r24, 0xF4	; 244
+ 7ee:	90 e0       	ldi	r25, 0x00	; 0
+ 7f0:	63 e0       	ldi	r22, 0x03	; 3
+ 7f2:	44 e0       	ldi	r20, 0x04	; 4
+ 7f4:	0e 94 d2 03 	call	0x7a4	; 0x7a4 <buttonCheckTwoButAtOnceTimeOncePush>
+ 7f8:	81 30       	cpi	r24, 0x01	; 1
+ 7fa:	89 f0       	breq	.+34     	; 0x81e <getButtonWorkTheame+0x34>
 		return SETTIMER;
 
 
 	for (char i = 0; i < BUTTONSCOUNT; i++)
 		once_pushed_state[i] = buttonCheckOncePush( last_state + but_pos[i], but[i]);
- 7ce:	85 ef       	ldi	r24, 0xF5	; 245
- 7d0:	90 e0       	ldi	r25, 0x00	; 0
- 7d2:	63 e0       	ldi	r22, 0x03	; 3
- 7d4:	0e 94 a7 03 	call	0x74e	; 0x74e <buttonCheckOncePush>
- 7d8:	18 2f       	mov	r17, r24
- 7da:	86 ef       	ldi	r24, 0xF6	; 246
- 7dc:	90 e0       	ldi	r25, 0x00	; 0
- 7de:	64 e0       	ldi	r22, 0x04	; 4
- 7e0:	0e 94 a7 03 	call	0x74e	; 0x74e <buttonCheckOncePush>
+ 7fc:	85 ef       	ldi	r24, 0xF5	; 245
+ 7fe:	90 e0       	ldi	r25, 0x00	; 0
+ 800:	63 e0       	ldi	r22, 0x03	; 3
+ 802:	0e 94 be 03 	call	0x77c	; 0x77c <buttonCheckOncePush>
+ 806:	18 2f       	mov	r17, r24
+ 808:	86 ef       	ldi	r24, 0xF6	; 246
+ 80a:	90 e0       	ldi	r25, 0x00	; 0
+ 80c:	64 e0       	ldi	r22, 0x04	; 4
+ 80e:	0e 94 be 03 	call	0x77c	; 0x77c <buttonCheckOncePush>
 
 	if (once_pushed_state[BPOS_SET])
- 7e4:	88 23       	and	r24, r24
- 7e6:	31 f4       	brne	.+12     	; 0x7f4 <getButtonWorkTheame+0x38>
+ 812:	88 23       	and	r24, r24
+ 814:	31 f4       	brne	.+12     	; 0x822 <getButtonWorkTheame+0x38>
 		return INCRISEVALUE;
 
 	if (once_pushed_state[BPOS_SELECT])
- 7e8:	11 23       	and	r17, r17
- 7ea:	31 f0       	breq	.+12     	; 0x7f8 <getButtonWorkTheame+0x3c>
+ 816:	11 23       	and	r17, r17
+ 818:	31 f0       	breq	.+12     	; 0x826 <getButtonWorkTheame+0x3c>
 		return NEXTPOSITION;
- 7ec:	83 e0       	ldi	r24, 0x03	; 3
- 7ee:	05 c0       	rjmp	.+10     	; 0x7fa <getButtonWorkTheame+0x3e>
+ 81a:	83 e0       	ldi	r24, 0x03	; 3
+ 81c:	05 c0       	rjmp	.+10     	; 0x828 <getButtonWorkTheame+0x3e>
 	static const char but[BUTTONSCOUNT] = {BUTTONSELECT, BUTTONSET};
 
 	char once_pushed_state[BUTTONSCOUNT];
 
 	if (buttonCheckTwoButAtOnceTimeOncePush(&last_state_of_pair_buttons, BUTTONSELECT, BUTTONSET) == TRUE)
 		return SETTIMER;
- 7f0:	81 e0       	ldi	r24, 0x01	; 1
- 7f2:	03 c0       	rjmp	.+6      	; 0x7fa <getButtonWorkTheame+0x3e>
+ 81e:	81 e0       	ldi	r24, 0x01	; 1
+ 820:	03 c0       	rjmp	.+6      	; 0x828 <getButtonWorkTheame+0x3e>
 
 	for (char i = 0; i < BUTTONSCOUNT; i++)
 		once_pushed_state[i] = buttonCheckOncePush( last_state + but_pos[i], but[i]);
 
 	if (once_pushed_state[BPOS_SET])
 		return INCRISEVALUE;
- 7f4:	82 e0       	ldi	r24, 0x02	; 2
- 7f6:	01 c0       	rjmp	.+2      	; 0x7fa <getButtonWorkTheame+0x3e>
+ 822:	82 e0       	ldi	r24, 0x02	; 2
+ 824:	01 c0       	rjmp	.+2      	; 0x828 <getButtonWorkTheame+0x3e>
 
 	if (once_pushed_state[BPOS_SELECT])
 		return NEXTPOSITION;
 
 	return NONE;
- 7f8:	80 e0       	ldi	r24, 0x00	; 0
+ 826:	80 e0       	ldi	r24, 0x00	; 0
 }
- 7fa:	1f 91       	pop	r17
- 7fc:	08 95       	ret
+ 828:	1f 91       	pop	r17
+ 82a:	08 95       	ret
 
-000007fe <Init_Spi>:
+0000082c <Init_Spi>:
 
 //*************** SPI PART
 
 void Init_Spi()
 {
 	PORTB=0x00;
- 7fe:	18 ba       	out	0x18, r1	; 24
+ 82c:	18 ba       	out	0x18, r1	; 24
 	DDRB=0xB8;
- 800:	88 eb       	ldi	r24, 0xB8	; 184
- 802:	87 bb       	out	0x17, r24	; 23
+ 82e:	88 eb       	ldi	r24, 0xB8	; 184
+ 830:	87 bb       	out	0x17, r24	; 23
 	SPCR=0x51;
- 804:	81 e5       	ldi	r24, 0x51	; 81
- 806:	8d b9       	out	0x0d, r24	; 13
+ 832:	81 e5       	ldi	r24, 0x51	; 81
+ 834:	8d b9       	out	0x0d, r24	; 13
 	SPSR=0x00;
- 808:	1e b8       	out	0x0e, r1	; 14
+ 836:	1e b8       	out	0x0e, r1	; 14
 }
- 80a:	08 95       	ret
+ 838:	08 95       	ret
 
-0000080c <ReadWrite_Spi>:
+0000083a <ReadWrite_Spi>:
 
 UINT8 ReadWrite_Spi(UINT8 value)
 {
 
 	SPDR = value;
- 80c:	8f b9       	out	0x0f, r24	; 15
+ 83a:	8f b9       	out	0x0f, r24	; 15
 	while(!(SPSR & (1<<SPIF)));
- 80e:	77 9b       	sbis	0x0e, 7	; 14
- 810:	fe cf       	rjmp	.-4      	; 0x80e <ReadWrite_Spi+0x2>
+ 83c:	77 9b       	sbis	0x0e, 7	; 14
+ 83e:	fe cf       	rjmp	.-4      	; 0x83c <ReadWrite_Spi+0x2>
 //	if (SPDR)
 //		PORTC = PORTC ^ (1<<7);
 	return SPDR;
- 812:	8f b1       	in	r24, 0x0f	; 15
+ 840:	8f b1       	in	r24, 0x0f	; 15
 		DOWNBIT(SPIPORT,SCK);//SCK = 0;            		  // ..then set SCK low again
 	}
 	return(value);           		  // return read UINT8
 */
 
 }
- 814:	08 95       	ret
+ 842:	08 95       	ret
 
-00000816 <SPI_Write_Reg>:
+00000844 <SPI_Write_Reg>:
                                                             
 Description:                                                
 	Writes value 'value' to register 'reg'              
 **************************************************/        
 void SPI_Write_Reg(UINT8 reg, UINT8 value)                 
 {
- 816:	df 93       	push	r29
- 818:	cf 93       	push	r28
- 81a:	0f 92       	push	r0
- 81c:	cd b7       	in	r28, 0x3d	; 61
- 81e:	de b7       	in	r29, 0x3e	; 62
+ 844:	df 93       	push	r29
+ 846:	cf 93       	push	r28
+ 848:	0f 92       	push	r0
+ 84a:	cd b7       	in	r28, 0x3d	; 61
+ 84c:	de b7       	in	r29, 0x3e	; 62
 	DOWNBIT(PORTB, CSN);                   // CSN low, init SPI transaction
- 820:	c4 98       	cbi	0x18, 4	; 24
+ 84e:	c4 98       	cbi	0x18, 4	; 24
 	op_status = ReadWrite_Spi(reg);      // select register
- 822:	69 83       	std	Y+1, r22	; 0x01
- 824:	0e 94 06 04 	call	0x80c	; 0x80c <ReadWrite_Spi>
- 828:	80 93 06 01 	sts	0x0106, r24
+ 850:	69 83       	std	Y+1, r22	; 0x01
+ 852:	0e 94 1d 04 	call	0x83a	; 0x83a <ReadWrite_Spi>
+ 856:	80 93 06 01 	sts	0x0106, r24
 	ReadWrite_Spi(value);             // ..and write value to it..
- 82c:	69 81       	ldd	r22, Y+1	; 0x01
- 82e:	86 2f       	mov	r24, r22
- 830:	0e 94 06 04 	call	0x80c	; 0x80c <ReadWrite_Spi>
+ 85a:	69 81       	ldd	r22, Y+1	; 0x01
+ 85c:	86 2f       	mov	r24, r22
+ 85e:	0e 94 1d 04 	call	0x83a	; 0x83a <ReadWrite_Spi>
 	UPBIT(PORTB, CSN);                   // CSN high again
- 834:	c4 9a       	sbi	0x18, 4	; 24
+ 862:	c4 9a       	sbi	0x18, 4	; 24
 }                                                         
- 836:	0f 90       	pop	r0
- 838:	cf 91       	pop	r28
- 83a:	df 91       	pop	r29
- 83c:	08 95       	ret
+ 864:	0f 90       	pop	r0
+ 866:	cf 91       	pop	r28
+ 868:	df 91       	pop	r29
+ 86a:	08 95       	ret
 
-0000083e <SPI_Read_Reg>:
+0000086c <SPI_Read_Reg>:
 	Read one UINT8 from BK2421 register, 'reg'           
 **************************************************/        
 UINT8 SPI_Read_Reg(UINT8 reg)                               
 {                                                           
 	UINT8 value;
 	DOWNBIT(PORTB, CSN);               // CSN low, initialize SPI communication...
- 83e:	c4 98       	cbi	0x18, 4	; 24
+ 86c:	c4 98       	cbi	0x18, 4	; 24
 	op_status=ReadWrite_Spi(reg);            // Select register to read from..
- 840:	0e 94 06 04 	call	0x80c	; 0x80c <ReadWrite_Spi>
- 844:	80 93 06 01 	sts	0x0106, r24
+ 86e:	0e 94 1d 04 	call	0x83a	; 0x83a <ReadWrite_Spi>
+ 872:	80 93 06 01 	sts	0x0106, r24
 	value = ReadWrite_Spi(0);    // ..then read register value
- 848:	80 e0       	ldi	r24, 0x00	; 0
- 84a:	0e 94 06 04 	call	0x80c	; 0x80c <ReadWrite_Spi>
+ 876:	80 e0       	ldi	r24, 0x00	; 0
+ 878:	0e 94 1d 04 	call	0x83a	; 0x83a <ReadWrite_Spi>
 	UPBIT(PORTB, CSN);                // CSN high, terminate SPI communication
- 84e:	c4 9a       	sbi	0x18, 4	; 24
+ 87c:	c4 9a       	sbi	0x18, 4	; 24
 
 	return(value);        // return register value
 }                                                           
- 850:	08 95       	ret
+ 87e:	08 95       	ret
 
-00000852 <SPI_Read_Buf>:
+00000880 <SPI_Read_Buf>:
                                                             
 Description:                                                
 	Reads 'length' #of length from register 'reg'         
 /**************************************************/        
 void SPI_Read_Buf(UINT8 reg, UINT8 *pBuf, UINT8 length)     
 {                                                           
- 852:	ef 92       	push	r14
- 854:	ff 92       	push	r15
- 856:	0f 93       	push	r16
- 858:	1f 93       	push	r17
- 85a:	df 93       	push	r29
- 85c:	cf 93       	push	r28
- 85e:	0f 92       	push	r0
- 860:	cd b7       	in	r28, 0x3d	; 61
- 862:	de b7       	in	r29, 0x3e	; 62
- 864:	16 2f       	mov	r17, r22
- 866:	04 2f       	mov	r16, r20
+ 880:	ef 92       	push	r14
+ 882:	ff 92       	push	r15
+ 884:	0f 93       	push	r16
+ 886:	1f 93       	push	r17
+ 888:	df 93       	push	r29
+ 88a:	cf 93       	push	r28
+ 88c:	0f 92       	push	r0
+ 88e:	cd b7       	in	r28, 0x3d	; 61
+ 890:	de b7       	in	r29, 0x3e	; 62
+ 892:	16 2f       	mov	r17, r22
+ 894:	04 2f       	mov	r16, r20
 	UINT8 status,byte_ctr;                              
                                                             
 	DOWNBIT(SPIPORT,CSN);//CSN = 0;                    		// Set CSN l
- 868:	c4 98       	cbi	0x18, 4	; 24
+ 896:	c4 98       	cbi	0x18, 4	; 24
 	status = ReadWrite_Spi(reg);       		// Select register to write, and read status UINT8
- 86a:	79 83       	std	Y+1, r23	; 0x01
- 86c:	0e 94 06 04 	call	0x80c	; 0x80c <ReadWrite_Spi>
+ 898:	79 83       	std	Y+1, r23	; 0x01
+ 89a:	0e 94 1d 04 	call	0x83a	; 0x83a <ReadWrite_Spi>
                                                             
 	for(byte_ctr=0;byte_ctr<length;byte_ctr++)           
- 870:	79 81       	ldd	r23, Y+1	; 0x01
- 872:	41 2f       	mov	r20, r17
- 874:	57 2f       	mov	r21, r23
- 876:	7a 01       	movw	r14, r20
- 878:	06 c0       	rjmp	.+12     	; 0x886 <SPI_Read_Buf+0x34>
+ 89e:	79 81       	ldd	r23, Y+1	; 0x01
+ 8a0:	41 2f       	mov	r20, r17
+ 8a2:	57 2f       	mov	r21, r23
+ 8a4:	7a 01       	movw	r14, r20
+ 8a6:	06 c0       	rjmp	.+12     	; 0x8b4 <SPI_Read_Buf+0x34>
 		pBuf[byte_ctr] = ReadWrite_Spi(0);    // Perform ReadWrite_Spi to read UINT8 from RFM73 
- 87a:	80 e0       	ldi	r24, 0x00	; 0
- 87c:	0e 94 06 04 	call	0x80c	; 0x80c <ReadWrite_Spi>
- 880:	f7 01       	movw	r30, r14
- 882:	81 93       	st	Z+, r24
- 884:	7f 01       	movw	r14, r30
+ 8a8:	80 e0       	ldi	r24, 0x00	; 0
+ 8aa:	0e 94 1d 04 	call	0x83a	; 0x83a <ReadWrite_Spi>
+ 8ae:	f7 01       	movw	r30, r14
+ 8b0:	81 93       	st	Z+, r24
+ 8b2:	7f 01       	movw	r14, r30
 	UINT8 status,byte_ctr;                              
                                                             
 	DOWNBIT(SPIPORT,CSN);//CSN = 0;                    		// Set CSN l
 	status = ReadWrite_Spi(reg);       		// Select register to write, and read status UINT8
                                                             
 	for(byte_ctr=0;byte_ctr<length;byte_ctr++)           
- 886:	8e 2d       	mov	r24, r14
- 888:	81 1b       	sub	r24, r17
- 88a:	80 17       	cp	r24, r16
- 88c:	b0 f3       	brcs	.-20     	; 0x87a <SPI_Read_Buf+0x28>
+ 8b4:	8e 2d       	mov	r24, r14
+ 8b6:	81 1b       	sub	r24, r17
+ 8b8:	80 17       	cp	r24, r16
+ 8ba:	b0 f3       	brcs	.-20     	; 0x8a8 <SPI_Read_Buf+0x28>
 		pBuf[byte_ctr] = ReadWrite_Spi(0);    // Perform ReadWrite_Spi to read UINT8 from RFM73 
                                                             
 	UPBIT(SPIPORT,CSN);//CSN = 1;                           // Set CSN high again
- 88e:	c4 9a       	sbi	0x18, 4	; 24
+ 8bc:	c4 9a       	sbi	0x18, 4	; 24
                
 }                                                           
- 890:	0f 90       	pop	r0
- 892:	cf 91       	pop	r28
- 894:	df 91       	pop	r29
- 896:	1f 91       	pop	r17
- 898:	0f 91       	pop	r16
- 89a:	ff 90       	pop	r15
- 89c:	ef 90       	pop	r14
- 89e:	08 95       	ret
+ 8be:	0f 90       	pop	r0
+ 8c0:	cf 91       	pop	r28
+ 8c2:	df 91       	pop	r29
+ 8c4:	1f 91       	pop	r17
+ 8c6:	0f 91       	pop	r16
+ 8c8:	ff 90       	pop	r15
+ 8ca:	ef 90       	pop	r14
+ 8cc:	08 95       	ret
 
-000008a0 <SPI_Write_Buf>:
+000008ce <SPI_Write_Buf>:
                                                             
 Description:                                                
 	Writes contents of buffer '*pBuf' to RFM73         
 /**************************************************/        
 void SPI_Write_Buf(UINT8 reg, UINT8 *pBuf, UINT8 length)    
 {                                                           
- 8a0:	ef 92       	push	r14
- 8a2:	ff 92       	push	r15
- 8a4:	0f 93       	push	r16
- 8a6:	1f 93       	push	r17
- 8a8:	df 93       	push	r29
- 8aa:	cf 93       	push	r28
- 8ac:	0f 92       	push	r0
- 8ae:	cd b7       	in	r28, 0x3d	; 61
- 8b0:	de b7       	in	r29, 0x3e	; 62
- 8b2:	16 2f       	mov	r17, r22
- 8b4:	04 2f       	mov	r16, r20
+ 8ce:	ef 92       	push	r14
+ 8d0:	ff 92       	push	r15
+ 8d2:	0f 93       	push	r16
+ 8d4:	1f 93       	push	r17
+ 8d6:	df 93       	push	r29
+ 8d8:	cf 93       	push	r28
+ 8da:	0f 92       	push	r0
+ 8dc:	cd b7       	in	r28, 0x3d	; 61
+ 8de:	de b7       	in	r29, 0x3e	; 62
+ 8e0:	16 2f       	mov	r17, r22
+ 8e2:	04 2f       	mov	r16, r20
 	UINT8 byte_ctr;                              
                                                             
 	DOWNBIT(SPIPORT,CSN);//CSN = 0;                   // Set CSN low, init SPI tranaction
- 8b6:	c4 98       	cbi	0x18, 4	; 24
+ 8e4:	c4 98       	cbi	0x18, 4	; 24
 	op_status = ReadWrite_Spi(reg);    // Select register to write to and read status UINT8
- 8b8:	79 83       	std	Y+1, r23	; 0x01
- 8ba:	0e 94 06 04 	call	0x80c	; 0x80c <ReadWrite_Spi>
- 8be:	80 93 06 01 	sts	0x0106, r24
+ 8e6:	79 83       	std	Y+1, r23	; 0x01
+ 8e8:	0e 94 1d 04 	call	0x83a	; 0x83a <ReadWrite_Spi>
+ 8ec:	80 93 06 01 	sts	0x0106, r24
 	for(byte_ctr=0; byte_ctr<length; byte_ctr++) // then write all UINT8 in buffer(*pBuf) 
- 8c2:	79 81       	ldd	r23, Y+1	; 0x01
- 8c4:	41 2f       	mov	r20, r17
- 8c6:	57 2f       	mov	r21, r23
- 8c8:	7a 01       	movw	r14, r20
- 8ca:	05 c0       	rjmp	.+10     	; 0x8d6 <SPI_Write_Buf+0x36>
+ 8f0:	79 81       	ldd	r23, Y+1	; 0x01
+ 8f2:	41 2f       	mov	r20, r17
+ 8f4:	57 2f       	mov	r21, r23
+ 8f6:	7a 01       	movw	r14, r20
+ 8f8:	05 c0       	rjmp	.+10     	; 0x904 <SPI_Write_Buf+0x36>
 		ReadWrite_Spi(*pBuf++);                                    
- 8cc:	f7 01       	movw	r30, r14
- 8ce:	81 91       	ld	r24, Z+
- 8d0:	7f 01       	movw	r14, r30
- 8d2:	0e 94 06 04 	call	0x80c	; 0x80c <ReadWrite_Spi>
+ 8fa:	f7 01       	movw	r30, r14
+ 8fc:	81 91       	ld	r24, Z+
+ 8fe:	7f 01       	movw	r14, r30
+ 900:	0e 94 1d 04 	call	0x83a	; 0x83a <ReadWrite_Spi>
 {                                                           
 	UINT8 byte_ctr;                              
                                                             
 	DOWNBIT(SPIPORT,CSN);//CSN = 0;                   // Set CSN low, init SPI tranaction
 	op_status = ReadWrite_Spi(reg);    // Select register to write to and read status UINT8
 	for(byte_ctr=0; byte_ctr<length; byte_ctr++) // then write all UINT8 in buffer(*pBuf) 
- 8d6:	8e 2d       	mov	r24, r14
- 8d8:	81 1b       	sub	r24, r17
- 8da:	80 17       	cp	r24, r16
- 8dc:	b8 f3       	brcs	.-18     	; 0x8cc <SPI_Write_Buf+0x2c>
+ 904:	8e 2d       	mov	r24, r14
+ 906:	81 1b       	sub	r24, r17
+ 908:	80 17       	cp	r24, r16
+ 90a:	b8 f3       	brcs	.-18     	; 0x8fa <SPI_Write_Buf+0x2c>
 		ReadWrite_Spi(*pBuf++);                                    
 	UPBIT(SPIPORT,CSN);//CSN = 1;                 // Set CSN high again      
- 8de:	c4 9a       	sbi	0x18, 4	; 24
+ 90c:	c4 9a       	sbi	0x18, 4	; 24
 
 }
- 8e0:	0f 90       	pop	r0
- 8e2:	cf 91       	pop	r28
- 8e4:	df 91       	pop	r29
- 8e6:	1f 91       	pop	r17
- 8e8:	0f 91       	pop	r16
- 8ea:	ff 90       	pop	r15
- 8ec:	ef 90       	pop	r14
- 8ee:	08 95       	ret
+ 90e:	0f 90       	pop	r0
+ 910:	cf 91       	pop	r28
+ 912:	df 91       	pop	r29
+ 914:	1f 91       	pop	r17
+ 916:	0f 91       	pop	r16
+ 918:	ff 90       	pop	r15
+ 91a:	ef 90       	pop	r14
+ 91c:	08 95       	ret
 
-000008f0 <SwitchToRxMode>:
+0000091e <SwitchToRxMode>:
 /**************************************************/
 void SwitchToRxMode()
 {
 	UINT8 value;
 
 	SPI_Write_Reg(FLUSH_RX,0);//flush Rx
- 8f0:	82 ee       	ldi	r24, 0xE2	; 226
- 8f2:	60 e0       	ldi	r22, 0x00	; 0
- 8f4:	0e 94 0b 04 	call	0x816	; 0x816 <SPI_Write_Reg>
+ 91e:	82 ee       	ldi	r24, 0xE2	; 226
+ 920:	60 e0       	ldi	r22, 0x00	; 0
+ 922:	0e 94 22 04 	call	0x844	; 0x844 <SPI_Write_Reg>
 
 	value=SPI_Read_Reg(STATUS);	// read register STATUS's value
- 8f8:	87 e0       	ldi	r24, 0x07	; 7
- 8fa:	0e 94 1f 04 	call	0x83e	; 0x83e <SPI_Read_Reg>
- 8fe:	68 2f       	mov	r22, r24
+ 926:	87 e0       	ldi	r24, 0x07	; 7
+ 928:	0e 94 36 04 	call	0x86c	; 0x86c <SPI_Read_Reg>
+ 92c:	68 2f       	mov	r22, r24
 	SPI_Write_Reg(WRITE_REG|STATUS,value);// clear RX_DR or TX_DS or MAX_RT interrupt flag
- 900:	87 e2       	ldi	r24, 0x27	; 39
- 902:	0e 94 0b 04 	call	0x816	; 0x816 <SPI_Write_Reg>
+ 92e:	87 e2       	ldi	r24, 0x27	; 39
+ 930:	0e 94 22 04 	call	0x844	; 0x844 <SPI_Write_Reg>
 
 	DOWNBIT(SPIPORT,CE);//CE=0;
- 906:	c3 98       	cbi	0x18, 3	; 24
+ 934:	c3 98       	cbi	0x18, 3	; 24
 
 	value=SPI_Read_Reg(CONFIG);	// read register CONFIG's value
- 908:	80 e0       	ldi	r24, 0x00	; 0
- 90a:	0e 94 1f 04 	call	0x83e	; 0x83e <SPI_Read_Reg>
+ 936:	80 e0       	ldi	r24, 0x00	; 0
+ 938:	0e 94 36 04 	call	0x86c	; 0x86c <SPI_Read_Reg>
 	
 //PRX
 	value=value|0x01;//set bit 1
- 90e:	68 2f       	mov	r22, r24
- 910:	61 60       	ori	r22, 0x01	; 1
+ 93c:	68 2f       	mov	r22, r24
+ 93e:	61 60       	ori	r22, 0x01	; 1
   	SPI_Write_Reg(WRITE_REG | CONFIG, value); // Set PWR_UP bit, enable CRC(2 length) & Prim:RX. RX_DR enabled..
- 912:	80 e2       	ldi	r24, 0x20	; 32
- 914:	0e 94 0b 04 	call	0x816	; 0x816 <SPI_Write_Reg>
+ 940:	80 e2       	ldi	r24, 0x20	; 32
+ 942:	0e 94 22 04 	call	0x844	; 0x844 <SPI_Write_Reg>
 	UPBIT(SPIPORT,CE);//CE=1;
- 918:	c3 9a       	sbi	0x18, 3	; 24
+ 946:	c3 9a       	sbi	0x18, 3	; 24
 }
- 91a:	08 95       	ret
+ 948:	08 95       	ret
 
-0000091c <SwitchToTxMode>:
+0000094a <SwitchToTxMode>:
 	switch to Tx mode
 /**************************************************/
 void SwitchToTxMode()
 {
 	UINT8 value;
 	SPI_Write_Reg(FLUSH_TX,0);//flush Tx
- 91c:	81 ee       	ldi	r24, 0xE1	; 225
- 91e:	60 e0       	ldi	r22, 0x00	; 0
- 920:	0e 94 0b 04 	call	0x816	; 0x816 <SPI_Write_Reg>
+ 94a:	81 ee       	ldi	r24, 0xE1	; 225
+ 94c:	60 e0       	ldi	r22, 0x00	; 0
+ 94e:	0e 94 22 04 	call	0x844	; 0x844 <SPI_Write_Reg>
 
 	DOWNBIT(SPIPORT,CE);//CE=0;
- 924:	c3 98       	cbi	0x18, 3	; 24
+ 952:	c3 98       	cbi	0x18, 3	; 24
 	value=SPI_Read_Reg(CONFIG);	// read register CONFIG's value
- 926:	80 e0       	ldi	r24, 0x00	; 0
- 928:	0e 94 1f 04 	call	0x83e	; 0x83e <SPI_Read_Reg>
+ 954:	80 e0       	ldi	r24, 0x00	; 0
+ 956:	0e 94 36 04 	call	0x86c	; 0x86c <SPI_Read_Reg>
 //PTX
 	value=value&0xfe;//set bit 0
- 92c:	68 2f       	mov	r22, r24
- 92e:	6e 7f       	andi	r22, 0xFE	; 254
+ 95a:	68 2f       	mov	r22, r24
+ 95c:	6e 7f       	andi	r22, 0xFE	; 254
   	SPI_Write_Reg(WRITE_REG | CONFIG, value); // Set PWR_UP bit, enable CRC(2 length) & Prim:RX. RX_DR enabled.
- 930:	80 e2       	ldi	r24, 0x20	; 32
- 932:	0e 94 0b 04 	call	0x816	; 0x816 <SPI_Write_Reg>
+ 95e:	80 e2       	ldi	r24, 0x20	; 32
+ 960:	0e 94 22 04 	call	0x844	; 0x844 <SPI_Write_Reg>
 	
 	UPBIT(SPIPORT,CE);//CE=1;
- 936:	c3 9a       	sbi	0x18, 3	; 24
+ 964:	c3 9a       	sbi	0x18, 3	; 24
 }
- 938:	08 95       	ret
+ 966:	08 95       	ret
 
-0000093a <SwitchCFG>:
+00000968 <SwitchCFG>:
 	          0:register bank0
 Return:
      None
 /**************************************************/
 void SwitchCFG(char _cfg)//1:Bank1 0:Bank0
 {
- 93a:	1f 93       	push	r17
- 93c:	18 2f       	mov	r17, r24
+ 968:	1f 93       	push	r17
+ 96a:	18 2f       	mov	r17, r24
 	UINT8 Tmp;
 
 	Tmp=SPI_Read_Reg(7);
- 93e:	87 e0       	ldi	r24, 0x07	; 7
- 940:	0e 94 1f 04 	call	0x83e	; 0x83e <SPI_Read_Reg>
+ 96c:	87 e0       	ldi	r24, 0x07	; 7
+ 96e:	0e 94 36 04 	call	0x86c	; 0x86c <SPI_Read_Reg>
 	Tmp=Tmp&0x80;
 
 	if( ( (Tmp)&&(_cfg==0) )
- 944:	87 ff       	sbrs	r24, 7
- 946:	03 c0       	rjmp	.+6      	; 0x94e <SwitchCFG+0x14>
- 948:	11 23       	and	r17, r17
- 94a:	19 f0       	breq	.+6      	; 0x952 <SwitchCFG+0x18>
- 94c:	06 c0       	rjmp	.+12     	; 0x95a <SwitchCFG+0x20>
+ 972:	87 ff       	sbrs	r24, 7
+ 974:	03 c0       	rjmp	.+6      	; 0x97c <SwitchCFG+0x14>
+ 976:	11 23       	and	r17, r17
+ 978:	19 f0       	breq	.+6      	; 0x980 <SwitchCFG+0x18>
+ 97a:	06 c0       	rjmp	.+12     	; 0x988 <SwitchCFG+0x20>
 	||( ((Tmp)==0)&&(_cfg) ) )
- 94e:	11 23       	and	r17, r17
- 950:	21 f0       	breq	.+8      	; 0x95a <SwitchCFG+0x20>
+ 97c:	11 23       	and	r17, r17
+ 97e:	21 f0       	breq	.+8      	; 0x988 <SwitchCFG+0x20>
 	{
 		SPI_Write_Reg(ACTIVATE_CMD,0x53);
- 952:	80 e5       	ldi	r24, 0x50	; 80
- 954:	63 e5       	ldi	r22, 0x53	; 83
- 956:	0e 94 0b 04 	call	0x816	; 0x816 <SPI_Write_Reg>
+ 980:	80 e5       	ldi	r24, 0x50	; 80
+ 982:	63 e5       	ldi	r22, 0x53	; 83
+ 984:	0e 94 22 04 	call	0x844	; 0x844 <SPI_Write_Reg>
 	}
 }
- 95a:	1f 91       	pop	r17
- 95c:	08 95       	ret
+ 988:	1f 91       	pop	r17
+ 98a:	08 95       	ret
 
-0000095e <SetChannelNum>:
+0000098c <SetChannelNum>:
 Description:
 	set channel number
 
 /**************************************************/
 void SetChannelNum(UINT8 ch)
 {
- 95e:	68 2f       	mov	r22, r24
+ 98c:	68 2f       	mov	r22, r24
 	SPI_Write_Reg((UINT8)(WRITE_REG|5),(UINT8)(ch));
- 960:	85 e2       	ldi	r24, 0x25	; 37
- 962:	0e 94 0b 04 	call	0x816	; 0x816 <SPI_Write_Reg>
+ 98e:	85 e2       	ldi	r24, 0x25	; 37
+ 990:	0e 94 22 04 	call	0x844	; 0x844 <SPI_Write_Reg>
 }
- 966:	08 95       	ret
+ 994:	08 95       	ret
 
-00000968 <RFM73_Initialize>:
+00000996 <RFM73_Initialize>:
 
 Description:                                                
 	register initialization
 /**************************************************/   
 void RFM73_Initialize()
 {
- 968:	cf 92       	push	r12
- 96a:	df 92       	push	r13
- 96c:	ef 92       	push	r14
- 96e:	ff 92       	push	r15
- 970:	0f 93       	push	r16
- 972:	1f 93       	push	r17
- 974:	df 93       	push	r29
- 976:	cf 93       	push	r28
- 978:	cd b7       	in	r28, 0x3d	; 61
- 97a:	de b7       	in	r29, 0x3e	; 62
- 97c:	2d 97       	sbiw	r28, 0x0d	; 13
- 97e:	0f b6       	in	r0, 0x3f	; 63
- 980:	f8 94       	cli
- 982:	de bf       	out	0x3e, r29	; 62
- 984:	0f be       	out	0x3f, r0	; 63
- 986:	cd bf       	out	0x3d, r28	; 61
+ 996:	cf 92       	push	r12
+ 998:	df 92       	push	r13
+ 99a:	ef 92       	push	r14
+ 99c:	ff 92       	push	r15
+ 99e:	0f 93       	push	r16
+ 9a0:	1f 93       	push	r17
+ 9a2:	df 93       	push	r29
+ 9a4:	cf 93       	push	r28
+ 9a6:	cd b7       	in	r28, 0x3d	; 61
+ 9a8:	de b7       	in	r29, 0x3e	; 62
+ 9aa:	2d 97       	sbiw	r28, 0x0d	; 13
+ 9ac:	0f b6       	in	r0, 0x3f	; 63
+ 9ae:	f8 94       	cli
+ 9b0:	de bf       	out	0x3e, r29	; 62
+ 9b2:	0f be       	out	0x3f, r0	; 63
+ 9b4:	cd bf       	out	0x3d, r28	; 61
 	#else
 		//round up by default
 		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
 	#endif
 
 	__builtin_avr_delay_cycles(__ticks_dc);
- 988:	8f e4       	ldi	r24, 0x4F	; 79
- 98a:	93 ec       	ldi	r25, 0xC3	; 195
- 98c:	01 97       	sbiw	r24, 0x01	; 1
- 98e:	f1 f7       	brne	.-4      	; 0x98c <RFM73_Initialize+0x24>
- 990:	00 c0       	rjmp	.+0      	; 0x992 <RFM73_Initialize+0x2a>
- 992:	00 00       	nop
+ 9b6:	8f e4       	ldi	r24, 0x4F	; 79
+ 9b8:	93 ec       	ldi	r25, 0xC3	; 195
+ 9ba:	01 97       	sbiw	r24, 0x01	; 1
+ 9bc:	f1 f7       	brne	.-4      	; 0x9ba <RFM73_Initialize+0x24>
+ 9be:	00 c0       	rjmp	.+0      	; 0x9c0 <RFM73_Initialize+0x2a>
+ 9c0:	00 00       	nop
  	UINT8 WriteArr[12];
 
 	//DelayMs(100);//delay more than 50ms.
 	_delay_ms(200);
 	
 	SwitchCFG(0);
- 994:	80 e0       	ldi	r24, 0x00	; 0
- 996:	0e 94 9d 04 	call	0x93a	; 0x93a <SwitchCFG>
- 99a:	05 eb       	ldi	r16, 0xB5	; 181
- 99c:	10 e0       	ldi	r17, 0x00	; 0
+ 9c2:	80 e0       	ldi	r24, 0x00	; 0
+ 9c4:	0e 94 b4 04 	call	0x968	; 0x968 <SwitchCFG>
+ 9c8:	05 eb       	ldi	r16, 0xB5	; 181
+ 9ca:	10 e0       	ldi	r17, 0x00	; 0
 
 	for(i=0;i<20;i++)
 	{
 		SPI_Write_Reg((WRITE_REG|Bank0_Reg[i][0]),Bank0_Reg[i][1]);
- 99e:	f8 01       	movw	r30, r16
- 9a0:	80 81       	ld	r24, Z
- 9a2:	80 62       	ori	r24, 0x20	; 32
- 9a4:	61 81       	ldd	r22, Z+1	; 0x01
- 9a6:	0e 94 0b 04 	call	0x816	; 0x816 <SPI_Write_Reg>
- 9aa:	0e 5f       	subi	r16, 0xFE	; 254
- 9ac:	1f 4f       	sbci	r17, 0xFF	; 255
+ 9cc:	f8 01       	movw	r30, r16
+ 9ce:	80 81       	ld	r24, Z
+ 9d0:	80 62       	ori	r24, 0x20	; 32
+ 9d2:	61 81       	ldd	r22, Z+1	; 0x01
+ 9d4:	0e 94 22 04 	call	0x844	; 0x844 <SPI_Write_Reg>
+ 9d8:	0e 5f       	subi	r16, 0xFE	; 254
+ 9da:	1f 4f       	sbci	r17, 0xFF	; 255
 	//DelayMs(100);//delay more than 50ms.
 	_delay_ms(200);
 	
 	SwitchCFG(0);
 
 	for(i=0;i<20;i++)
- 9ae:	f0 e0       	ldi	r31, 0x00	; 0
- 9b0:	0d 3d       	cpi	r16, 0xDD	; 221
- 9b2:	1f 07       	cpc	r17, r31
- 9b4:	a1 f7       	brne	.-24     	; 0x99e <RFM73_Initialize+0x36>
+ 9dc:	f0 e0       	ldi	r31, 0x00	; 0
+ 9de:	0d 3d       	cpi	r16, 0xDD	; 221
+ 9e0:	1f 07       	cpc	r17, r31
+ 9e2:	a1 f7       	brne	.-24     	; 0x9cc <RFM73_Initialize+0x36>
 	SPI_Write_Buf((WRITE_REG|16),RX0_Address,5);*/
 
 //reg 10 - Rx0 addr
 	for(j=0;j<5;j++)
 	{
 		WriteArr[j]=RX0_Address[j];
- 9b6:	34 e3       	ldi	r19, 0x34	; 52
- 9b8:	c3 2e       	mov	r12, r19
- 9ba:	c9 82       	std	Y+1, r12	; 0x01
- 9bc:	23 e4       	ldi	r18, 0x43	; 67
- 9be:	d2 2e       	mov	r13, r18
- 9c0:	da 82       	std	Y+2, r13	; 0x02
- 9c2:	90 e1       	ldi	r25, 0x10	; 16
- 9c4:	e9 2e       	mov	r14, r25
- 9c6:	eb 82       	std	Y+3, r14	; 0x03
- 9c8:	ec 82       	std	Y+4, r14	; 0x04
- 9ca:	ff 24       	eor	r15, r15
- 9cc:	f3 94       	inc	r15
- 9ce:	fd 82       	std	Y+5, r15	; 0x05
+ 9e4:	34 e3       	ldi	r19, 0x34	; 52
+ 9e6:	c3 2e       	mov	r12, r19
+ 9e8:	c9 82       	std	Y+1, r12	; 0x01
+ 9ea:	23 e4       	ldi	r18, 0x43	; 67
+ 9ec:	d2 2e       	mov	r13, r18
+ 9ee:	da 82       	std	Y+2, r13	; 0x02
+ 9f0:	90 e1       	ldi	r25, 0x10	; 16
+ 9f2:	e9 2e       	mov	r14, r25
+ 9f4:	eb 82       	std	Y+3, r14	; 0x03
+ 9f6:	ec 82       	std	Y+4, r14	; 0x04
+ 9f8:	ff 24       	eor	r15, r15
+ 9fa:	f3 94       	inc	r15
+ 9fc:	fd 82       	std	Y+5, r15	; 0x05
 	}
 	SPI_Write_Buf((WRITE_REG|10),&(WriteArr[0]),5);
- 9d0:	8a e2       	ldi	r24, 0x2A	; 42
- 9d2:	8e 01       	movw	r16, r28
- 9d4:	0f 5f       	subi	r16, 0xFF	; 255
- 9d6:	1f 4f       	sbci	r17, 0xFF	; 255
- 9d8:	b8 01       	movw	r22, r16
- 9da:	45 e0       	ldi	r20, 0x05	; 5
- 9dc:	0e 94 50 04 	call	0x8a0	; 0x8a0 <SPI_Write_Buf>
+ 9fe:	8a e2       	ldi	r24, 0x2A	; 42
+ a00:	8e 01       	movw	r16, r28
+ a02:	0f 5f       	subi	r16, 0xFF	; 255
+ a04:	1f 4f       	sbci	r17, 0xFF	; 255
+ a06:	b8 01       	movw	r22, r16
+ a08:	45 e0       	ldi	r20, 0x05	; 5
+ a0a:	0e 94 67 04 	call	0x8ce	; 0x8ce <SPI_Write_Buf>
 	
 //REG 11 - Rx1 addr
 	for(j=0;j<5;j++)
 	{
 		WriteArr[j]=RX1_Address[j];
- 9e0:	89 e3       	ldi	r24, 0x39	; 57
- 9e2:	89 83       	std	Y+1, r24	; 0x01
- 9e4:	88 e3       	ldi	r24, 0x38	; 56
- 9e6:	8a 83       	std	Y+2, r24	; 0x02
- 9e8:	87 e3       	ldi	r24, 0x37	; 55
- 9ea:	8b 83       	std	Y+3, r24	; 0x03
- 9ec:	86 e3       	ldi	r24, 0x36	; 54
- 9ee:	8c 83       	std	Y+4, r24	; 0x04
- 9f0:	82 ec       	ldi	r24, 0xC2	; 194
- 9f2:	8d 83       	std	Y+5, r24	; 0x05
+ a0e:	89 e3       	ldi	r24, 0x39	; 57
+ a10:	89 83       	std	Y+1, r24	; 0x01
+ a12:	88 e3       	ldi	r24, 0x38	; 56
+ a14:	8a 83       	std	Y+2, r24	; 0x02
+ a16:	87 e3       	ldi	r24, 0x37	; 55
+ a18:	8b 83       	std	Y+3, r24	; 0x03
+ a1a:	86 e3       	ldi	r24, 0x36	; 54
+ a1c:	8c 83       	std	Y+4, r24	; 0x04
+ a1e:	82 ec       	ldi	r24, 0xC2	; 194
+ a20:	8d 83       	std	Y+5, r24	; 0x05
 	}
 	SPI_Write_Buf((WRITE_REG|11),&(WriteArr[0]),5);
- 9f4:	8b e2       	ldi	r24, 0x2B	; 43
- 9f6:	b8 01       	movw	r22, r16
- 9f8:	45 e0       	ldi	r20, 0x05	; 5
- 9fa:	0e 94 50 04 	call	0x8a0	; 0x8a0 <SPI_Write_Buf>
+ a22:	8b e2       	ldi	r24, 0x2B	; 43
+ a24:	b8 01       	movw	r22, r16
+ a26:	45 e0       	ldi	r20, 0x05	; 5
+ a28:	0e 94 67 04 	call	0x8ce	; 0x8ce <SPI_Write_Buf>
 //REG 16 - TX addr
 	for(j=0;j<5;j++)
 	{
 		WriteArr[j]=RX0_Address[j];
- 9fe:	c9 82       	std	Y+1, r12	; 0x01
- a00:	da 82       	std	Y+2, r13	; 0x02
- a02:	eb 82       	std	Y+3, r14	; 0x03
- a04:	ec 82       	std	Y+4, r14	; 0x04
- a06:	fd 82       	std	Y+5, r15	; 0x05
+ a2c:	c9 82       	std	Y+1, r12	; 0x01
+ a2e:	da 82       	std	Y+2, r13	; 0x02
+ a30:	eb 82       	std	Y+3, r14	; 0x03
+ a32:	ec 82       	std	Y+4, r14	; 0x04
+ a34:	fd 82       	std	Y+5, r15	; 0x05
 	}
 	SPI_Write_Buf((WRITE_REG|16),&(WriteArr[0]),5);
- a08:	80 e3       	ldi	r24, 0x30	; 48
- a0a:	b8 01       	movw	r22, r16
- a0c:	45 e0       	ldi	r20, 0x05	; 5
- a0e:	0e 94 50 04 	call	0x8a0	; 0x8a0 <SPI_Write_Buf>
+ a36:	80 e3       	ldi	r24, 0x30	; 48
+ a38:	b8 01       	movw	r22, r16
+ a3a:	45 e0       	ldi	r20, 0x05	; 5
+ a3c:	0e 94 67 04 	call	0x8ce	; 0x8ce <SPI_Write_Buf>
 	
 //	printf("\nEnd Load Reg");
 
 	i=SPI_Read_Reg(29);//read Feature Register ???????§??¶??¬?¤¶?»??? Payload With ACK?¬???????????¬·??? ACTIVATE????????????0x73),?»??????¶??¬?¤¶?»??? Payload With ACK (REG28,REG29).
- a12:	8d e1       	ldi	r24, 0x1D	; 29
- a14:	0e 94 1f 04 	call	0x83e	; 0x83e <SPI_Read_Reg>
+ a40:	8d e1       	ldi	r24, 0x1D	; 29
+ a42:	0e 94 36 04 	call	0x86c	; 0x86c <SPI_Read_Reg>
 	if(i==0) // i!=0 showed that chip has been actived.so do not active again.
- a18:	88 23       	and	r24, r24
- a1a:	21 f4       	brne	.+8      	; 0xa24 <RFM73_Initialize+0xbc>
+ a46:	88 23       	and	r24, r24
+ a48:	21 f4       	brne	.+8      	; 0xa52 <RFM73_Initialize+0xbc>
 		SPI_Write_Reg(ACTIVATE_CMD,0x73);// Active
- a1c:	80 e5       	ldi	r24, 0x50	; 80
- a1e:	63 e7       	ldi	r22, 0x73	; 115
- a20:	0e 94 0b 04 	call	0x816	; 0x816 <SPI_Write_Reg>
+ a4a:	80 e5       	ldi	r24, 0x50	; 80
+ a4c:	63 e7       	ldi	r22, 0x73	; 115
+ a4e:	0e 94 22 04 	call	0x844	; 0x844 <SPI_Write_Reg>
 	for(i=22;i>=21;i--)
 	{
 		SPI_Write_Reg((WRITE_REG|Bank0_Reg[i][0]),Bank0_Reg[i][1]);
- a24:	8d e3       	ldi	r24, 0x3D	; 61
- a26:	67 e0       	ldi	r22, 0x07	; 7
- a28:	0e 94 0b 04 	call	0x816	; 0x816 <SPI_Write_Reg>
- a2c:	8c e3       	ldi	r24, 0x3C	; 60
- a2e:	6f e3       	ldi	r22, 0x3F	; 63
- a30:	0e 94 0b 04 	call	0x816	; 0x816 <SPI_Write_Reg>
+ a52:	8d e3       	ldi	r24, 0x3D	; 61
+ a54:	67 e0       	ldi	r22, 0x07	; 7
+ a56:	0e 94 22 04 	call	0x844	; 0x844 <SPI_Write_Reg>
+ a5a:	8c e3       	ldi	r24, 0x3C	; 60
+ a5c:	6f e3       	ldi	r22, 0x3F	; 63
+ a5e:	0e 94 22 04 	call	0x844	; 0x844 <SPI_Write_Reg>
 		//SPI_Write_Reg_Bank0(Bank0_Reg[i][0],Bank0_Reg[i][1]);
 	}
 	
 //********************Write Bank1 register******************
 	SwitchCFG(1);
- a34:	81 e0       	ldi	r24, 0x01	; 1
- a36:	0e 94 9d 04 	call	0x93a	; 0x93a <SwitchCFG>
- a3a:	02 e7       	ldi	r16, 0x72	; 114
- a3c:	10 e0       	ldi	r17, 0x00	; 0
+ a62:	81 e0       	ldi	r24, 0x01	; 1
+ a64:	0e 94 b4 04 	call	0x968	; 0x968 <SwitchCFG>
+ a68:	02 e7       	ldi	r16, 0x72	; 114
+ a6a:	10 e0       	ldi	r17, 0x00	; 0
 	
 	for(i=0;i<=8;i++)//reverse
- a3e:	90 e0       	ldi	r25, 0x00	; 0
+ a6c:	90 e0       	ldi	r25, 0x00	; 0
 	{
 		for(j=0;j<4;j++)
 			WriteArr[j]=(Bank1_Reg0_13[i]>>(8*(j) ) )&0xff;
 
 		SPI_Write_Buf((WRITE_REG|i),&(WriteArr[0]),4);
- a40:	7e 01       	movw	r14, r28
- a42:	08 94       	sec
- a44:	e1 1c       	adc	r14, r1
- a46:	f1 1c       	adc	r15, r1
+ a6e:	7e 01       	movw	r14, r28
+ a70:	08 94       	sec
+ a72:	e1 1c       	adc	r14, r1
+ a74:	f1 1c       	adc	r15, r1
 	SwitchCFG(1);
 	
 	for(i=0;i<=8;i++)//reverse
 	{
 		for(j=0;j<4;j++)
 			WriteArr[j]=(Bank1_Reg0_13[i]>>(8*(j) ) )&0xff;
- a48:	f8 01       	movw	r30, r16
- a4a:	21 91       	ld	r18, Z+
- a4c:	31 91       	ld	r19, Z+
- a4e:	41 91       	ld	r20, Z+
- a50:	51 91       	ld	r21, Z+
- a52:	8f 01       	movw	r16, r30
- a54:	29 83       	std	Y+1, r18	; 0x01
- a56:	3a 83       	std	Y+2, r19	; 0x02
- a58:	4b 83       	std	Y+3, r20	; 0x03
- a5a:	5c 83       	std	Y+4, r21	; 0x04
+ a76:	f8 01       	movw	r30, r16
+ a78:	21 91       	ld	r18, Z+
+ a7a:	31 91       	ld	r19, Z+
+ a7c:	41 91       	ld	r20, Z+
+ a7e:	51 91       	ld	r21, Z+
+ a80:	8f 01       	movw	r16, r30
+ a82:	29 83       	std	Y+1, r18	; 0x01
+ a84:	3a 83       	std	Y+2, r19	; 0x02
+ a86:	4b 83       	std	Y+3, r20	; 0x03
+ a88:	5c 83       	std	Y+4, r21	; 0x04
 
 		SPI_Write_Buf((WRITE_REG|i),&(WriteArr[0]),4);
- a5c:	89 2f       	mov	r24, r25
- a5e:	80 62       	ori	r24, 0x20	; 32
- a60:	b7 01       	movw	r22, r14
- a62:	44 e0       	ldi	r20, 0x04	; 4
- a64:	9d 87       	std	Y+13, r25	; 0x0d
- a66:	0e 94 50 04 	call	0x8a0	; 0x8a0 <SPI_Write_Buf>
+ a8a:	89 2f       	mov	r24, r25
+ a8c:	80 62       	ori	r24, 0x20	; 32
+ a8e:	b7 01       	movw	r22, r14
+ a90:	44 e0       	ldi	r20, 0x04	; 4
+ a92:	9d 87       	std	Y+13, r25	; 0x0d
+ a94:	0e 94 67 04 	call	0x8ce	; 0x8ce <SPI_Write_Buf>
 	}
 	
 //********************Write Bank1 register******************
 	SwitchCFG(1);
 	
 	for(i=0;i<=8;i++)//reverse
- a6a:	9d 85       	ldd	r25, Y+13	; 0x0d
- a6c:	9f 5f       	subi	r25, 0xFF	; 255
- a6e:	99 30       	cpi	r25, 0x09	; 9
- a70:	59 f7       	brne	.-42     	; 0xa48 <RFM73_Initialize+0xe0>
- a72:	86 e9       	ldi	r24, 0x96	; 150
- a74:	e8 2e       	mov	r14, r24
- a76:	80 e0       	ldi	r24, 0x00	; 0
- a78:	f8 2e       	mov	r15, r24
+ a98:	9d 85       	ldd	r25, Y+13	; 0x0d
+ a9a:	9f 5f       	subi	r25, 0xFF	; 255
+ a9c:	99 30       	cpi	r25, 0x09	; 9
+ a9e:	59 f7       	brne	.-42     	; 0xa76 <RFM73_Initialize+0xe0>
+ aa0:	86 e9       	ldi	r24, 0x96	; 150
+ aa2:	e8 2e       	mov	r14, r24
+ aa4:	80 e0       	ldi	r24, 0x00	; 0
+ aa6:	f8 2e       	mov	r15, r24
 	for(i=9;i<=13;i++)
 	{
 		for(j=0;j<4;j++)
 			WriteArr[j]=(Bank1_Reg0_13[i]>>(8*(3-j) ) )&0xff;
 
 		SPI_Write_Buf((WRITE_REG|i),&(WriteArr[0]),4);
- a7a:	8e 01       	movw	r16, r28
- a7c:	0f 5f       	subi	r16, 0xFF	; 255
- a7e:	1f 4f       	sbci	r17, 0xFF	; 255
+ aa8:	8e 01       	movw	r16, r28
+ aaa:	0f 5f       	subi	r16, 0xFF	; 255
+ aac:	1f 4f       	sbci	r17, 0xFF	; 255
 	}
 
 	for(i=9;i<=13;i++)
 	{
 		for(j=0;j<4;j++)
 			WriteArr[j]=(Bank1_Reg0_13[i]>>(8*(3-j) ) )&0xff;
- a80:	f7 01       	movw	r30, r14
- a82:	21 91       	ld	r18, Z+
- a84:	31 91       	ld	r19, Z+
- a86:	41 91       	ld	r20, Z+
- a88:	51 91       	ld	r21, Z+
- a8a:	7f 01       	movw	r14, r30
- a8c:	59 83       	std	Y+1, r21	; 0x01
- a8e:	4a 83       	std	Y+2, r20	; 0x02
- a90:	3b 83       	std	Y+3, r19	; 0x03
- a92:	2c 83       	std	Y+4, r18	; 0x04
+ aae:	f7 01       	movw	r30, r14
+ ab0:	21 91       	ld	r18, Z+
+ ab2:	31 91       	ld	r19, Z+
+ ab4:	41 91       	ld	r20, Z+
+ ab6:	51 91       	ld	r21, Z+
+ ab8:	7f 01       	movw	r14, r30
+ aba:	59 83       	std	Y+1, r21	; 0x01
+ abc:	4a 83       	std	Y+2, r20	; 0x02
+ abe:	3b 83       	std	Y+3, r19	; 0x03
+ ac0:	2c 83       	std	Y+4, r18	; 0x04
 
 		SPI_Write_Buf((WRITE_REG|i),&(WriteArr[0]),4);
- a94:	89 2f       	mov	r24, r25
- a96:	80 62       	ori	r24, 0x20	; 32
- a98:	b8 01       	movw	r22, r16
- a9a:	44 e0       	ldi	r20, 0x04	; 4
- a9c:	9d 87       	std	Y+13, r25	; 0x0d
- a9e:	0e 94 50 04 	call	0x8a0	; 0x8a0 <SPI_Write_Buf>
+ ac2:	89 2f       	mov	r24, r25
+ ac4:	80 62       	ori	r24, 0x20	; 32
+ ac6:	b8 01       	movw	r22, r16
+ ac8:	44 e0       	ldi	r20, 0x04	; 4
+ aca:	9d 87       	std	Y+13, r25	; 0x0d
+ acc:	0e 94 67 04 	call	0x8ce	; 0x8ce <SPI_Write_Buf>
 			WriteArr[j]=(Bank1_Reg0_13[i]>>(8*(j) ) )&0xff;
 
 		SPI_Write_Buf((WRITE_REG|i),&(WriteArr[0]),4);
 	}
 
 	for(i=9;i<=13;i++)
- aa2:	9d 85       	ldd	r25, Y+13	; 0x0d
- aa4:	9f 5f       	subi	r25, 0xFF	; 255
- aa6:	9e 30       	cpi	r25, 0x0E	; 14
- aa8:	59 f7       	brne	.-42     	; 0xa80 <RFM73_Initialize+0x118>
- aaa:	ea ea       	ldi	r30, 0xAA	; 170
- aac:	f0 e0       	ldi	r31, 0x00	; 0
- aae:	d8 01       	movw	r26, r16
+ ad0:	9d 85       	ldd	r25, Y+13	; 0x0d
+ ad2:	9f 5f       	subi	r25, 0xFF	; 255
+ ad4:	9e 30       	cpi	r25, 0x0E	; 14
+ ad6:	59 f7       	brne	.-42     	; 0xaae <RFM73_Initialize+0x118>
+ ad8:	ea ea       	ldi	r30, 0xAA	; 170
+ ada:	f0 e0       	ldi	r31, 0x00	; 0
+ adc:	d8 01       	movw	r26, r16
 	}
 
 	//SPI_Write_Buf((WRITE_REG|14),&(Bank1_Reg14[0]),11);
 	for(j=0;j<11;j++)
 	{
 		WriteArr[j]=Bank1_Reg14[j];
- ab0:	81 91       	ld	r24, Z+
- ab2:	8d 93       	st	X+, r24
+ ade:	81 91       	ld	r24, Z+
+ ae0:	8d 93       	st	X+, r24
 
 		SPI_Write_Buf((WRITE_REG|i),&(WriteArr[0]),4);
 	}
 
 	//SPI_Write_Buf((WRITE_REG|14),&(Bank1_Reg14[0]),11);
 	for(j=0;j<11;j++)
- ab4:	80 e0       	ldi	r24, 0x00	; 0
- ab6:	e5 3b       	cpi	r30, 0xB5	; 181
- ab8:	f8 07       	cpc	r31, r24
- aba:	d1 f7       	brne	.-12     	; 0xab0 <RFM73_Initialize+0x148>
+ ae2:	80 e0       	ldi	r24, 0x00	; 0
+ ae4:	e5 3b       	cpi	r30, 0xB5	; 181
+ ae6:	f8 07       	cpc	r31, r24
+ ae8:	d1 f7       	brne	.-12     	; 0xade <RFM73_Initialize+0x148>
 	{
 		WriteArr[j]=Bank1_Reg14[j];
 	}
 	SPI_Write_Buf((WRITE_REG|14),&(WriteArr[0]),11);
- abc:	8e e2       	ldi	r24, 0x2E	; 46
- abe:	8e 01       	movw	r16, r28
- ac0:	0f 5f       	subi	r16, 0xFF	; 255
- ac2:	1f 4f       	sbci	r17, 0xFF	; 255
- ac4:	b8 01       	movw	r22, r16
- ac6:	4b e0       	ldi	r20, 0x0B	; 11
- ac8:	0e 94 50 04 	call	0x8a0	; 0x8a0 <SPI_Write_Buf>
+ aea:	8e e2       	ldi	r24, 0x2E	; 46
+ aec:	8e 01       	movw	r16, r28
+ aee:	0f 5f       	subi	r16, 0xFF	; 255
+ af0:	1f 4f       	sbci	r17, 0xFF	; 255
+ af2:	b8 01       	movw	r22, r16
+ af4:	4b e0       	ldi	r20, 0x0B	; 11
+ af6:	0e 94 67 04 	call	0x8ce	; 0x8ce <SPI_Write_Buf>
 
 //toggle REG4<25,26>
 	for(j=0;j<4;j++)
 		//WriteArr[j]=(RegArrFSKAnalog[4]>>(8*(j) ) )&0xff;
 		WriteArr[j]=(Bank1_Reg0_13[4]>>(8*(j) ) )&0xff;
- acc:	86 e9       	ldi	r24, 0x96	; 150
- ace:	8a 83       	std	Y+2, r24	; 0x02
- ad0:	82 e8       	ldi	r24, 0x82	; 130
- ad2:	8b 83       	std	Y+3, r24	; 0x03
- ad4:	8b e1       	ldi	r24, 0x1B	; 27
- ad6:	8c 83       	std	Y+4, r24	; 0x04
+ afa:	86 e9       	ldi	r24, 0x96	; 150
+ afc:	8a 83       	std	Y+2, r24	; 0x02
+ afe:	82 e8       	ldi	r24, 0x82	; 130
+ b00:	8b 83       	std	Y+3, r24	; 0x03
+ b02:	8b e1       	ldi	r24, 0x1B	; 27
+ b04:	8c 83       	std	Y+4, r24	; 0x04
 
 	WriteArr[0]=WriteArr[0]|0x06;
- ad8:	8f ed       	ldi	r24, 0xDF	; 223
- ada:	89 83       	std	Y+1, r24	; 0x01
+ b06:	8f ed       	ldi	r24, 0xDF	; 223
+ b08:	89 83       	std	Y+1, r24	; 0x01
 	SPI_Write_Buf((WRITE_REG|4),&(WriteArr[0]),4);
- adc:	84 e2       	ldi	r24, 0x24	; 36
- ade:	b8 01       	movw	r22, r16
- ae0:	44 e0       	ldi	r20, 0x04	; 4
- ae2:	0e 94 50 04 	call	0x8a0	; 0x8a0 <SPI_Write_Buf>
+ b0a:	84 e2       	ldi	r24, 0x24	; 36
+ b0c:	b8 01       	movw	r22, r16
+ b0e:	44 e0       	ldi	r20, 0x04	; 4
+ b10:	0e 94 67 04 	call	0x8ce	; 0x8ce <SPI_Write_Buf>
 
 	WriteArr[0]=WriteArr[0]&0xf9;
- ae6:	89 81       	ldd	r24, Y+1	; 0x01
- ae8:	89 7f       	andi	r24, 0xF9	; 249
- aea:	89 83       	std	Y+1, r24	; 0x01
+ b14:	89 81       	ldd	r24, Y+1	; 0x01
+ b16:	89 7f       	andi	r24, 0xF9	; 249
+ b18:	89 83       	std	Y+1, r24	; 0x01
 	SPI_Write_Buf((WRITE_REG|4),&(WriteArr[0]),4);
- aec:	84 e2       	ldi	r24, 0x24	; 36
- aee:	b8 01       	movw	r22, r16
- af0:	44 e0       	ldi	r20, 0x04	; 4
- af2:	0e 94 50 04 	call	0x8a0	; 0x8a0 <SPI_Write_Buf>
- af6:	e3 ed       	ldi	r30, 0xD3	; 211
- af8:	f0 e3       	ldi	r31, 0x30	; 48
- afa:	31 97       	sbiw	r30, 0x01	; 1
- afc:	f1 f7       	brne	.-4      	; 0xafa <RFM73_Initialize+0x192>
- afe:	00 c0       	rjmp	.+0      	; 0xb00 <RFM73_Initialize+0x198>
- b00:	00 00       	nop
+ b1a:	84 e2       	ldi	r24, 0x24	; 36
+ b1c:	b8 01       	movw	r22, r16
+ b1e:	44 e0       	ldi	r20, 0x04	; 4
+ b20:	0e 94 67 04 	call	0x8ce	; 0x8ce <SPI_Write_Buf>
+ b24:	e3 ed       	ldi	r30, 0xD3	; 211
+ b26:	f0 e3       	ldi	r31, 0x30	; 48
+ b28:	31 97       	sbiw	r30, 0x01	; 1
+ b2a:	f1 f7       	brne	.-4      	; 0xb28 <RFM73_Initialize+0x192>
+ b2c:	00 c0       	rjmp	.+0      	; 0xb2e <RFM73_Initialize+0x198>
+ b2e:	00 00       	nop
 	
 	//DelayMs(10);
 	_delay_ms(50);
 	
 //********************switch back to Bank0 register access******************
 	SwitchCFG(0);
- b02:	80 e0       	ldi	r24, 0x00	; 0
- b04:	0e 94 9d 04 	call	0x93a	; 0x93a <SwitchCFG>
+ b30:	80 e0       	ldi	r24, 0x00	; 0
+ b32:	0e 94 b4 04 	call	0x968	; 0x968 <SwitchCFG>
 	SwitchToRxMode();//switch to RX mode
- b08:	0e 94 78 04 	call	0x8f0	; 0x8f0 <SwitchToRxMode>
+ b36:	0e 94 8f 04 	call	0x91e	; 0x91e <SwitchToRxMode>
 }
- b0c:	2d 96       	adiw	r28, 0x0d	; 13
- b0e:	0f b6       	in	r0, 0x3f	; 63
- b10:	f8 94       	cli
- b12:	de bf       	out	0x3e, r29	; 62
- b14:	0f be       	out	0x3f, r0	; 63
- b16:	cd bf       	out	0x3d, r28	; 61
- b18:	cf 91       	pop	r28
- b1a:	df 91       	pop	r29
- b1c:	1f 91       	pop	r17
- b1e:	0f 91       	pop	r16
- b20:	ff 90       	pop	r15
- b22:	ef 90       	pop	r14
- b24:	df 90       	pop	r13
- b26:	cf 90       	pop	r12
- b28:	08 95       	ret
+ b3a:	2d 96       	adiw	r28, 0x0d	; 13
+ b3c:	0f b6       	in	r0, 0x3f	; 63
+ b3e:	f8 94       	cli
+ b40:	de bf       	out	0x3e, r29	; 62
+ b42:	0f be       	out	0x3f, r0	; 63
+ b44:	cd bf       	out	0x3d, r28	; 61
+ b46:	cf 91       	pop	r28
+ b48:	df 91       	pop	r29
+ b4a:	1f 91       	pop	r17
+ b4c:	0f 91       	pop	r16
+ b4e:	ff 90       	pop	r15
+ b50:	ef 90       	pop	r14
+ b52:	df 90       	pop	r13
+ b54:	cf 90       	pop	r12
+ b56:	08 95       	ret
 
-00000b2a <Send_Packet>:
+00000b58 <Send_Packet>:
 	len: packet length
 Return:
 	None
 **************************************************/
 char Send_Packet(UINT8 type,UINT8* pbuf,UINT8 len)
 {
- b2a:	ef 92       	push	r14
- b2c:	ff 92       	push	r15
- b2e:	1f 93       	push	r17
- b30:	df 93       	push	r29
- b32:	cf 93       	push	r28
- b34:	0f 92       	push	r0
- b36:	cd b7       	in	r28, 0x3d	; 61
- b38:	de b7       	in	r29, 0x3e	; 62
- b3a:	18 2f       	mov	r17, r24
- b3c:	7b 01       	movw	r14, r22
+ b58:	ef 92       	push	r14
+ b5a:	ff 92       	push	r15
+ b5c:	1f 93       	push	r17
+ b5e:	df 93       	push	r29
+ b60:	cf 93       	push	r28
+ b62:	0f 92       	push	r0
+ b64:	cd b7       	in	r28, 0x3d	; 61
+ b66:	de b7       	in	r29, 0x3e	; 62
+ b68:	18 2f       	mov	r17, r24
+ b6a:	7b 01       	movw	r14, r22
 	UINT8 fifo_sta;
 	
 	SwitchToTxMode();  //switch to tx mode
- b3e:	49 83       	std	Y+1, r20	; 0x01
- b40:	0e 94 8e 04 	call	0x91c	; 0x91c <SwitchToTxMode>
+ b6c:	49 83       	std	Y+1, r20	; 0x01
+ b6e:	0e 94 a5 04 	call	0x94a	; 0x94a <SwitchToTxMode>
 
 	fifo_sta=SPI_Read_Reg(FIFO_STATUS);	// read register FIFO_STATUS's value
- b44:	87 e1       	ldi	r24, 0x17	; 23
- b46:	0e 94 1f 04 	call	0x83e	; 0x83e <SPI_Read_Reg>
+ b72:	87 e1       	ldi	r24, 0x17	; 23
+ b74:	0e 94 36 04 	call	0x86c	; 0x86c <SPI_Read_Reg>
 	if((fifo_sta&FIFO_STATUS_TX_FULL)==0)//if not full, send data (write buff)
- b4a:	49 81       	ldd	r20, Y+1	; 0x01
- b4c:	85 fd       	sbrc	r24, 5
- b4e:	0a c0       	rjmp	.+20     	; 0xb64 <Send_Packet+0x3a>
+ b78:	49 81       	ldd	r20, Y+1	; 0x01
+ b7a:	85 fd       	sbrc	r24, 5
+ b7c:	0a c0       	rjmp	.+20     	; 0xb92 <Send_Packet+0x3a>
 	{ 
 	  	//RED_LED = 1;
 		
 		SPI_Write_Buf(type, pbuf, len); // Writes data to buffer
- b50:	81 2f       	mov	r24, r17
- b52:	b7 01       	movw	r22, r14
- b54:	0e 94 50 04 	call	0x8a0	; 0x8a0 <SPI_Write_Buf>
- b58:	87 ea       	ldi	r24, 0xA7	; 167
- b5a:	91 e6       	ldi	r25, 0x61	; 97
- b5c:	01 97       	sbiw	r24, 0x01	; 1
- b5e:	f1 f7       	brne	.-4      	; 0xb5c <Send_Packet+0x32>
- b60:	00 c0       	rjmp	.+0      	; 0xb62 <Send_Packet+0x38>
- b62:	00 00       	nop
+ b7e:	81 2f       	mov	r24, r17
+ b80:	b7 01       	movw	r22, r14
+ b82:	0e 94 67 04 	call	0x8ce	; 0x8ce <SPI_Write_Buf>
+ b86:	87 ea       	ldi	r24, 0xA7	; 167
+ b88:	91 e6       	ldi	r25, 0x61	; 97
+ b8a:	01 97       	sbiw	r24, 0x01	; 1
+ b8c:	f1 f7       	brne	.-4      	; 0xb8a <Send_Packet+0x32>
+ b8e:	00 c0       	rjmp	.+0      	; 0xb90 <Send_Packet+0x38>
+ b90:	00 00       	nop
 		//delay_50ms();
 		_delay_ms(100);
 	}	  
 	
 	return 0;	 	
 }
- b64:	80 e0       	ldi	r24, 0x00	; 0
- b66:	0f 90       	pop	r0
- b68:	cf 91       	pop	r28
- b6a:	df 91       	pop	r29
- b6c:	1f 91       	pop	r17
- b6e:	ff 90       	pop	r15
- b70:	ef 90       	pop	r14
- b72:	08 95       	ret
+ b92:	80 e0       	ldi	r24, 0x00	; 0
+ b94:	0f 90       	pop	r0
+ b96:	cf 91       	pop	r28
+ b98:	df 91       	pop	r29
+ b9a:	1f 91       	pop	r17
+ b9c:	ff 90       	pop	r15
+ b9e:	ef 90       	pop	r14
+ ba0:	08 95       	ret
 
-00000b74 <Receive_Packet>:
+00000ba2 <Receive_Packet>:
 	None
 Return:
 	None
 **************************************************/
 char Receive_Packet(char * buf, char buf_len)
 {
- b74:	0f 93       	push	r16
- b76:	1f 93       	push	r17
- b78:	cf 93       	push	r28
- b7a:	df 93       	push	r29
- b7c:	ec 01       	movw	r28, r24
+ ba2:	0f 93       	push	r16
+ ba4:	1f 93       	push	r17
+ ba6:	cf 93       	push	r28
+ ba8:	df 93       	push	r29
+ baa:	ec 01       	movw	r28, r24
 	UINT8 len,i,sta,fifo_sta,value,chksum,aa, res = 0;
 	UINT8 rx_buf[MAX_PACKET_LEN];
 
 	sta=SPI_Read_Reg(STATUS);	// read register STATUS's value
- b7e:	87 e0       	ldi	r24, 0x07	; 7
- b80:	0e 94 1f 04 	call	0x83e	; 0x83e <SPI_Read_Reg>
- b84:	08 2f       	mov	r16, r24
+ bac:	87 e0       	ldi	r24, 0x07	; 7
+ bae:	0e 94 36 04 	call	0x86c	; 0x86c <SPI_Read_Reg>
+ bb2:	08 2f       	mov	r16, r24
 
 	if((STATUS_RX_DR&sta) == 0x40)				// if receive data ready (RX_DR) interrupt
- b86:	86 ff       	sbrs	r24, 6
- b88:	16 c0       	rjmp	.+44     	; 0xbb6 <Receive_Packet+0x42>
+ bb4:	86 ff       	sbrs	r24, 6
+ bb6:	16 c0       	rjmp	.+44     	; 0xbe4 <Receive_Packet+0x42>
 	{
 		do
 		{
 			len=SPI_Read_Reg(R_RX_PL_WID_CMD);	// read len
- b8a:	80 e6       	ldi	r24, 0x60	; 96
- b8c:	0e 94 1f 04 	call	0x83e	; 0x83e <SPI_Read_Reg>
- b90:	18 2f       	mov	r17, r24
+ bb8:	80 e6       	ldi	r24, 0x60	; 96
+ bba:	0e 94 36 04 	call	0x86c	; 0x86c <SPI_Read_Reg>
+ bbe:	18 2f       	mov	r17, r24
 
 			if(len<=MAX_PACKET_LEN)
- b92:	81 32       	cpi	r24, 0x21	; 33
- b94:	30 f4       	brcc	.+12     	; 0xba2 <Receive_Packet+0x2e>
+ bc0:	81 32       	cpi	r24, 0x21	; 33
+ bc2:	30 f4       	brcc	.+12     	; 0xbd0 <Receive_Packet+0x2e>
 			{
 				SPI_Read_Buf(RD_RX_PLOAD,buf,len);// read receive payload from RX_FIFO buffer
- b96:	81 e6       	ldi	r24, 0x61	; 97
- b98:	be 01       	movw	r22, r28
- b9a:	41 2f       	mov	r20, r17
- b9c:	0e 94 29 04 	call	0x852	; 0x852 <SPI_Read_Buf>
- ba0:	04 c0       	rjmp	.+8      	; 0xbaa <Receive_Packet+0x36>
+ bc4:	81 e6       	ldi	r24, 0x61	; 97
+ bc6:	be 01       	movw	r22, r28
+ bc8:	41 2f       	mov	r20, r17
+ bca:	0e 94 40 04 	call	0x880	; 0x880 <SPI_Read_Buf>
+ bce:	04 c0       	rjmp	.+8      	; 0xbd8 <Receive_Packet+0x36>
 			}
 			else
 			{
 				SPI_Write_Reg(FLUSH_RX,0);//flush Rx
- ba2:	82 ee       	ldi	r24, 0xE2	; 226
- ba4:	60 e0       	ldi	r22, 0x00	; 0
- ba6:	0e 94 0b 04 	call	0x816	; 0x816 <SPI_Write_Reg>
+ bd0:	82 ee       	ldi	r24, 0xE2	; 226
+ bd2:	60 e0       	ldi	r22, 0x00	; 0
+ bd4:	0e 94 22 04 	call	0x844	; 0x844 <SPI_Write_Reg>
 			}
 
 			fifo_sta=SPI_Read_Reg(FIFO_STATUS);	// read register FIFO_STATUS's value
- baa:	87 e1       	ldi	r24, 0x17	; 23
- bac:	0e 94 1f 04 	call	0x83e	; 0x83e <SPI_Read_Reg>
+ bd8:	87 e1       	ldi	r24, 0x17	; 23
+ bda:	0e 94 36 04 	call	0x86c	; 0x86c <SPI_Read_Reg>
 							
 		}while((fifo_sta&FIFO_STATUS_RX_EMPTY)==0); //while not empty
- bb0:	80 ff       	sbrs	r24, 0
- bb2:	eb cf       	rjmp	.-42     	; 0xb8a <Receive_Packet+0x16>
- bb4:	01 c0       	rjmp	.+2      	; 0xbb8 <Receive_Packet+0x44>
+ bde:	80 ff       	sbrs	r24, 0
+ be0:	eb cf       	rjmp	.-42     	; 0xbb8 <Receive_Packet+0x16>
+ be2:	01 c0       	rjmp	.+2      	; 0xbe6 <Receive_Packet+0x44>
 Return:
 	None
 **************************************************/
 char Receive_Packet(char * buf, char buf_len)
 {
 	UINT8 len,i,sta,fifo_sta,value,chksum,aa, res = 0;
- bb6:	10 e0       	ldi	r17, 0x00	; 0
+ be4:	10 e0       	ldi	r17, 0x00	; 0
 		}
 		
 */
 		res = len;		
 	}
 	SPI_Write_Reg(WRITE_REG|STATUS,sta);// clear RX_DR or TX_DS or MAX_RT interrupt flag
- bb8:	87 e2       	ldi	r24, 0x27	; 39
- bba:	60 2f       	mov	r22, r16
- bbc:	0e 94 0b 04 	call	0x816	; 0x816 <SPI_Write_Reg>
+ be6:	87 e2       	ldi	r24, 0x27	; 39
+ be8:	60 2f       	mov	r22, r16
+ bea:	0e 94 22 04 	call	0x844	; 0x844 <SPI_Write_Reg>
 	
 	return res;	
 }
- bc0:	81 2f       	mov	r24, r17
- bc2:	df 91       	pop	r29
- bc4:	cf 91       	pop	r28
- bc6:	1f 91       	pop	r17
- bc8:	0f 91       	pop	r16
- bca:	08 95       	ret
+ bee:	81 2f       	mov	r24, r17
+ bf0:	df 91       	pop	r29
+ bf2:	cf 91       	pop	r28
+ bf4:	1f 91       	pop	r17
+ bf6:	0f 91       	pop	r16
+ bf8:	08 95       	ret
 
-00000bcc <__udivmodqi4>:
- bcc:	99 1b       	sub	r25, r25
- bce:	79 e0       	ldi	r23, 0x09	; 9
- bd0:	04 c0       	rjmp	.+8      	; 0xbda <__udivmodqi4_ep>
+00000bfa <__udivmodqi4>:
+ bfa:	99 1b       	sub	r25, r25
+ bfc:	79 e0       	ldi	r23, 0x09	; 9
+ bfe:	04 c0       	rjmp	.+8      	; 0xc08 <__udivmodqi4_ep>
 
-00000bd2 <__udivmodqi4_loop>:
- bd2:	99 1f       	adc	r25, r25
- bd4:	96 17       	cp	r25, r22
- bd6:	08 f0       	brcs	.+2      	; 0xbda <__udivmodqi4_ep>
- bd8:	96 1b       	sub	r25, r22
+00000c00 <__udivmodqi4_loop>:
+ c00:	99 1f       	adc	r25, r25
+ c02:	96 17       	cp	r25, r22
+ c04:	08 f0       	brcs	.+2      	; 0xc08 <__udivmodqi4_ep>
+ c06:	96 1b       	sub	r25, r22
 
-00000bda <__udivmodqi4_ep>:
- bda:	88 1f       	adc	r24, r24
- bdc:	7a 95       	dec	r23
- bde:	c9 f7       	brne	.-14     	; 0xbd2 <__udivmodqi4_loop>
- be0:	80 95       	com	r24
- be2:	08 95       	ret
+00000c08 <__udivmodqi4_ep>:
+ c08:	88 1f       	adc	r24, r24
+ c0a:	7a 95       	dec	r23
+ c0c:	c9 f7       	brne	.-14     	; 0xc00 <__udivmodqi4_loop>
+ c0e:	80 95       	com	r24
+ c10:	08 95       	ret
 
-00000be4 <__udivmodhi4>:
- be4:	aa 1b       	sub	r26, r26
- be6:	bb 1b       	sub	r27, r27
- be8:	51 e1       	ldi	r21, 0x11	; 17
- bea:	07 c0       	rjmp	.+14     	; 0xbfa <__udivmodhi4_ep>
+00000c12 <__udivmodhi4>:
+ c12:	aa 1b       	sub	r26, r26
+ c14:	bb 1b       	sub	r27, r27
+ c16:	51 e1       	ldi	r21, 0x11	; 17
+ c18:	07 c0       	rjmp	.+14     	; 0xc28 <__udivmodhi4_ep>
 
-00000bec <__udivmodhi4_loop>:
- bec:	aa 1f       	adc	r26, r26
- bee:	bb 1f       	adc	r27, r27
- bf0:	a6 17       	cp	r26, r22
- bf2:	b7 07       	cpc	r27, r23
- bf4:	10 f0       	brcs	.+4      	; 0xbfa <__udivmodhi4_ep>
- bf6:	a6 1b       	sub	r26, r22
- bf8:	b7 0b       	sbc	r27, r23
+00000c1a <__udivmodhi4_loop>:
+ c1a:	aa 1f       	adc	r26, r26
+ c1c:	bb 1f       	adc	r27, r27
+ c1e:	a6 17       	cp	r26, r22
+ c20:	b7 07       	cpc	r27, r23
+ c22:	10 f0       	brcs	.+4      	; 0xc28 <__udivmodhi4_ep>
+ c24:	a6 1b       	sub	r26, r22
+ c26:	b7 0b       	sbc	r27, r23
 
-00000bfa <__udivmodhi4_ep>:
- bfa:	88 1f       	adc	r24, r24
- bfc:	99 1f       	adc	r25, r25
- bfe:	5a 95       	dec	r21
- c00:	a9 f7       	brne	.-22     	; 0xbec <__udivmodhi4_loop>
- c02:	80 95       	com	r24
- c04:	90 95       	com	r25
- c06:	bc 01       	movw	r22, r24
- c08:	cd 01       	movw	r24, r26
- c0a:	08 95       	ret
+00000c28 <__udivmodhi4_ep>:
+ c28:	88 1f       	adc	r24, r24
+ c2a:	99 1f       	adc	r25, r25
+ c2c:	5a 95       	dec	r21
+ c2e:	a9 f7       	brne	.-22     	; 0xc1a <__udivmodhi4_loop>
+ c30:	80 95       	com	r24
+ c32:	90 95       	com	r25
+ c34:	bc 01       	movw	r22, r24
+ c36:	cd 01       	movw	r24, r26
+ c38:	08 95       	ret
 
-00000c0c <_exit>:
- c0c:	f8 94       	cli
+00000c3a <__eerd_block_m16>:
+ c3a:	dc 01       	movw	r26, r24
+ c3c:	cb 01       	movw	r24, r22
 
-00000c0e <__stop_program>:
- c0e:	ff cf       	rjmp	.-2      	; 0xc0e <__stop_program>
+00000c3e <__eerd_blraw_m16>:
+ c3e:	fc 01       	movw	r30, r24
+ c40:	e1 99       	sbic	0x1c, 1	; 28
+ c42:	fe cf       	rjmp	.-4      	; 0xc40 <__eerd_blraw_m16+0x2>
+ c44:	06 c0       	rjmp	.+12     	; 0xc52 <__eerd_blraw_m16+0x14>
+ c46:	ff bb       	out	0x1f, r31	; 31
+ c48:	ee bb       	out	0x1e, r30	; 30
+ c4a:	e0 9a       	sbi	0x1c, 0	; 28
+ c4c:	31 96       	adiw	r30, 0x01	; 1
+ c4e:	0d b2       	in	r0, 0x1d	; 29
+ c50:	0d 92       	st	X+, r0
+ c52:	41 50       	subi	r20, 0x01	; 1
+ c54:	50 40       	sbci	r21, 0x00	; 0
+ c56:	b8 f7       	brcc	.-18     	; 0xc46 <__eerd_blraw_m16+0x8>
+ c58:	08 95       	ret
+
+00000c5a <__eewr_block_m16>:
+ c5a:	dc 01       	movw	r26, r24
+ c5c:	cb 01       	movw	r24, r22
+ c5e:	03 c0       	rjmp	.+6      	; 0xc66 <__eewr_block_m16+0xc>
+ c60:	2d 91       	ld	r18, X+
+ c62:	0e 94 38 06 	call	0xc70	; 0xc70 <__eewr_r18_m16>
+ c66:	41 50       	subi	r20, 0x01	; 1
+ c68:	50 40       	sbci	r21, 0x00	; 0
+ c6a:	d0 f7       	brcc	.-12     	; 0xc60 <__eewr_block_m16+0x6>
+ c6c:	08 95       	ret
+
+00000c6e <__eewr_byte_m16>:
+ c6e:	26 2f       	mov	r18, r22
+
+00000c70 <__eewr_r18_m16>:
+ c70:	e1 99       	sbic	0x1c, 1	; 28
+ c72:	fe cf       	rjmp	.-4      	; 0xc70 <__eewr_r18_m16>
+ c74:	9f bb       	out	0x1f, r25	; 31
+ c76:	8e bb       	out	0x1e, r24	; 30
+ c78:	2d bb       	out	0x1d, r18	; 29
+ c7a:	0f b6       	in	r0, 0x3f	; 63
+ c7c:	f8 94       	cli
+ c7e:	e2 9a       	sbi	0x1c, 2	; 28
+ c80:	e1 9a       	sbi	0x1c, 1	; 28
+ c82:	0f be       	out	0x3f, r0	; 63
+ c84:	01 96       	adiw	r24, 0x01	; 1
+ c86:	08 95       	ret
+
+00000c88 <_exit>:
+ c88:	f8 94       	cli
+
+00000c8a <__stop_program>:
+ c8a:	ff cf       	rjmp	.-2      	; 0xc8a <__stop_program>
