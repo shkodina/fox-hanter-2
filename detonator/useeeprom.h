@@ -12,5 +12,7 @@ void writeInitTimeToEEPROM(char * time, char count){
 
 void readInitTimeFromEEPROM(char * time, char count){
 	eeprom_read_block (time, STARTADR, count);
+	for (char i = 0; i < count; i++)
+		time[i] = time[i] >= 60 ? 1 : time[i]; 
 }
 #endif 

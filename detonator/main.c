@@ -134,21 +134,27 @@ char workButtons(){
 
 	switch (getButtonWorkTheame()) {
 
-	case SETTIMER:
-		stopTimer(&g_timer);
+	case BOTH:
+		if (cur_state == NONE){
+			stopTimer(&g_timer);
 
-		cur_state = SETTIMER;
-		g_timeout_in_timer_setup = 0;
+			cur_state = SETTIMER;
+			g_timeout_in_timer_setup = 0;
 
-		sevenSegShowGTimerInit(&g_timer, cur_time_pos);
+			sevenSegShowGTimerInit(&g_timer, cur_time_pos);
 
+		}else{		
+			g_timeout_in_timer_setup = 0;
+			if( cur_time_pos++ == TIMEPOSITIONSCOUNT - 1)
+				cur_time_pos = HH;
+			sevenSegShowGTimerInit(&g_timer, cur_time_pos);
+		}
 		return TRUE;
-		break;
+		break;		
 
-
-	case INCRISEVALUE:
+	case PLUS:
 		if (cur_state == NONE)
-			g_timer.state = g_timer.state == ON ? OFF : ON;
+			;//g_timer.state = g_timer.state == ON ? OFF : ON;
 		else{
 			g_timeout_in_timer_setup = 0;
 			if (g_timer.time_init[cur_time_pos]++ == TIMEMAX)
@@ -160,13 +166,14 @@ char workButtons(){
 		break;
 
 
-	case NEXTPOSITION:
+	case MINUS:
 		if (cur_state == NONE)
-			resetTimer(&g_timer);
+			;//resetTimer(&g_timer);
 		else{
 			g_timeout_in_timer_setup = 0;
-			if( cur_time_pos++ == TIMEPOSITIONSCOUNT - 1)
-				cur_time_pos = HH;
+			if (g_timer.time_init[cur_time_pos]-- == TIMEMIN)
+				g_timer.time_init[cur_time_pos] = TIMEMAX;
+			resetTimer(&g_timer);		
 			sevenSegShowGTimerInit(&g_timer, cur_time_pos);
 			return TRUE;
 		}
@@ -195,6 +202,7 @@ char workButtons(){
 	}
 
 	return FALSE;
+
 }
 
 //-----------------------------------------------------------------
@@ -305,7 +313,7 @@ int main(){
 
 		UINT8 len = Receive_Packet(rx_buf, MAX_PACKET_LEN);
 		if (len > 0){
-			if (rx_buf[POINTNUMBERPOSITION] == DETONATORPOINTNUMBER){
+			if (rx_buf[POINTNUMBERPOSITION] != DETONATORPOINTNUMBER){
 				//ledTugle();
 				per_part_packs[SLIDESTATISTICPARTSCOUNT - 1]++;
 			}

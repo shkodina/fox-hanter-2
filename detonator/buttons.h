@@ -15,9 +15,11 @@ enum ButtonPins { BUTTONSELECT = 3, BUTTONSET = 4};
 enum ButtonPosition { BPOS_SELECT = 0, BPOS_SET = 1 };
 #define BUTTONSCOUNT 2
 
-enum WorkTheame {NONE, SETTIMER, INCRISEVALUE, NEXTPOSITION};
+enum WorkTheame {NONE, PLUS, MINUS, BOTH, SETTIMER};
 
-#define LONGPRESSTIME 10
+#define MAXCHECKCOUNTTONEXTPUSHED 126
+
+
 
 void initButtons();
 char buttonGetCurState(char button);

@@ -11,9 +11,9 @@ enum SevenSegSwiching {SHL = 0, SHR = 1, SML = 2, SMR = 3, SSL = 4, SSR = 5 };
 char SevenSegSwichingAr[SEVENSEGCOUNT] = {SSR, SSL, SMR, SML, SHR, SHL};
 
 
-volatile char g_seven_time_for_sevenseg[SEVENSEGCOUNT];
-volatile char g_seven_mask_for_digit_to_blink;
-volatile char g_seven_mask_for_points;
+//volatile char g_seven_time_for_sevenseg[SEVENSEGCOUNT];
+//volatile char g_seven_mask_for_digit_to_blink;
+//volatile char g_seven_mask_for_points;
 
 #define SEVENSEGCODSCOUNT 10
 const char SevenSegCodes[SEVENSEGCODSCOUNT] = {	0b11111010,		// 0
@@ -45,7 +45,7 @@ void initSevenSeg(){
 		DOWNBIT(ENABLESEVENSEGPORT, SevenSegSwichingAr[i]);
 	}
 
-
+	
 //	DDRC = 0x3f;
 //	DDRD = 0xff;
 }

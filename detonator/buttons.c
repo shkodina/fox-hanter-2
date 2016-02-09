@@ -18,7 +18,7 @@ char buttonGetCurState(char button){
 
 //-----------------------------------------------------------------------
 
-char buttonCheckOncePush(char * last_state, char button){
+char buttonCheckOncePushOnPressed(char * last_state, char button){
 
 	if (buttonGetCurState(button) == RELEASED){ 
 		*last_state = RELEASED;
@@ -35,21 +35,16 @@ char buttonCheckOncePush(char * last_state, char button){
 
 //-----------------------------------------------------------------------
 
-char buttonCheckLongPush(char * last_state, char button, char * how_log_is_pressed){
+char buttonCheckOncePushOnReleased(char * last_state, char button){
 
-	if (buttonGetCurState(button) == RELEASED){ 
-		*last_state = RELEASED;
-		*how_log_is_pressed = 0;
-	}else{
-		if (*last_state == RELEASED){
-				*how_log_is_pressed++;
-				*last_state = PUSHED;
-		}else{
-			if (*how_log_is_pressed++ >= LONGPRESSTIME){
-				*how_log_is_pressed = 0;
-				return TRUE;
-			}
+	if (buttonGetCurState(button) == RELEASED){
+		if (*last_state == PUSHED){ 
+			*last_state = RELEASED;
+			return TRUE;
 		}
+	}else{
+		*last_state = PUSHED;
+		return FALSE;
 	}
 
 	return FALSE;
@@ -59,11 +54,23 @@ char buttonCheckLongPush(char * last_state, char button, char * how_log_is_press
 
 char buttonCheckTwoButAtOnceTimeOncePush(char * last_state, char button1, char button2){
 
+	static char checked_count = MAXCHECKCOUNTTONEXTPUSHED;
+	checked_count++;
+
 	if (buttonGetCurState(button1) == PUSHED &&
-		buttonGetCurState(button2) == PUSHED &&
-		*last_state == RELEASED) {
+		buttonGetCurState(button2) == PUSHED ){
+		if (*last_state == RELEASED) {
 			*last_state = PUSHED;
+			checked_count = 0;
 			return TRUE;
+		}else{
+			if (checked_count >= MAXCHECKCOUNTTONEXTPUSHED){
+				checked_count = 0;
+				return TRUE;
+			}else{
+				return FALSE;
+			}
+		}
 	}
 
 	*last_state = RELEASED;
@@ -71,6 +78,8 @@ char buttonCheckTwoButAtOnceTimeOncePush(char * last_state, char button1, char b
 }
 
 //-----------------------------------------------------------------------
+
+
 
 char getButtonWorkTheame(){
 	static char last_state[BUTTONSCOUNT];
@@ -81,17 +90,17 @@ char getButtonWorkTheame(){
 	char once_pushed_state[BUTTONSCOUNT];
 
 	if (buttonCheckTwoButAtOnceTimeOncePush(&last_state_of_pair_buttons, BUTTONSELECT, BUTTONSET) == TRUE)
-		return SETTIMER;
+		return BOTH;
 
 
 	for (char i = 0; i < BUTTONSCOUNT; i++)
-		once_pushed_state[i] = buttonCheckOncePush( last_state + but_pos[i], but[i]);
+		once_pushed_state[i] = buttonCheckOncePushOnReleased( last_state + but_pos[i], but[i]);
 
 	if (once_pushed_state[BPOS_SET])
-		return INCRISEVALUE;
+		return MINUS;
 
 	if (once_pushed_state[BPOS_SELECT])
-		return NEXTPOSITION;
+		return PLUS;
 
 	return NONE;
 }
