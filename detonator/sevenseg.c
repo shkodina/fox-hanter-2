@@ -29,8 +29,8 @@ const char SevenSegCodes[SEVENSEGCODSCOUNT] = {	0b11111010,		// 0
 #define POINT 0b00000001												
 #define NOCODE 0												
 
-enum Sleeps {SLEEPINSEVENSEG = 500, SLEEPINBLINK = 500000};
-enum InBlinkState {BLINKOFF = 0, BLINKON = 1};
+enum Sleeps {SLEEPINSEVENSEG = 50, SLEEPINBLINK = 500};
+enum InBlinkState {BLINKOFF = 0x0F, BLINKON = 0xF0};
 
 //*************************************************************************
 
@@ -63,17 +63,16 @@ void sevenSegShowCode(char number, char code ){
 //*************************************************************************
 
 void sevenSegShowDigit(char * digits, char len, char point_mask, char blink_mask){
-	static char in_blink_state = BLINKOFF;
+	static char in_blink_state = BLINKON;
 	static int times_for_switch = SLEEPINBLINK / SLEEPINSEVENSEG;
 	for (char i = 0; i < len; i++){
 
 		char code = (point_mask & (1 << i))	? (SevenSegCodes[digits[i]] | POINT) : SevenSegCodes[digits[i]] ;
-
 		code = ((blink_mask & (1 << i)) && (in_blink_state == BLINKOFF)) ? NOCODE : code;
 		
-		if  (!times_for_switch--){
+		if  (!(--times_for_switch)){
 			times_for_switch = SLEEPINBLINK / SLEEPINSEVENSEG;
-			in_blink_state = in_blink_state == BLINKOFF ? BLINKON : BLINKOFF;
+			in_blink_state = !in_blink_state;
 		}
 		
 		sevenSegShowCode(SevenSegSwichingAr[i], code);

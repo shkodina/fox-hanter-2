@@ -3,35 +3,35 @@
 
 Sections:
 Idx Name          Size      VMA       LMA       File off  Algn
-  0 .text         0000036e  00000000  00000000  00000094  2**1
+  0 .text         000003b6  00000000  00000000  00000094  2**1
                   CONTENTS, ALLOC, LOAD, READONLY, CODE
-  1 .data         00000012  00800060  0000036e  00000402  2**0
+  1 .data         00000014  00800060  000003b6  0000044a  2**0
                   CONTENTS, ALLOC, LOAD, DATA
-  2 .bss          00000010  00800072  00800072  00000414  2**0
+  2 .bss          0000000f  00800074  00800074  0000045e  2**0
                   ALLOC
-  3 .stab         000006cc  00000000  00000000  00000414  2**2
+  3 .stab         000006cc  00000000  00000000  00000460  2**2
                   CONTENTS, READONLY, DEBUGGING
-  4 .stabstr      00000085  00000000  00000000  00000ae0  2**0
+  4 .stabstr      00000085  00000000  00000000  00000b2c  2**0
                   CONTENTS, READONLY, DEBUGGING
-  5 .debug_aranges 00000060  00000000  00000000  00000b65  2**0
+  5 .debug_aranges 00000060  00000000  00000000  00000bb1  2**0
                   CONTENTS, READONLY, DEBUGGING
-  6 .debug_pubnames 000001b6  00000000  00000000  00000bc5  2**0
+  6 .debug_pubnames 000001b6  00000000  00000000  00000c11  2**0
                   CONTENTS, READONLY, DEBUGGING
-  7 .debug_info   000007db  00000000  00000000  00000d7b  2**0
+  7 .debug_info   000008a6  00000000  00000000  00000dc7  2**0
                   CONTENTS, READONLY, DEBUGGING
-  8 .debug_abbrev 0000041c  00000000  00000000  00001556  2**0
+  8 .debug_abbrev 000004c6  00000000  00000000  0000166d  2**0
                   CONTENTS, READONLY, DEBUGGING
-  9 .debug_line   00000584  00000000  00000000  00001972  2**0
+  9 .debug_line   00000634  00000000  00000000  00001b33  2**0
                   CONTENTS, READONLY, DEBUGGING
- 10 .debug_frame  00000100  00000000  00000000  00001ef8  2**2
+ 10 .debug_frame  00000100  00000000  00000000  00002168  2**2
                   CONTENTS, READONLY, DEBUGGING
- 11 .debug_str    00000314  00000000  00000000  00001ff8  2**0
+ 11 .debug_str    0000032c  00000000  00000000  00002268  2**0
                   CONTENTS, READONLY, DEBUGGING
- 12 .debug_loc    00000261  00000000  00000000  0000230c  2**0
+ 12 .debug_loc    000002a7  00000000  00000000  00002594  2**0
                   CONTENTS, READONLY, DEBUGGING
- 13 .debug_pubtypes 00000125  00000000  00000000  0000256d  2**0
+ 13 .debug_pubtypes 0000012e  00000000  00000000  0000283b  2**0
                   CONTENTS, READONLY, DEBUGGING
- 14 .debug_ranges 00000018  00000000  00000000  00002692  2**0
+ 14 .debug_ranges 00000018  00000000  00000000  00002969  2**0
                   CONTENTS, READONLY, DEBUGGING
 
 Disassembly of section .text:
@@ -71,18 +71,18 @@ Disassembly of section .text:
   60:	10 e0       	ldi	r17, 0x00	; 0
   62:	a0 e6       	ldi	r26, 0x60	; 96
   64:	b0 e0       	ldi	r27, 0x00	; 0
-  66:	ee e6       	ldi	r30, 0x6E	; 110
+  66:	e6 eb       	ldi	r30, 0xB6	; 182
   68:	f3 e0       	ldi	r31, 0x03	; 3
   6a:	02 c0       	rjmp	.+4      	; 0x70 <__do_copy_data+0x10>
   6c:	05 90       	lpm	r0, Z+
   6e:	0d 92       	st	X+, r0
-  70:	a2 37       	cpi	r26, 0x72	; 114
+  70:	a4 37       	cpi	r26, 0x74	; 116
   72:	b1 07       	cpc	r27, r17
   74:	d9 f7       	brne	.-10     	; 0x6c <__do_copy_data+0xc>
 
 00000076 <__do_clear_bss>:
   76:	10 e0       	ldi	r17, 0x00	; 0
-  78:	a2 e7       	ldi	r26, 0x72	; 114
+  78:	a4 e7       	ldi	r26, 0x74	; 116
   7a:	b0 e0       	ldi	r27, 0x00	; 0
   7c:	01 c0       	rjmp	.+2      	; 0x80 <.do_clear_bss_start>
 
@@ -90,11 +90,11 @@ Disassembly of section .text:
   7e:	1d 92       	st	X+, r1
 
 00000080 <.do_clear_bss_start>:
-  80:	a2 38       	cpi	r26, 0x82	; 130
+  80:	a3 38       	cpi	r26, 0x83	; 131
   82:	b1 07       	cpc	r27, r17
   84:	e1 f7       	brne	.-8      	; 0x7e <.do_clear_bss_loop>
-  86:	0e 94 69 00 	call	0xd2	; 0xd2 <main>
-  8a:	0c 94 b5 01 	jmp	0x36a	; 0x36a <_exit>
+  86:	0e 94 91 00 	call	0x122	; 0x122 <main>
+  8a:	0c 94 d9 01 	jmp	0x3b2	; 0x3b2 <_exit>
 
 0000008e <__bad_interrupt>:
   8e:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
@@ -135,585 +135,631 @@ ISR (TIMER2_OVF_vect)
   ae:	0f b6       	in	r0, 0x3f	; 63
   b0:	0f 92       	push	r0
   b2:	11 24       	eor	r1, r1
-  b4:	8f 93       	push	r24
-  b6:	9f 93       	push	r25
+  b4:	2f 93       	push	r18
+  b6:	3f 93       	push	r19
+  b8:	4f 93       	push	r20
+  ba:	5f 93       	push	r21
+  bc:	6f 93       	push	r22
+  be:	7f 93       	push	r23
+  c0:	8f 93       	push	r24
+  c2:	9f 93       	push	r25
+  c4:	af 93       	push	r26
+  c6:	bf 93       	push	r27
+  c8:	ef 93       	push	r30
+  ca:	ff 93       	push	r31
  cli();
-  b8:	f8 94       	cli
+  cc:	f8 94       	cli
 	INVBIT(LEDPORT, LEDPIN) ;
-  ba:	8b b3       	in	r24, 0x1b	; 27
-  bc:	90 e2       	ldi	r25, 0x20	; 32
-  be:	89 27       	eor	r24, r25
-  c0:	8b bb       	out	0x1b, r24	; 27
-//	if (decTimer( & g_timer))
-//		for (int i = 0; i < 30000; i++){
-//			INVBIT(LEDPORT, LEDPIN) ;
-//			_delay_ms(50);
-//		}
- sei();
-  c2:	78 94       	sei
-}
-  c4:	9f 91       	pop	r25
-  c6:	8f 91       	pop	r24
-  c8:	0f 90       	pop	r0
-  ca:	0f be       	out	0x3f, r0	; 63
-  cc:	0f 90       	pop	r0
-  ce:	1f 90       	pop	r1
-  d0:	18 95       	reti
-
-000000d2 <main>:
-
-
-
-int main(){
-	
-	LEDDDRPORT |= 1 << LEDPIN;
-  d2:	d5 9a       	sbi	0x1a, 5	; 26
-
-
-	setTimer(&g_timer, 1, 1, 8);
-  d4:	83 e7       	ldi	r24, 0x73	; 115
-  d6:	90 e0       	ldi	r25, 0x00	; 0
-  d8:	61 e0       	ldi	r22, 0x01	; 1
-  da:	41 e0       	ldi	r20, 0x01	; 1
-  dc:	28 e0       	ldi	r18, 0x08	; 8
-  de:	0e 94 7c 00 	call	0xf8	; 0xf8 <setTimer>
-
-	initSevenSegPort();
-  e2:	0e 94 b9 00 	call	0x172	; 0x172 <initSevenSegPort>
-
-
-	setupTIMER2();
-  e6:	0e 94 49 00 	call	0x92	; 0x92 <setupTIMER2>
-	sei();
-  ea:	78 94       	sei
-//		for (char i = 0; i < 6; i++)
-//			sevenSegShowCode(i, 0b11110110 );
-//			for (char ii = 0; ii < 8; ii++)
-//				sevenSegShowCode(i, 1 << ii );
-	//sevenSegShowGTimerTime(&g_timer);
-	sevenSegShowGTimerInit(&g_timer, HH);
-  ec:	83 e7       	ldi	r24, 0x73	; 115
-  ee:	90 e0       	ldi	r25, 0x00	; 0
-  f0:	60 e0       	ldi	r22, 0x00	; 0
-  f2:	0e 94 90 01 	call	0x320	; 0x320 <sevenSegShowGTimerInit>
-  f6:	fa cf       	rjmp	.-12     	; 0xec <main+0x1a>
-
-000000f8 <setTimer>:
-#include "timer.h"
-
-void setTimer(Timer * g_timer, char hh, char mm, char ss){
-  f8:	fc 01       	movw	r30, r24
-	g_timer->time[SS] = g_timer->time_init[SS] = ss;
-  fa:	25 83       	std	Z+5, r18	; 0x05
-  fc:	22 83       	std	Z+2, r18	; 0x02
-	g_timer->time[MM] = g_timer->time_init[MM] = mm;
-  fe:	44 83       	std	Z+4, r20	; 0x04
- 100:	41 83       	std	Z+1, r20	; 0x01
-	g_timer->time[HH] = g_timer->time_init[HH] = hh;
- 102:	63 83       	std	Z+3, r22	; 0x03
- 104:	60 83       	st	Z, r22
-	g_timer->state = OFF;
- 106:	81 e0       	ldi	r24, 0x01	; 1
- 108:	86 83       	std	Z+6, r24	; 0x06
-}
- 10a:	08 95       	ret
-
-0000010c <decTimer>:
-
-char decTimer(Timer * g_timer){
- 10c:	fc 01       	movw	r30, r24
-	if (g_timer->time[SS] == 0 &&
- 10e:	82 81       	ldd	r24, Z+2	; 0x02
- 110:	88 23       	and	r24, r24
- 112:	31 f4       	brne	.+12     	; 0x120 <decTimer+0x14>
- 114:	91 81       	ldd	r25, Z+1	; 0x01
- 116:	99 23       	and	r25, r25
- 118:	19 f4       	brne	.+6      	; 0x120 <decTimer+0x14>
-		g_timer->time[MM] == 0 &&
- 11a:	90 81       	ld	r25, Z
- 11c:	99 23       	and	r25, r25
- 11e:	b1 f0       	breq	.+44     	; 0x14c <decTimer+0x40>
-		g_timer->time[HH] == 0)
-		return 1;	
-
-	if (!g_timer->time[SS]--){
- 120:	98 2f       	mov	r25, r24
- 122:	91 50       	subi	r25, 0x01	; 1
- 124:	92 83       	std	Z+2, r25	; 0x02
- 126:	88 23       	and	r24, r24
- 128:	99 f4       	brne	.+38     	; 0x150 <decTimer+0x44>
-		g_timer->time[SS] = TIMEMAX;
- 12a:	8b e3       	ldi	r24, 0x3B	; 59
- 12c:	82 83       	std	Z+2, r24	; 0x02
-		if (!g_timer->time[MM]--){
- 12e:	91 81       	ldd	r25, Z+1	; 0x01
- 130:	29 2f       	mov	r18, r25
- 132:	21 50       	subi	r18, 0x01	; 1
- 134:	21 83       	std	Z+1, r18	; 0x01
- 136:	99 23       	and	r25, r25
- 138:	59 f4       	brne	.+22     	; 0x150 <decTimer+0x44>
-			g_timer->time[MM] = TIMEMAX;
- 13a:	81 83       	std	Z+1, r24	; 0x01
-			if (!g_timer->time[HH]--)
- 13c:	80 81       	ld	r24, Z
- 13e:	98 2f       	mov	r25, r24
- 140:	91 50       	subi	r25, 0x01	; 1
- 142:	90 83       	st	Z, r25
- 144:	88 23       	and	r24, r24
- 146:	31 f4       	brne	.+12     	; 0x154 <decTimer+0x48>
-				g_timer->time[HH] = TIMEMIN;
- 148:	10 82       	st	Z, r1
- 14a:	08 95       	ret
-
-char decTimer(Timer * g_timer){
-	if (g_timer->time[SS] == 0 &&
-		g_timer->time[MM] == 0 &&
-		g_timer->time[HH] == 0)
-		return 1;	
- 14c:	81 e0       	ldi	r24, 0x01	; 1
- 14e:	08 95       	ret
-			if (!g_timer->time[HH]--)
-				g_timer->time[HH] = TIMEMIN;
-		}
-	}
-	
-	return 0;
- 150:	80 e0       	ldi	r24, 0x00	; 0
- 152:	08 95       	ret
- 154:	80 e0       	ldi	r24, 0x00	; 0
-}
- 156:	08 95       	ret
-
-00000158 <resetTimer>:
-
-void resetTimer(Timer * g_timer){
- 158:	fc 01       	movw	r30, r24
-	setTimer(g_timer, g_timer->time_init[HH], g_timer->time_init[MM], g_timer->time_init[SS]);
- 15a:	83 81       	ldd	r24, Z+3	; 0x03
- 15c:	94 81       	ldd	r25, Z+4	; 0x04
-#include "timer.h"
-
-void setTimer(Timer * g_timer, char hh, char mm, char ss){
-	g_timer->time[SS] = g_timer->time_init[SS] = ss;
- 15e:	25 81       	ldd	r18, Z+5	; 0x05
- 160:	22 83       	std	Z+2, r18	; 0x02
-	g_timer->time[MM] = g_timer->time_init[MM] = mm;
- 162:	91 83       	std	Z+1, r25	; 0x01
-	g_timer->time[HH] = g_timer->time_init[HH] = hh;
- 164:	80 83       	st	Z, r24
-	g_timer->state = OFF;
- 166:	81 e0       	ldi	r24, 0x01	; 1
- 168:	86 83       	std	Z+6, r24	; 0x06
-	return 0;
-}
-
-void resetTimer(Timer * g_timer){
-	setTimer(g_timer, g_timer->time_init[HH], g_timer->time_init[MM], g_timer->time_init[SS]);
-}
- 16a:	08 95       	ret
-
-0000016c <startTimer>:
-
-void startTimer(Timer * g_timer){
-	g_timer->state = ON;
- 16c:	fc 01       	movw	r30, r24
- 16e:	16 82       	std	Z+6, r1	; 0x06
-}
- 170:	08 95       	ret
-
-00000172 <initSevenSegPort>:
-//*************************************************************************
-
-void initSevenSegPort(){
-
-	// enable port and turn off leds on port
-	SEVENSEGCONFIGPORT = 0xFF;
- 172:	8f ef       	ldi	r24, 0xFF	; 255
- 174:	81 bb       	out	0x11, r24	; 17
-	SEVENSEGPORT = 0x00;
- 176:	12 ba       	out	0x12, r1	; 18
- 178:	e0 e6       	ldi	r30, 0x60	; 96
- 17a:	f0 e0       	ldi	r31, 0x00	; 0
-	
-	// enable port and turn off modules on port
-	for (char i = 0; i < SEVENSEGCOUNT; i++){
-		UPBIT(ENABLESEVENSEGCONFIGPORT, SevenSegSwichingAr[i]);
- 17c:	81 e0       	ldi	r24, 0x01	; 1
- 17e:	90 e0       	ldi	r25, 0x00	; 0
- 180:	44 b3       	in	r20, 0x14	; 20
-enum Sleeps {SLEEPINSEVENSEG = 500, SLEEPINBLINK = 500000};
-enum InBlinkState {BLINKOFF = 0, BLINKON = 1};
-
-//*************************************************************************
-
-void initSevenSegPort(){
- 182:	df 01       	movw	r26, r30
-	SEVENSEGCONFIGPORT = 0xFF;
-	SEVENSEGPORT = 0x00;
-	
-	// enable port and turn off modules on port
-	for (char i = 0; i < SEVENSEGCOUNT; i++){
-		UPBIT(ENABLESEVENSEGCONFIGPORT, SevenSegSwichingAr[i]);
- 184:	9c 01       	movw	r18, r24
- 186:	01 90       	ld	r0, Z+
- 188:	02 c0       	rjmp	.+4      	; 0x18e <initSevenSegPort+0x1c>
- 18a:	22 0f       	add	r18, r18
- 18c:	33 1f       	adc	r19, r19
- 18e:	0a 94       	dec	r0
- 190:	e2 f7       	brpl	.-8      	; 0x18a <initSevenSegPort+0x18>
- 192:	42 2b       	or	r20, r18
- 194:	44 bb       	out	0x14, r20	; 20
-		DOWNBIT(ENABLESEVENSEGPORT, SevenSegSwichingAr[i]);
- 196:	45 b3       	in	r20, 0x15	; 21
- 198:	9c 01       	movw	r18, r24
- 19a:	0c 90       	ld	r0, X
- 19c:	02 c0       	rjmp	.+4      	; 0x1a2 <initSevenSegPort+0x30>
- 19e:	22 0f       	add	r18, r18
- 1a0:	33 1f       	adc	r19, r19
- 1a2:	0a 94       	dec	r0
- 1a4:	e2 f7       	brpl	.-8      	; 0x19e <initSevenSegPort+0x2c>
- 1a6:	20 95       	com	r18
- 1a8:	24 23       	and	r18, r20
- 1aa:	25 bb       	out	0x15, r18	; 21
-	// enable port and turn off leds on port
-	SEVENSEGCONFIGPORT = 0xFF;
-	SEVENSEGPORT = 0x00;
-	
-	// enable port and turn off modules on port
-	for (char i = 0; i < SEVENSEGCOUNT; i++){
- 1ac:	20 e0       	ldi	r18, 0x00	; 0
- 1ae:	e6 36       	cpi	r30, 0x66	; 102
- 1b0:	f2 07       	cpc	r31, r18
- 1b2:	31 f7       	brne	.-52     	; 0x180 <initSevenSegPort+0xe>
-	}
-
-
-//	DDRC = 0x3f;
-//	DDRD = 0xff;
-}
- 1b4:	08 95       	ret
-
-000001b6 <sevenSegShowCode>:
-
-//*************************************************************************
-
-void sevenSegShowCode(char number, char code ){
-	SEVENSEGPORT = code;
- 1b6:	62 bb       	out	0x12, r22	; 18
-	UPBIT(ENABLESEVENSEGPORT, number);
- 1b8:	95 b3       	in	r25, 0x15	; 21
- 1ba:	21 e0       	ldi	r18, 0x01	; 1
- 1bc:	30 e0       	ldi	r19, 0x00	; 0
- 1be:	02 c0       	rjmp	.+4      	; 0x1c4 <sevenSegShowCode+0xe>
- 1c0:	22 0f       	add	r18, r18
- 1c2:	33 1f       	adc	r19, r19
- 1c4:	8a 95       	dec	r24
- 1c6:	e2 f7       	brpl	.-8      	; 0x1c0 <sevenSegShowCode+0xa>
- 1c8:	92 2b       	or	r25, r18
- 1ca:	95 bb       	out	0x15, r25	; 21
+  ce:	8b b3       	in	r24, 0x1b	; 27
+  d0:	90 e2       	ldi	r25, 0x20	; 32
+  d2:	89 27       	eor	r24, r25
+  d4:	8b bb       	out	0x1b, r24	; 27
+	if (decTimer( & g_timer))
+  d6:	84 e7       	ldi	r24, 0x74	; 116
+  d8:	90 e0       	ldi	r25, 0x00	; 0
+  da:	0e 94 ad 00 	call	0x15a	; 0x15a <decTimer>
+  de:	88 23       	and	r24, r24
+  e0:	71 f0       	breq	.+28     	; 0xfe <__vector_4+0x54>
+  e2:	80 e3       	ldi	r24, 0x30	; 48
+  e4:	95 e7       	ldi	r25, 0x75	; 117
+		for (int i = 0; i < 30000; i++){
+			INVBIT(LEDPORT, LEDPIN) ;
+  e6:	30 e2       	ldi	r19, 0x20	; 32
+  e8:	2b b3       	in	r18, 0x1b	; 27
+  ea:	23 27       	eor	r18, r19
+  ec:	2b bb       	out	0x1b, r18	; 27
 	#else
 		//round up by default
 		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
 	#endif
 
 	__builtin_avr_delay_cycles(__ticks_dc);
- 1cc:	86 ea       	ldi	r24, 0xA6	; 166
- 1ce:	8a 95       	dec	r24
- 1d0:	f1 f7       	brne	.-4      	; 0x1ce <sevenSegShowCode+0x18>
- 1d2:	00 c0       	rjmp	.+0      	; 0x1d4 <sevenSegShowCode+0x1e>
+  ee:	e3 ed       	ldi	r30, 0xD3	; 211
+  f0:	f0 e3       	ldi	r31, 0x30	; 48
+  f2:	31 97       	sbiw	r30, 0x01	; 1
+  f4:	f1 f7       	brne	.-4      	; 0xf2 <__vector_4+0x48>
+  f6:	00 c0       	rjmp	.+0      	; 0xf8 <__vector_4+0x4e>
+  f8:	00 00       	nop
+  fa:	01 97       	sbiw	r24, 0x01	; 1
+ISR (TIMER2_OVF_vect)
+{
+ cli();
+	INVBIT(LEDPORT, LEDPIN) ;
+	if (decTimer( & g_timer))
+		for (int i = 0; i < 30000; i++){
+  fc:	a9 f7       	brne	.-22     	; 0xe8 <__vector_4+0x3e>
+			INVBIT(LEDPORT, LEDPIN) ;
+			_delay_ms(50);
+		}
+ sei();
+  fe:	78 94       	sei
+}
+ 100:	ff 91       	pop	r31
+ 102:	ef 91       	pop	r30
+ 104:	bf 91       	pop	r27
+ 106:	af 91       	pop	r26
+ 108:	9f 91       	pop	r25
+ 10a:	8f 91       	pop	r24
+ 10c:	7f 91       	pop	r23
+ 10e:	6f 91       	pop	r22
+ 110:	5f 91       	pop	r21
+ 112:	4f 91       	pop	r20
+ 114:	3f 91       	pop	r19
+ 116:	2f 91       	pop	r18
+ 118:	0f 90       	pop	r0
+ 11a:	0f be       	out	0x3f, r0	; 63
+ 11c:	0f 90       	pop	r0
+ 11e:	1f 90       	pop	r1
+ 120:	18 95       	reti
+
+00000122 <main>:
+
+
+
+int main(){
+	
+	LEDDDRPORT |= 1 << LEDPIN;
+ 122:	d5 9a       	sbi	0x1a, 5	; 26
+
+
+	setTimer(&g_timer, 1, 1, 8);
+ 124:	84 e7       	ldi	r24, 0x74	; 116
+ 126:	90 e0       	ldi	r25, 0x00	; 0
+ 128:	61 e0       	ldi	r22, 0x01	; 1
+ 12a:	41 e0       	ldi	r20, 0x01	; 1
+ 12c:	28 e0       	ldi	r18, 0x08	; 8
+ 12e:	0e 94 a3 00 	call	0x146	; 0x146 <setTimer>
+
+	initSevenSegPort();
+ 132:	0e 94 e0 00 	call	0x1c0	; 0x1c0 <initSevenSegPort>
+
+
+	setupTIMER2();
+ 136:	0e 94 49 00 	call	0x92	; 0x92 <setupTIMER2>
+	sei();
+ 13a:	78 94       	sei
+	while (1) {
+//		for (char i = 0; i < 6; i++)
+//			sevenSegShowCode(i, 0b11110110 );
+//			for (char ii = 0; ii < 8; ii++)
+//				sevenSegShowCode(i, 1 << ii );
+	sevenSegShowGTimerTime(&g_timer);
+ 13c:	84 e7       	ldi	r24, 0x74	; 116
+ 13e:	90 e0       	ldi	r25, 0x00	; 0
+ 140:	0e 94 af 01 	call	0x35e	; 0x35e <sevenSegShowGTimerTime>
+ 144:	fb cf       	rjmp	.-10     	; 0x13c <main+0x1a>
+
+00000146 <setTimer>:
+#include "timer.h"
+
+void setTimer(Timer * g_timer, char hh, char mm, char ss){
+ 146:	fc 01       	movw	r30, r24
+	g_timer->time[SS] = g_timer->time_init[SS] = ss;
+ 148:	25 83       	std	Z+5, r18	; 0x05
+ 14a:	22 83       	std	Z+2, r18	; 0x02
+	g_timer->time[MM] = g_timer->time_init[MM] = mm;
+ 14c:	44 83       	std	Z+4, r20	; 0x04
+ 14e:	41 83       	std	Z+1, r20	; 0x01
+	g_timer->time[HH] = g_timer->time_init[HH] = hh;
+ 150:	63 83       	std	Z+3, r22	; 0x03
+ 152:	60 83       	st	Z, r22
+	g_timer->state = OFF;
+ 154:	81 e0       	ldi	r24, 0x01	; 1
+ 156:	86 83       	std	Z+6, r24	; 0x06
+}
+ 158:	08 95       	ret
+
+0000015a <decTimer>:
+
+char decTimer(Timer * g_timer){
+ 15a:	fc 01       	movw	r30, r24
+	if (g_timer->time[SS] == 0 &&
+ 15c:	82 81       	ldd	r24, Z+2	; 0x02
+ 15e:	88 23       	and	r24, r24
+ 160:	31 f4       	brne	.+12     	; 0x16e <decTimer+0x14>
+ 162:	91 81       	ldd	r25, Z+1	; 0x01
+ 164:	99 23       	and	r25, r25
+ 166:	19 f4       	brne	.+6      	; 0x16e <decTimer+0x14>
+		g_timer->time[MM] == 0 &&
+ 168:	90 81       	ld	r25, Z
+ 16a:	99 23       	and	r25, r25
+ 16c:	b1 f0       	breq	.+44     	; 0x19a <decTimer+0x40>
+		g_timer->time[HH] == 0)
+		return 1;	
+
+	if (!g_timer->time[SS]--){
+ 16e:	98 2f       	mov	r25, r24
+ 170:	91 50       	subi	r25, 0x01	; 1
+ 172:	92 83       	std	Z+2, r25	; 0x02
+ 174:	88 23       	and	r24, r24
+ 176:	99 f4       	brne	.+38     	; 0x19e <decTimer+0x44>
+		g_timer->time[SS] = TIMEMAX;
+ 178:	8b e3       	ldi	r24, 0x3B	; 59
+ 17a:	82 83       	std	Z+2, r24	; 0x02
+		if (!g_timer->time[MM]--){
+ 17c:	91 81       	ldd	r25, Z+1	; 0x01
+ 17e:	29 2f       	mov	r18, r25
+ 180:	21 50       	subi	r18, 0x01	; 1
+ 182:	21 83       	std	Z+1, r18	; 0x01
+ 184:	99 23       	and	r25, r25
+ 186:	59 f4       	brne	.+22     	; 0x19e <decTimer+0x44>
+			g_timer->time[MM] = TIMEMAX;
+ 188:	81 83       	std	Z+1, r24	; 0x01
+			if (!g_timer->time[HH]--)
+ 18a:	80 81       	ld	r24, Z
+ 18c:	98 2f       	mov	r25, r24
+ 18e:	91 50       	subi	r25, 0x01	; 1
+ 190:	90 83       	st	Z, r25
+ 192:	88 23       	and	r24, r24
+ 194:	31 f4       	brne	.+12     	; 0x1a2 <decTimer+0x48>
+				g_timer->time[HH] = TIMEMIN;
+ 196:	10 82       	st	Z, r1
+ 198:	08 95       	ret
+
+char decTimer(Timer * g_timer){
+	if (g_timer->time[SS] == 0 &&
+		g_timer->time[MM] == 0 &&
+		g_timer->time[HH] == 0)
+		return 1;	
+ 19a:	81 e0       	ldi	r24, 0x01	; 1
+ 19c:	08 95       	ret
+			if (!g_timer->time[HH]--)
+				g_timer->time[HH] = TIMEMIN;
+		}
+	}
+	
+	return 0;
+ 19e:	80 e0       	ldi	r24, 0x00	; 0
+ 1a0:	08 95       	ret
+ 1a2:	80 e0       	ldi	r24, 0x00	; 0
+}
+ 1a4:	08 95       	ret
+
+000001a6 <resetTimer>:
+
+void resetTimer(Timer * g_timer){
+ 1a6:	fc 01       	movw	r30, r24
+	setTimer(g_timer, g_timer->time_init[HH], g_timer->time_init[MM], g_timer->time_init[SS]);
+ 1a8:	83 81       	ldd	r24, Z+3	; 0x03
+ 1aa:	94 81       	ldd	r25, Z+4	; 0x04
+#include "timer.h"
+
+void setTimer(Timer * g_timer, char hh, char mm, char ss){
+	g_timer->time[SS] = g_timer->time_init[SS] = ss;
+ 1ac:	25 81       	ldd	r18, Z+5	; 0x05
+ 1ae:	22 83       	std	Z+2, r18	; 0x02
+	g_timer->time[MM] = g_timer->time_init[MM] = mm;
+ 1b0:	91 83       	std	Z+1, r25	; 0x01
+	g_timer->time[HH] = g_timer->time_init[HH] = hh;
+ 1b2:	80 83       	st	Z, r24
+	g_timer->state = OFF;
+ 1b4:	81 e0       	ldi	r24, 0x01	; 1
+ 1b6:	86 83       	std	Z+6, r24	; 0x06
+	return 0;
+}
+
+void resetTimer(Timer * g_timer){
+	setTimer(g_timer, g_timer->time_init[HH], g_timer->time_init[MM], g_timer->time_init[SS]);
+}
+ 1b8:	08 95       	ret
+
+000001ba <startTimer>:
+
+void startTimer(Timer * g_timer){
+	g_timer->state = ON;
+ 1ba:	fc 01       	movw	r30, r24
+ 1bc:	16 82       	std	Z+6, r1	; 0x06
+}
+ 1be:	08 95       	ret
+
+000001c0 <initSevenSegPort>:
+//*************************************************************************
+
+void initSevenSegPort(){
+
+	// enable port and turn off leds on port
+	SEVENSEGCONFIGPORT = 0xFF;
+ 1c0:	8f ef       	ldi	r24, 0xFF	; 255
+ 1c2:	81 bb       	out	0x11, r24	; 17
+	SEVENSEGPORT = 0x00;
+ 1c4:	12 ba       	out	0x12, r1	; 18
+ 1c6:	e0 e6       	ldi	r30, 0x60	; 96
+ 1c8:	f0 e0       	ldi	r31, 0x00	; 0
+	
+	// enable port and turn off modules on port
+	for (char i = 0; i < SEVENSEGCOUNT; i++){
+		UPBIT(ENABLESEVENSEGCONFIGPORT, SevenSegSwichingAr[i]);
+ 1ca:	81 e0       	ldi	r24, 0x01	; 1
+ 1cc:	90 e0       	ldi	r25, 0x00	; 0
+ 1ce:	44 b3       	in	r20, 0x14	; 20
+enum Sleeps {SLEEPINSEVENSEG = 50, SLEEPINBLINK = 500};
+enum InBlinkState {BLINKOFF = 0x0F, BLINKON = 0xF0};
+
+//*************************************************************************
+
+void initSevenSegPort(){
+ 1d0:	df 01       	movw	r26, r30
+	SEVENSEGCONFIGPORT = 0xFF;
+	SEVENSEGPORT = 0x00;
+	
+	// enable port and turn off modules on port
+	for (char i = 0; i < SEVENSEGCOUNT; i++){
+		UPBIT(ENABLESEVENSEGCONFIGPORT, SevenSegSwichingAr[i]);
+ 1d2:	9c 01       	movw	r18, r24
+ 1d4:	01 90       	ld	r0, Z+
+ 1d6:	02 c0       	rjmp	.+4      	; 0x1dc <initSevenSegPort+0x1c>
+ 1d8:	22 0f       	add	r18, r18
+ 1da:	33 1f       	adc	r19, r19
+ 1dc:	0a 94       	dec	r0
+ 1de:	e2 f7       	brpl	.-8      	; 0x1d8 <initSevenSegPort+0x18>
+ 1e0:	42 2b       	or	r20, r18
+ 1e2:	44 bb       	out	0x14, r20	; 20
+		DOWNBIT(ENABLESEVENSEGPORT, SevenSegSwichingAr[i]);
+ 1e4:	45 b3       	in	r20, 0x15	; 21
+ 1e6:	9c 01       	movw	r18, r24
+ 1e8:	0c 90       	ld	r0, X
+ 1ea:	02 c0       	rjmp	.+4      	; 0x1f0 <initSevenSegPort+0x30>
+ 1ec:	22 0f       	add	r18, r18
+ 1ee:	33 1f       	adc	r19, r19
+ 1f0:	0a 94       	dec	r0
+ 1f2:	e2 f7       	brpl	.-8      	; 0x1ec <initSevenSegPort+0x2c>
+ 1f4:	20 95       	com	r18
+ 1f6:	24 23       	and	r18, r20
+ 1f8:	25 bb       	out	0x15, r18	; 21
+	// enable port and turn off leds on port
+	SEVENSEGCONFIGPORT = 0xFF;
+	SEVENSEGPORT = 0x00;
+	
+	// enable port and turn off modules on port
+	for (char i = 0; i < SEVENSEGCOUNT; i++){
+ 1fa:	20 e0       	ldi	r18, 0x00	; 0
+ 1fc:	e6 36       	cpi	r30, 0x66	; 102
+ 1fe:	f2 07       	cpc	r31, r18
+ 200:	31 f7       	brne	.-52     	; 0x1ce <initSevenSegPort+0xe>
+	}
+
+
+//	DDRC = 0x3f;
+//	DDRD = 0xff;
+}
+ 202:	08 95       	ret
+
+00000204 <sevenSegShowCode>:
+
+//*************************************************************************
+
+void sevenSegShowCode(char number, char code ){
+	SEVENSEGPORT = code;
+ 204:	62 bb       	out	0x12, r22	; 18
+	UPBIT(ENABLESEVENSEGPORT, number);
+ 206:	95 b3       	in	r25, 0x15	; 21
+ 208:	21 e0       	ldi	r18, 0x01	; 1
+ 20a:	30 e0       	ldi	r19, 0x00	; 0
+ 20c:	02 c0       	rjmp	.+4      	; 0x212 <sevenSegShowCode+0xe>
+ 20e:	22 0f       	add	r18, r18
+ 210:	33 1f       	adc	r19, r19
+ 212:	8a 95       	dec	r24
+ 214:	e2 f7       	brpl	.-8      	; 0x20e <sevenSegShowCode+0xa>
+ 216:	92 2b       	or	r25, r18
+ 218:	95 bb       	out	0x15, r25	; 21
+	#else
+		//round up by default
+		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
+	#endif
+
+	__builtin_avr_delay_cycles(__ticks_dc);
+ 21a:	80 e1       	ldi	r24, 0x10	; 16
+ 21c:	8a 95       	dec	r24
+ 21e:	f1 f7       	brne	.-4      	; 0x21c <sevenSegShowCode+0x18>
+ 220:	00 c0       	rjmp	.+0      	; 0x222 <sevenSegShowCode+0x1e>
 	_delay_us(SLEEPINSEVENSEG);
 	DOWNBIT(ENABLESEVENSEGPORT, number);
- 1d4:	85 b3       	in	r24, 0x15	; 21
- 1d6:	20 95       	com	r18
- 1d8:	28 23       	and	r18, r24
- 1da:	25 bb       	out	0x15, r18	; 21
+ 222:	85 b3       	in	r24, 0x15	; 21
+ 224:	20 95       	com	r18
+ 226:	28 23       	and	r18, r24
+ 228:	25 bb       	out	0x15, r18	; 21
 }
- 1dc:	08 95       	ret
+ 22a:	08 95       	ret
 
-000001de <sevenSegShowDigit>:
+0000022c <sevenSegShowDigit>:
 
 //*************************************************************************
 
 void sevenSegShowDigit(char * digits, char len, char point_mask, char blink_mask){
- 1de:	7f 92       	push	r7
- 1e0:	8f 92       	push	r8
- 1e2:	9f 92       	push	r9
- 1e4:	af 92       	push	r10
- 1e6:	bf 92       	push	r11
- 1e8:	cf 92       	push	r12
- 1ea:	df 92       	push	r13
- 1ec:	ef 92       	push	r14
- 1ee:	ff 92       	push	r15
- 1f0:	0f 93       	push	r16
- 1f2:	1f 93       	push	r17
- 1f4:	cf 93       	push	r28
- 1f6:	df 93       	push	r29
- 1f8:	76 2e       	mov	r7, r22
-	static char in_blink_state = BLINKOFF;
+ 22c:	7f 92       	push	r7
+ 22e:	8f 92       	push	r8
+ 230:	9f 92       	push	r9
+ 232:	af 92       	push	r10
+ 234:	bf 92       	push	r11
+ 236:	cf 92       	push	r12
+ 238:	df 92       	push	r13
+ 23a:	ef 92       	push	r14
+ 23c:	ff 92       	push	r15
+ 23e:	0f 93       	push	r16
+ 240:	1f 93       	push	r17
+ 242:	cf 93       	push	r28
+ 244:	df 93       	push	r29
+ 246:	76 2e       	mov	r7, r22
+	static char in_blink_state = BLINKON;
 	static int times_for_switch = SLEEPINBLINK / SLEEPINSEVENSEG;
 	for (char i = 0; i < len; i++){
- 1fa:	30 e6       	ldi	r19, 0x60	; 96
- 1fc:	e3 2e       	mov	r14, r19
- 1fe:	30 e0       	ldi	r19, 0x00	; 0
- 200:	f3 2e       	mov	r15, r19
- 202:	08 2f       	mov	r16, r24
- 204:	19 2f       	mov	r17, r25
- 206:	c0 e0       	ldi	r28, 0x00	; 0
- 208:	d0 e0       	ldi	r29, 0x00	; 0
+ 248:	30 e6       	ldi	r19, 0x60	; 96
+ 24a:	e3 2e       	mov	r14, r19
+ 24c:	30 e0       	ldi	r19, 0x00	; 0
+ 24e:	f3 2e       	mov	r15, r19
+ 250:	08 2f       	mov	r16, r24
+ 252:	19 2f       	mov	r17, r25
+ 254:	c0 e0       	ldi	r28, 0x00	; 0
+ 256:	d0 e0       	ldi	r29, 0x00	; 0
 
 		char code = (point_mask & (1 << i))	? (SevenSegCodes[digits[i]] | POINT) : SevenSegCodes[digits[i]] ;
- 20a:	c4 2e       	mov	r12, r20
- 20c:	dd 24       	eor	r13, r13
-
+ 258:	c4 2e       	mov	r12, r20
+ 25a:	dd 24       	eor	r13, r13
 		code = ((blink_mask & (1 << i)) && (in_blink_state == BLINKOFF)) ? NOCODE : code;
- 20e:	a2 2e       	mov	r10, r18
- 210:	bb 24       	eor	r11, r11
+ 25c:	a2 2e       	mov	r10, r18
+ 25e:	bb 24       	eor	r11, r11
 		
-		if  (!times_for_switch--){
+		if  (!(--times_for_switch)){
 			times_for_switch = SLEEPINBLINK / SLEEPINSEVENSEG;
- 212:	88 ee       	ldi	r24, 0xE8	; 232
- 214:	88 2e       	mov	r8, r24
- 216:	83 e0       	ldi	r24, 0x03	; 3
- 218:	98 2e       	mov	r9, r24
+ 260:	8a e0       	ldi	r24, 0x0A	; 10
+ 262:	88 2e       	mov	r8, r24
+ 264:	91 2c       	mov	r9, r1
 //*************************************************************************
 
 void sevenSegShowDigit(char * digits, char len, char point_mask, char blink_mask){
-	static char in_blink_state = BLINKOFF;
+	static char in_blink_state = BLINKON;
 	static int times_for_switch = SLEEPINBLINK / SLEEPINSEVENSEG;
 	for (char i = 0; i < len; i++){
- 21a:	43 c0       	rjmp	.+134    	; 0x2a2 <sevenSegShowDigit+0xc4>
- 21c:	8c 2f       	mov	r24, r28
+ 266:	41 c0       	rjmp	.+130    	; 0x2ea <sevenSegShowDigit+0xbe>
+ 268:	8c 2f       	mov	r24, r28
 
 		char code = (point_mask & (1 << i))	? (SevenSegCodes[digits[i]] | POINT) : SevenSegCodes[digits[i]] ;
- 21e:	96 01       	movw	r18, r12
- 220:	0c 2e       	mov	r0, r28
- 222:	02 c0       	rjmp	.+4      	; 0x228 <sevenSegShowDigit+0x4a>
- 224:	35 95       	asr	r19
- 226:	27 95       	ror	r18
- 228:	0a 94       	dec	r0
- 22a:	e2 f7       	brpl	.-8      	; 0x224 <sevenSegShowDigit+0x46>
- 22c:	d8 01       	movw	r26, r16
- 22e:	ec 91       	ld	r30, X
- 230:	20 ff       	sbrs	r18, 0
- 232:	06 c0       	rjmp	.+12     	; 0x240 <sevenSegShowDigit+0x62>
- 234:	f0 e0       	ldi	r31, 0x00	; 0
- 236:	ea 59       	subi	r30, 0x9A	; 154
- 238:	ff 4f       	sbci	r31, 0xFF	; 255
- 23a:	60 81       	ld	r22, Z
- 23c:	61 60       	ori	r22, 0x01	; 1
- 23e:	04 c0       	rjmp	.+8      	; 0x248 <sevenSegShowDigit+0x6a>
- 240:	f0 e0       	ldi	r31, 0x00	; 0
- 242:	ea 59       	subi	r30, 0x9A	; 154
- 244:	ff 4f       	sbci	r31, 0xFF	; 255
- 246:	60 81       	ld	r22, Z
-
+ 26a:	96 01       	movw	r18, r12
+ 26c:	0c 2e       	mov	r0, r28
+ 26e:	02 c0       	rjmp	.+4      	; 0x274 <sevenSegShowDigit+0x48>
+ 270:	35 95       	asr	r19
+ 272:	27 95       	ror	r18
+ 274:	0a 94       	dec	r0
+ 276:	e2 f7       	brpl	.-8      	; 0x270 <sevenSegShowDigit+0x44>
+ 278:	d8 01       	movw	r26, r16
+ 27a:	ec 91       	ld	r30, X
+ 27c:	20 ff       	sbrs	r18, 0
+ 27e:	06 c0       	rjmp	.+12     	; 0x28c <sevenSegShowDigit+0x60>
+ 280:	f0 e0       	ldi	r31, 0x00	; 0
+ 282:	ea 59       	subi	r30, 0x9A	; 154
+ 284:	ff 4f       	sbci	r31, 0xFF	; 255
+ 286:	60 81       	ld	r22, Z
+ 288:	61 60       	ori	r22, 0x01	; 1
+ 28a:	04 c0       	rjmp	.+8      	; 0x294 <sevenSegShowDigit+0x68>
+ 28c:	f0 e0       	ldi	r31, 0x00	; 0
+ 28e:	ea 59       	subi	r30, 0x9A	; 154
+ 290:	ff 4f       	sbci	r31, 0xFF	; 255
+ 292:	60 81       	ld	r22, Z
 		code = ((blink_mask & (1 << i)) && (in_blink_state == BLINKOFF)) ? NOCODE : code;
- 248:	f5 01       	movw	r30, r10
- 24a:	02 c0       	rjmp	.+4      	; 0x250 <sevenSegShowDigit+0x72>
- 24c:	f5 95       	asr	r31
- 24e:	e7 95       	ror	r30
- 250:	8a 95       	dec	r24
- 252:	e2 f7       	brpl	.-8      	; 0x24c <sevenSegShowDigit+0x6e>
- 254:	e0 ff       	sbrs	r30, 0
- 256:	05 c0       	rjmp	.+10     	; 0x262 <sevenSegShowDigit+0x84>
- 258:	80 91 72 00 	lds	r24, 0x0072
- 25c:	88 23       	and	r24, r24
- 25e:	09 f4       	brne	.+2      	; 0x262 <sevenSegShowDigit+0x84>
- 260:	60 e0       	ldi	r22, 0x00	; 0
+ 294:	f5 01       	movw	r30, r10
+ 296:	02 c0       	rjmp	.+4      	; 0x29c <sevenSegShowDigit+0x70>
+ 298:	f5 95       	asr	r31
+ 29a:	e7 95       	ror	r30
+ 29c:	8a 95       	dec	r24
+ 29e:	e2 f7       	brpl	.-8      	; 0x298 <sevenSegShowDigit+0x6c>
+ 2a0:	e0 ff       	sbrs	r30, 0
+ 2a2:	05 c0       	rjmp	.+10     	; 0x2ae <sevenSegShowDigit+0x82>
+ 2a4:	80 91 72 00 	lds	r24, 0x0072
+ 2a8:	8f 30       	cpi	r24, 0x0F	; 15
+ 2aa:	09 f4       	brne	.+2      	; 0x2ae <sevenSegShowDigit+0x82>
+ 2ac:	60 e0       	ldi	r22, 0x00	; 0
 		
-		if  (!times_for_switch--){
- 262:	80 91 70 00 	lds	r24, 0x0070
- 266:	90 91 71 00 	lds	r25, 0x0071
- 26a:	9c 01       	movw	r18, r24
- 26c:	21 50       	subi	r18, 0x01	; 1
- 26e:	30 40       	sbci	r19, 0x00	; 0
- 270:	30 93 71 00 	sts	0x0071, r19
- 274:	20 93 70 00 	sts	0x0070, r18
- 278:	00 97       	sbiw	r24, 0x00	; 0
- 27a:	59 f4       	brne	.+22     	; 0x292 <sevenSegShowDigit+0xb4>
+		if  (!(--times_for_switch)){
+ 2ae:	80 91 70 00 	lds	r24, 0x0070
+ 2b2:	90 91 71 00 	lds	r25, 0x0071
+ 2b6:	01 97       	sbiw	r24, 0x01	; 1
+ 2b8:	90 93 71 00 	sts	0x0071, r25
+ 2bc:	80 93 70 00 	sts	0x0070, r24
+ 2c0:	00 97       	sbiw	r24, 0x00	; 0
+ 2c2:	59 f4       	brne	.+22     	; 0x2da <sevenSegShowDigit+0xae>
 			times_for_switch = SLEEPINBLINK / SLEEPINSEVENSEG;
- 27c:	90 92 71 00 	sts	0x0071, r9
- 280:	80 92 70 00 	sts	0x0070, r8
-			in_blink_state = in_blink_state == BLINKOFF ? BLINKON : BLINKOFF;
- 284:	81 e0       	ldi	r24, 0x01	; 1
- 286:	90 91 72 00 	lds	r25, 0x0072
- 28a:	91 11       	cpse	r25, r1
- 28c:	80 e0       	ldi	r24, 0x00	; 0
- 28e:	80 93 72 00 	sts	0x0072, r24
+ 2c4:	90 92 71 00 	sts	0x0071, r9
+ 2c8:	80 92 70 00 	sts	0x0070, r8
+			in_blink_state = !in_blink_state;
+ 2cc:	81 e0       	ldi	r24, 0x01	; 1
+ 2ce:	90 91 72 00 	lds	r25, 0x0072
+ 2d2:	91 11       	cpse	r25, r1
+ 2d4:	80 e0       	ldi	r24, 0x00	; 0
+ 2d6:	80 93 72 00 	sts	0x0072, r24
 		}
 		
 		sevenSegShowCode(SevenSegSwichingAr[i], code);
- 292:	d7 01       	movw	r26, r14
- 294:	8d 91       	ld	r24, X+
- 296:	7d 01       	movw	r14, r26
- 298:	0e 94 db 00 	call	0x1b6	; 0x1b6 <sevenSegShowCode>
- 29c:	21 96       	adiw	r28, 0x01	; 1
- 29e:	0f 5f       	subi	r16, 0xFF	; 255
- 2a0:	1f 4f       	sbci	r17, 0xFF	; 255
+ 2da:	d7 01       	movw	r26, r14
+ 2dc:	8d 91       	ld	r24, X+
+ 2de:	7d 01       	movw	r14, r26
+ 2e0:	0e 94 02 01 	call	0x204	; 0x204 <sevenSegShowCode>
+ 2e4:	21 96       	adiw	r28, 0x01	; 1
+ 2e6:	0f 5f       	subi	r16, 0xFF	; 255
+ 2e8:	1f 4f       	sbci	r17, 0xFF	; 255
 //*************************************************************************
 
 void sevenSegShowDigit(char * digits, char len, char point_mask, char blink_mask){
-	static char in_blink_state = BLINKOFF;
+	static char in_blink_state = BLINKON;
 	static int times_for_switch = SLEEPINBLINK / SLEEPINSEVENSEG;
 	for (char i = 0; i < len; i++){
- 2a2:	c7 15       	cp	r28, r7
- 2a4:	08 f4       	brcc	.+2      	; 0x2a8 <sevenSegShowDigit+0xca>
- 2a6:	ba cf       	rjmp	.-140    	; 0x21c <sevenSegShowDigit+0x3e>
-			in_blink_state = in_blink_state == BLINKOFF ? BLINKON : BLINKOFF;
+ 2ea:	c7 15       	cp	r28, r7
+ 2ec:	08 f4       	brcc	.+2      	; 0x2f0 <sevenSegShowDigit+0xc4>
+ 2ee:	bc cf       	rjmp	.-136    	; 0x268 <sevenSegShowDigit+0x3c>
+			in_blink_state = !in_blink_state;
 		}
 		
 		sevenSegShowCode(SevenSegSwichingAr[i], code);
 	}
 }
- 2a8:	df 91       	pop	r29
- 2aa:	cf 91       	pop	r28
- 2ac:	1f 91       	pop	r17
- 2ae:	0f 91       	pop	r16
- 2b0:	ff 90       	pop	r15
- 2b2:	ef 90       	pop	r14
- 2b4:	df 90       	pop	r13
- 2b6:	cf 90       	pop	r12
- 2b8:	bf 90       	pop	r11
- 2ba:	af 90       	pop	r10
- 2bc:	9f 90       	pop	r9
- 2be:	8f 90       	pop	r8
- 2c0:	7f 90       	pop	r7
- 2c2:	08 95       	ret
+ 2f0:	df 91       	pop	r29
+ 2f2:	cf 91       	pop	r28
+ 2f4:	1f 91       	pop	r17
+ 2f6:	0f 91       	pop	r16
+ 2f8:	ff 90       	pop	r15
+ 2fa:	ef 90       	pop	r14
+ 2fc:	df 90       	pop	r13
+ 2fe:	cf 90       	pop	r12
+ 300:	bf 90       	pop	r11
+ 302:	af 90       	pop	r10
+ 304:	9f 90       	pop	r9
+ 306:	8f 90       	pop	r8
+ 308:	7f 90       	pop	r7
+ 30a:	08 95       	ret
 
-000002c4 <sevenSegShowGTimer>:
+0000030c <sevenSegShowGTimer>:
 
 //*************************************************************************
 
 void sevenSegShowGTimer(char * g_timer_time, char len, char blink_mask){
- 2c4:	df 93       	push	r29
- 2c6:	cf 93       	push	r28
- 2c8:	00 d0       	rcall	.+0      	; 0x2ca <sevenSegShowGTimer+0x6>
- 2ca:	00 d0       	rcall	.+0      	; 0x2cc <sevenSegShowGTimer+0x8>
- 2cc:	00 d0       	rcall	.+0      	; 0x2ce <sevenSegShowGTimer+0xa>
- 2ce:	cd b7       	in	r28, 0x3d	; 61
- 2d0:	de b7       	in	r29, 0x3e	; 62
- 2d2:	fc 01       	movw	r30, r24
- 2d4:	24 2f       	mov	r18, r20
+ 30c:	df 93       	push	r29
+ 30e:	cf 93       	push	r28
+ 310:	00 d0       	rcall	.+0      	; 0x312 <sevenSegShowGTimer+0x6>
+ 312:	00 d0       	rcall	.+0      	; 0x314 <sevenSegShowGTimer+0x8>
+ 314:	00 d0       	rcall	.+0      	; 0x316 <sevenSegShowGTimer+0xa>
+ 316:	cd b7       	in	r28, 0x3d	; 61
+ 318:	de b7       	in	r29, 0x3e	; 62
+ 31a:	fc 01       	movw	r30, r24
+ 31c:	24 2f       	mov	r18, r20
 	#define TIMEARRAYLEN 6 // TIMEPOSITIONSCOUNT * 2
 	char point_mask = 0b0001010; // h h. m m. s s in revert order
 	char time[TIMEARRAYLEN]; // 
 	for (char i = 0; i < TIMEPOSITIONSCOUNT; i++){
 		time[(i * 2)] = g_timer_time[i] / 10;
- 2d6:	80 81       	ld	r24, Z
- 2d8:	3a e0       	ldi	r19, 0x0A	; 10
- 2da:	63 2f       	mov	r22, r19
- 2dc:	0e 94 a9 01 	call	0x352	; 0x352 <__udivmodqi4>
- 2e0:	89 83       	std	Y+1, r24	; 0x01
+ 31e:	80 81       	ld	r24, Z
+ 320:	3a e0       	ldi	r19, 0x0A	; 10
+ 322:	63 2f       	mov	r22, r19
+ 324:	0e 94 cd 01 	call	0x39a	; 0x39a <__udivmodqi4>
+ 328:	89 83       	std	Y+1, r24	; 0x01
 		time[(i * 2) + 1] = g_timer_time[i] % 10;
- 2e2:	9a 83       	std	Y+2, r25	; 0x02
+ 32a:	9a 83       	std	Y+2, r25	; 0x02
 void sevenSegShowGTimer(char * g_timer_time, char len, char blink_mask){
 	#define TIMEARRAYLEN 6 // TIMEPOSITIONSCOUNT * 2
 	char point_mask = 0b0001010; // h h. m m. s s in revert order
 	char time[TIMEARRAYLEN]; // 
 	for (char i = 0; i < TIMEPOSITIONSCOUNT; i++){
 		time[(i * 2)] = g_timer_time[i] / 10;
- 2e4:	81 81       	ldd	r24, Z+1	; 0x01
- 2e6:	0e 94 a9 01 	call	0x352	; 0x352 <__udivmodqi4>
- 2ea:	8b 83       	std	Y+3, r24	; 0x03
+ 32c:	81 81       	ldd	r24, Z+1	; 0x01
+ 32e:	0e 94 cd 01 	call	0x39a	; 0x39a <__udivmodqi4>
+ 332:	8b 83       	std	Y+3, r24	; 0x03
 		time[(i * 2) + 1] = g_timer_time[i] % 10;
- 2ec:	9c 83       	std	Y+4, r25	; 0x04
+ 334:	9c 83       	std	Y+4, r25	; 0x04
 void sevenSegShowGTimer(char * g_timer_time, char len, char blink_mask){
 	#define TIMEARRAYLEN 6 // TIMEPOSITIONSCOUNT * 2
 	char point_mask = 0b0001010; // h h. m m. s s in revert order
 	char time[TIMEARRAYLEN]; // 
 	for (char i = 0; i < TIMEPOSITIONSCOUNT; i++){
 		time[(i * 2)] = g_timer_time[i] / 10;
- 2ee:	82 81       	ldd	r24, Z+2	; 0x02
- 2f0:	0e 94 a9 01 	call	0x352	; 0x352 <__udivmodqi4>
- 2f4:	8d 83       	std	Y+5, r24	; 0x05
+ 336:	82 81       	ldd	r24, Z+2	; 0x02
+ 338:	0e 94 cd 01 	call	0x39a	; 0x39a <__udivmodqi4>
+ 33c:	8d 83       	std	Y+5, r24	; 0x05
 		time[(i * 2) + 1] = g_timer_time[i] % 10;
- 2f6:	9e 83       	std	Y+6, r25	; 0x06
+ 33e:	9e 83       	std	Y+6, r25	; 0x06
 	}
 	sevenSegShowDigit(time, TIMEARRAYLEN, point_mask, blink_mask);
- 2f8:	ce 01       	movw	r24, r28
- 2fa:	01 96       	adiw	r24, 0x01	; 1
- 2fc:	66 e0       	ldi	r22, 0x06	; 6
- 2fe:	4a e0       	ldi	r20, 0x0A	; 10
- 300:	0e 94 ef 00 	call	0x1de	; 0x1de <sevenSegShowDigit>
+ 340:	ce 01       	movw	r24, r28
+ 342:	01 96       	adiw	r24, 0x01	; 1
+ 344:	66 e0       	ldi	r22, 0x06	; 6
+ 346:	4a e0       	ldi	r20, 0x0A	; 10
+ 348:	0e 94 16 01 	call	0x22c	; 0x22c <sevenSegShowDigit>
 }
- 304:	26 96       	adiw	r28, 0x06	; 6
- 306:	0f b6       	in	r0, 0x3f	; 63
- 308:	f8 94       	cli
- 30a:	de bf       	out	0x3e, r29	; 62
- 30c:	0f be       	out	0x3f, r0	; 63
- 30e:	cd bf       	out	0x3d, r28	; 61
- 310:	cf 91       	pop	r28
- 312:	df 91       	pop	r29
- 314:	08 95       	ret
+ 34c:	26 96       	adiw	r28, 0x06	; 6
+ 34e:	0f b6       	in	r0, 0x3f	; 63
+ 350:	f8 94       	cli
+ 352:	de bf       	out	0x3e, r29	; 62
+ 354:	0f be       	out	0x3f, r0	; 63
+ 356:	cd bf       	out	0x3d, r28	; 61
+ 358:	cf 91       	pop	r28
+ 35a:	df 91       	pop	r29
+ 35c:	08 95       	ret
 
-00000316 <sevenSegShowGTimerTime>:
+0000035e <sevenSegShowGTimerTime>:
 
 //*************************************************************************
 
 void sevenSegShowGTimerTime (Timer * g_timer){
 	char blink_mask = 0b00000000; // no blink
 	sevenSegShowGTimer(g_timer->time, TIMEPOSITIONSCOUNT, blink_mask);
- 316:	63 e0       	ldi	r22, 0x03	; 3
- 318:	40 e0       	ldi	r20, 0x00	; 0
- 31a:	0e 94 62 01 	call	0x2c4	; 0x2c4 <sevenSegShowGTimer>
+ 35e:	63 e0       	ldi	r22, 0x03	; 3
+ 360:	40 e0       	ldi	r20, 0x00	; 0
+ 362:	0e 94 86 01 	call	0x30c	; 0x30c <sevenSegShowGTimer>
 }
- 31e:	08 95       	ret
+ 366:	08 95       	ret
 
-00000320 <sevenSegShowGTimerInit>:
+00000368 <sevenSegShowGTimerInit>:
 
 //*************************************************************************
 
 void sevenSegShowGTimerInit (Timer * g_timer, char blink_pos){
 	char blink_mask = 0b00000000; 
 	blink_mask |= (1 << (blink_pos * 2));
- 320:	70 e0       	ldi	r23, 0x00	; 0
- 322:	66 0f       	add	r22, r22
- 324:	77 1f       	adc	r23, r23
- 326:	21 e0       	ldi	r18, 0x01	; 1
- 328:	30 e0       	ldi	r19, 0x00	; 0
- 32a:	a9 01       	movw	r20, r18
- 32c:	06 2e       	mov	r0, r22
- 32e:	02 c0       	rjmp	.+4      	; 0x334 <sevenSegShowGTimerInit+0x14>
- 330:	44 0f       	add	r20, r20
- 332:	55 1f       	adc	r21, r21
- 334:	0a 94       	dec	r0
- 336:	e2 f7       	brpl	.-8      	; 0x330 <sevenSegShowGTimerInit+0x10>
+ 368:	70 e0       	ldi	r23, 0x00	; 0
+ 36a:	66 0f       	add	r22, r22
+ 36c:	77 1f       	adc	r23, r23
+ 36e:	21 e0       	ldi	r18, 0x01	; 1
+ 370:	30 e0       	ldi	r19, 0x00	; 0
+ 372:	a9 01       	movw	r20, r18
+ 374:	06 2e       	mov	r0, r22
+ 376:	02 c0       	rjmp	.+4      	; 0x37c <sevenSegShowGTimerInit+0x14>
+ 378:	44 0f       	add	r20, r20
+ 37a:	55 1f       	adc	r21, r21
+ 37c:	0a 94       	dec	r0
+ 37e:	e2 f7       	brpl	.-8      	; 0x378 <sevenSegShowGTimerInit+0x10>
 	blink_mask |= (1 << (blink_pos * 2 + 1));
- 338:	6f 5f       	subi	r22, 0xFF	; 255
- 33a:	7f 4f       	sbci	r23, 0xFF	; 255
- 33c:	02 c0       	rjmp	.+4      	; 0x342 <sevenSegShowGTimerInit+0x22>
- 33e:	22 0f       	add	r18, r18
- 340:	33 1f       	adc	r19, r19
- 342:	6a 95       	dec	r22
- 344:	e2 f7       	brpl	.-8      	; 0x33e <sevenSegShowGTimerInit+0x1e>
- 346:	42 2b       	or	r20, r18
+ 380:	6f 5f       	subi	r22, 0xFF	; 255
+ 382:	7f 4f       	sbci	r23, 0xFF	; 255
+ 384:	02 c0       	rjmp	.+4      	; 0x38a <sevenSegShowGTimerInit+0x22>
+ 386:	22 0f       	add	r18, r18
+ 388:	33 1f       	adc	r19, r19
+ 38a:	6a 95       	dec	r22
+ 38c:	e2 f7       	brpl	.-8      	; 0x386 <sevenSegShowGTimerInit+0x1e>
+ 38e:	42 2b       	or	r20, r18
 	sevenSegShowGTimer(g_timer->time_init, TIMEPOSITIONSCOUNT, blink_mask);
- 348:	03 96       	adiw	r24, 0x03	; 3
- 34a:	63 e0       	ldi	r22, 0x03	; 3
- 34c:	0e 94 62 01 	call	0x2c4	; 0x2c4 <sevenSegShowGTimer>
+ 390:	03 96       	adiw	r24, 0x03	; 3
+ 392:	63 e0       	ldi	r22, 0x03	; 3
+ 394:	0e 94 86 01 	call	0x30c	; 0x30c <sevenSegShowGTimer>
 }
- 350:	08 95       	ret
+ 398:	08 95       	ret
 
-00000352 <__udivmodqi4>:
- 352:	99 1b       	sub	r25, r25
- 354:	79 e0       	ldi	r23, 0x09	; 9
- 356:	04 c0       	rjmp	.+8      	; 0x360 <__udivmodqi4_ep>
+0000039a <__udivmodqi4>:
+ 39a:	99 1b       	sub	r25, r25
+ 39c:	79 e0       	ldi	r23, 0x09	; 9
+ 39e:	04 c0       	rjmp	.+8      	; 0x3a8 <__udivmodqi4_ep>
 
-00000358 <__udivmodqi4_loop>:
- 358:	99 1f       	adc	r25, r25
- 35a:	96 17       	cp	r25, r22
- 35c:	08 f0       	brcs	.+2      	; 0x360 <__udivmodqi4_ep>
- 35e:	96 1b       	sub	r25, r22
+000003a0 <__udivmodqi4_loop>:
+ 3a0:	99 1f       	adc	r25, r25
+ 3a2:	96 17       	cp	r25, r22
+ 3a4:	08 f0       	brcs	.+2      	; 0x3a8 <__udivmodqi4_ep>
+ 3a6:	96 1b       	sub	r25, r22
 
-00000360 <__udivmodqi4_ep>:
- 360:	88 1f       	adc	r24, r24
- 362:	7a 95       	dec	r23
- 364:	c9 f7       	brne	.-14     	; 0x358 <__udivmodqi4_loop>
- 366:	80 95       	com	r24
- 368:	08 95       	ret
+000003a8 <__udivmodqi4_ep>:
+ 3a8:	88 1f       	adc	r24, r24
+ 3aa:	7a 95       	dec	r23
+ 3ac:	c9 f7       	brne	.-14     	; 0x3a0 <__udivmodqi4_loop>
+ 3ae:	80 95       	com	r24
+ 3b0:	08 95       	ret
 
-0000036a <_exit>:
- 36a:	f8 94       	cli
+000003b2 <_exit>:
+ 3b2:	f8 94       	cli
 
-0000036c <__stop_program>:
- 36c:	ff cf       	rjmp	.-2      	; 0x36c <__stop_program>
+000003b4 <__stop_program>:
+ 3b4:	ff cf       	rjmp	.-2      	; 0x3b4 <__stop_program>

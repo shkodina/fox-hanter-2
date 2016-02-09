@@ -40,11 +40,11 @@ ISR (TIMER2_OVF_vect)
 {
  cli();
 	INVBIT(LEDPORT, LEDPIN) ;
-//	if (decTimer( & g_timer))
-//		for (int i = 0; i < 30000; i++){
-//			INVBIT(LEDPORT, LEDPIN) ;
-//			_delay_ms(50);
-//		}
+	if (decTimer( & g_timer))
+		for (int i = 0; i < 30000; i++){
+			INVBIT(LEDPORT, LEDPIN) ;
+			_delay_ms(50);
+		}
  sei();
 }
 
@@ -72,8 +72,7 @@ int main(){
 //			sevenSegShowCode(i, 0b11110110 );
 //			for (char ii = 0; ii < 8; ii++)
 //				sevenSegShowCode(i, 1 << ii );
-	//sevenSegShowGTimerTime(&g_timer);
-	sevenSegShowGTimerInit(&g_timer, HH);
+	sevenSegShowGTimerTime(&g_timer);
 		
 	}
 
