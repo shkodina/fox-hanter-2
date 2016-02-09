@@ -19,6 +19,9 @@
 #define LEDDDRPORT DDRA
 #define LEDPIN 5
 
+//----------------------------------------------------------------
+
+volatile Timer g_timer;
 
 //----------------------------------------------------------------
 
@@ -37,13 +40,18 @@ ISR (TIMER2_OVF_vect)
 {
  cli();
 	INVBIT(LEDPORT, LEDPIN) ;
+//	if (decTimer( & g_timer))
+//		for (int i = 0; i < 30000; i++){
+//			INVBIT(LEDPORT, LEDPIN) ;
+//			_delay_ms(50);
+//		}
  sei();
 }
 
 //---------------------------------------------------------------
 
 
-volatile Timer g_timer;
+
 
 
 int main(){
@@ -51,7 +59,7 @@ int main(){
 	LEDDDRPORT |= 1 << LEDPIN;
 
 
-	setTimer(&g_timer, 12, 34, 56);
+	setTimer(&g_timer, 1, 1, 8);
 
 	initSevenSegPort();
 
@@ -64,7 +72,8 @@ int main(){
 //			sevenSegShowCode(i, 0b11110110 );
 //			for (char ii = 0; ii < 8; ii++)
 //				sevenSegShowCode(i, 1 << ii );
-	sevenSegShowGTimerTime(&g_timer);
+	//sevenSegShowGTimerTime(&g_timer);
+	sevenSegShowGTimerInit(&g_timer, HH);
 		
 	}
 

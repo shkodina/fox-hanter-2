@@ -2,8 +2,6 @@ Archive member included because of file (symbol)
 
 c:/program files/atmel/avr tools/avr toolchain/bin/../lib/gcc/avr/4.5.1/avr5\libgcc.a(_udivmodqi4.o)
                               sevenseg.o (__udivmodqi4)
-c:/program files/atmel/avr tools/avr toolchain/bin/../lib/gcc/avr/4.5.1/avr5\libgcc.a(_udivmodsi4.o)
-                              timer.o (__udivmodsi4)
 c:/program files/atmel/avr tools/avr toolchain/bin/../lib/gcc/avr/4.5.1/avr5\libgcc.a(_exit.o)
                               c:/program files/atmel/avr tools/avr toolchain/bin/../lib/gcc/avr/4.5.1/../../../../avr/lib/avr5/crtm16.o (exit)
 c:/program files/atmel/avr tools/avr toolchain/bin/../lib/gcc/avr/4.5.1/avr5\libgcc.a(_copy_data.o)
@@ -16,7 +14,7 @@ Common symbol       size              file
 
 g_seven_mask_for_digit_to_blink
                     0x1               sevenseg.o
-g_timer             0xb               001.o
+g_timer             0x7               001.o
 g_seven_time_for_sevenseg
                     0x6               sevenseg.o
 g_seven_mask_for_points
@@ -133,7 +131,7 @@ LOAD c:/program files/atmel/avr tools/avr toolchain/bin/../lib/gcc/avr/4.5.1/avr
 .rela.plt
  *(.rela.plt)
 
-.text           0x00000000      0x478
+.text           0x00000000      0x36e
  *(.vectors)
  .vectors       0x00000000       0x54 c:/program files/atmel/avr tools/avr toolchain/bin/../lib/gcc/avr/4.5.1/../../../../avr/lib/avr5/crtm16.o
                 0x00000000                __vector_default
@@ -209,41 +207,38 @@ LOAD c:/program files/atmel/avr tools/avr toolchain/bin/../lib/gcc/avr/4.5.1/avr
                 0x0000008e                __vector_16
                 0x0000008e                __vector_18
                 0x0000008e                __vector_20
- .text          0x00000092       0x64 001.o
+ .text          0x00000092       0x66 001.o
                 0x00000092                setupTIMER2
                 0x000000aa                __vector_4
                 0x000000d2                main
- .text          0x000000f6      0x148 timer.o
-                0x000000f6                setTimer
-                0x0000013e                decTimer
-                0x000001f0                resetTimer
-                0x00000238                startTimer
- .text          0x0000023e      0x1da sevenseg.o
-                0x0000023e                initSevenSegPort
-                0x00000282                sevenSegShowCode
-                0x000002aa                sevenSegShowDigit
-                0x0000038a                sevenSegShowGTimer
-                0x000003dc                sevenSegShowGTimerTime
-                0x000003e6                sevenSegShowGTimerInit
- .text          0x00000418        0x0 c:/program files/atmel/avr tools/avr toolchain/bin/../lib/gcc/avr/4.5.1/avr5\libgcc.a(_udivmodqi4.o)
- .text          0x00000418        0x0 c:/program files/atmel/avr tools/avr toolchain/bin/../lib/gcc/avr/4.5.1/avr5\libgcc.a(_udivmodsi4.o)
- .text          0x00000418        0x0 c:/program files/atmel/avr tools/avr toolchain/bin/../lib/gcc/avr/4.5.1/avr5\libgcc.a(_exit.o)
- .text          0x00000418        0x0 c:/program files/atmel/avr tools/avr toolchain/bin/../lib/gcc/avr/4.5.1/avr5\libgcc.a(_copy_data.o)
- .text          0x00000418        0x0 c:/program files/atmel/avr tools/avr toolchain/bin/../lib/gcc/avr/4.5.1/avr5\libgcc.a(_clear_bss.o)
-                0x00000418                . = ALIGN (0x2)
+ .text          0x000000f8       0x7a timer.o
+                0x000000f8                setTimer
+                0x0000010c                decTimer
+                0x00000158                resetTimer
+                0x0000016c                startTimer
+ .text          0x00000172      0x1e0 sevenseg.o
+                0x00000172                initSevenSegPort
+                0x000001b6                sevenSegShowCode
+                0x000001de                sevenSegShowDigit
+                0x000002c4                sevenSegShowGTimer
+                0x00000316                sevenSegShowGTimerTime
+                0x00000320                sevenSegShowGTimerInit
+ .text          0x00000352        0x0 c:/program files/atmel/avr tools/avr toolchain/bin/../lib/gcc/avr/4.5.1/avr5\libgcc.a(_udivmodqi4.o)
+ .text          0x00000352        0x0 c:/program files/atmel/avr tools/avr toolchain/bin/../lib/gcc/avr/4.5.1/avr5\libgcc.a(_exit.o)
+ .text          0x00000352        0x0 c:/program files/atmel/avr tools/avr toolchain/bin/../lib/gcc/avr/4.5.1/avr5\libgcc.a(_copy_data.o)
+ .text          0x00000352        0x0 c:/program files/atmel/avr tools/avr toolchain/bin/../lib/gcc/avr/4.5.1/avr5\libgcc.a(_clear_bss.o)
+                0x00000352                . = ALIGN (0x2)
  *(.text.*)
- .text.libgcc   0x00000418       0x18 c:/program files/atmel/avr tools/avr toolchain/bin/../lib/gcc/avr/4.5.1/avr5\libgcc.a(_udivmodqi4.o)
-                0x00000418                __udivmodqi4
- .text.libgcc   0x00000430       0x44 c:/program files/atmel/avr tools/avr toolchain/bin/../lib/gcc/avr/4.5.1/avr5\libgcc.a(_udivmodsi4.o)
-                0x00000430                __udivmodsi4
- .text.libgcc   0x00000474        0x0 c:/program files/atmel/avr tools/avr toolchain/bin/../lib/gcc/avr/4.5.1/avr5\libgcc.a(_exit.o)
- .text.libgcc   0x00000474        0x0 c:/program files/atmel/avr tools/avr toolchain/bin/../lib/gcc/avr/4.5.1/avr5\libgcc.a(_copy_data.o)
- .text.libgcc   0x00000474        0x0 c:/program files/atmel/avr tools/avr toolchain/bin/../lib/gcc/avr/4.5.1/avr5\libgcc.a(_clear_bss.o)
-                0x00000474                . = ALIGN (0x2)
+ .text.libgcc   0x00000352       0x18 c:/program files/atmel/avr tools/avr toolchain/bin/../lib/gcc/avr/4.5.1/avr5\libgcc.a(_udivmodqi4.o)
+                0x00000352                __udivmodqi4
+ .text.libgcc   0x0000036a        0x0 c:/program files/atmel/avr tools/avr toolchain/bin/../lib/gcc/avr/4.5.1/avr5\libgcc.a(_exit.o)
+ .text.libgcc   0x0000036a        0x0 c:/program files/atmel/avr tools/avr toolchain/bin/../lib/gcc/avr/4.5.1/avr5\libgcc.a(_copy_data.o)
+ .text.libgcc   0x0000036a        0x0 c:/program files/atmel/avr tools/avr toolchain/bin/../lib/gcc/avr/4.5.1/avr5\libgcc.a(_clear_bss.o)
+                0x0000036a                . = ALIGN (0x2)
  *(.fini9)
- .fini9         0x00000474        0x0 c:/program files/atmel/avr tools/avr toolchain/bin/../lib/gcc/avr/4.5.1/avr5\libgcc.a(_exit.o)
-                0x00000474                _exit
-                0x00000474                exit
+ .fini9         0x0000036a        0x0 c:/program files/atmel/avr tools/avr toolchain/bin/../lib/gcc/avr/4.5.1/avr5\libgcc.a(_exit.o)
+                0x0000036a                _exit
+                0x0000036a                exit
  *(.fini9)
  *(.fini8)
  *(.fini8)
@@ -262,63 +257,60 @@ LOAD c:/program files/atmel/avr tools/avr toolchain/bin/../lib/gcc/avr/4.5.1/avr
  *(.fini1)
  *(.fini1)
  *(.fini0)
- .fini0         0x00000474        0x4 c:/program files/atmel/avr tools/avr toolchain/bin/../lib/gcc/avr/4.5.1/avr5\libgcc.a(_exit.o)
+ .fini0         0x0000036a        0x4 c:/program files/atmel/avr tools/avr toolchain/bin/../lib/gcc/avr/4.5.1/avr5\libgcc.a(_exit.o)
  *(.fini0)
-                0x00000478                _etext = .
+                0x0000036e                _etext = .
 
-.data           0x00800060       0x14 load address 0x00000478
+.data           0x00800060       0x12 load address 0x0000036e
                 0x00800060                PROVIDE (__data_start, .)
  *(.data)
  .data          0x00800060        0x0 c:/program files/atmel/avr tools/avr toolchain/bin/../lib/gcc/avr/4.5.1/../../../../avr/lib/avr5/crtm16.o
  .data          0x00800060        0x0 001.o
  .data          0x00800060        0x0 timer.o
- .data          0x00800060       0x13 sevenseg.o
+ .data          0x00800060       0x12 sevenseg.o
                 0x00800060                SevenSegSwichingAr
                 0x00800066                SevenSegCodes
- .data          0x00800073        0x0 c:/program files/atmel/avr tools/avr toolchain/bin/../lib/gcc/avr/4.5.1/avr5\libgcc.a(_udivmodqi4.o)
- .data          0x00800073        0x0 c:/program files/atmel/avr tools/avr toolchain/bin/../lib/gcc/avr/4.5.1/avr5\libgcc.a(_udivmodsi4.o)
- .data          0x00800073        0x0 c:/program files/atmel/avr tools/avr toolchain/bin/../lib/gcc/avr/4.5.1/avr5\libgcc.a(_exit.o)
- .data          0x00800073        0x0 c:/program files/atmel/avr tools/avr toolchain/bin/../lib/gcc/avr/4.5.1/avr5\libgcc.a(_copy_data.o)
- .data          0x00800073        0x0 c:/program files/atmel/avr tools/avr toolchain/bin/../lib/gcc/avr/4.5.1/avr5\libgcc.a(_clear_bss.o)
+ .data          0x00800072        0x0 c:/program files/atmel/avr tools/avr toolchain/bin/../lib/gcc/avr/4.5.1/avr5\libgcc.a(_udivmodqi4.o)
+ .data          0x00800072        0x0 c:/program files/atmel/avr tools/avr toolchain/bin/../lib/gcc/avr/4.5.1/avr5\libgcc.a(_exit.o)
+ .data          0x00800072        0x0 c:/program files/atmel/avr tools/avr toolchain/bin/../lib/gcc/avr/4.5.1/avr5\libgcc.a(_copy_data.o)
+ .data          0x00800072        0x0 c:/program files/atmel/avr tools/avr toolchain/bin/../lib/gcc/avr/4.5.1/avr5\libgcc.a(_clear_bss.o)
  *(.data*)
  *(.rodata)
  *(.rodata*)
  *(.gnu.linkonce.d*)
-                0x00800074                . = ALIGN (0x2)
- *fill*         0x00800073        0x1 00
-                0x00800074                _edata = .
-                0x00800074                PROVIDE (__data_end, .)
+                0x00800072                . = ALIGN (0x2)
+                0x00800072                _edata = .
+                0x00800072                PROVIDE (__data_end, .)
 
-.bss            0x00800074       0x13
-                0x00800074                PROVIDE (__bss_start, .)
+.bss            0x00800072       0x10
+                0x00800072                PROVIDE (__bss_start, .)
  *(.bss)
- .bss           0x00800074        0x0 c:/program files/atmel/avr tools/avr toolchain/bin/../lib/gcc/avr/4.5.1/../../../../avr/lib/avr5/crtm16.o
- .bss           0x00800074        0x0 001.o
- .bss           0x00800074        0x0 timer.o
- .bss           0x00800074        0x0 sevenseg.o
- .bss           0x00800074        0x0 c:/program files/atmel/avr tools/avr toolchain/bin/../lib/gcc/avr/4.5.1/avr5\libgcc.a(_udivmodqi4.o)
- .bss           0x00800074        0x0 c:/program files/atmel/avr tools/avr toolchain/bin/../lib/gcc/avr/4.5.1/avr5\libgcc.a(_udivmodsi4.o)
- .bss           0x00800074        0x0 c:/program files/atmel/avr tools/avr toolchain/bin/../lib/gcc/avr/4.5.1/avr5\libgcc.a(_exit.o)
- .bss           0x00800074        0x0 c:/program files/atmel/avr tools/avr toolchain/bin/../lib/gcc/avr/4.5.1/avr5\libgcc.a(_copy_data.o)
- .bss           0x00800074        0x0 c:/program files/atmel/avr tools/avr toolchain/bin/../lib/gcc/avr/4.5.1/avr5\libgcc.a(_clear_bss.o)
+ .bss           0x00800072        0x0 c:/program files/atmel/avr tools/avr toolchain/bin/../lib/gcc/avr/4.5.1/../../../../avr/lib/avr5/crtm16.o
+ .bss           0x00800072        0x0 001.o
+ .bss           0x00800072        0x0 timer.o
+ .bss           0x00800072        0x1 sevenseg.o
+ .bss           0x00800073        0x0 c:/program files/atmel/avr tools/avr toolchain/bin/../lib/gcc/avr/4.5.1/avr5\libgcc.a(_udivmodqi4.o)
+ .bss           0x00800073        0x0 c:/program files/atmel/avr tools/avr toolchain/bin/../lib/gcc/avr/4.5.1/avr5\libgcc.a(_exit.o)
+ .bss           0x00800073        0x0 c:/program files/atmel/avr tools/avr toolchain/bin/../lib/gcc/avr/4.5.1/avr5\libgcc.a(_copy_data.o)
+ .bss           0x00800073        0x0 c:/program files/atmel/avr tools/avr toolchain/bin/../lib/gcc/avr/4.5.1/avr5\libgcc.a(_clear_bss.o)
  *(.bss*)
  *(COMMON)
- COMMON         0x00800074        0xb 001.o
-                0x00800074                g_timer
- COMMON         0x0080007f        0x8 sevenseg.o
-                0x0080007f                g_seven_mask_for_digit_to_blink
-                0x00800080                g_seven_time_for_sevenseg
-                0x00800086                g_seven_mask_for_points
-                0x00800087                PROVIDE (__bss_end, .)
-                0x00000478                __data_load_start = LOADADDR (.data)
-                0x0000048c                __data_load_end = (__data_load_start + SIZEOF (.data))
+ COMMON         0x00800073        0x7 001.o
+                0x00800073                g_timer
+ COMMON         0x0080007a        0x8 sevenseg.o
+                0x0080007a                g_seven_mask_for_digit_to_blink
+                0x0080007b                g_seven_time_for_sevenseg
+                0x00800081                g_seven_mask_for_points
+                0x00800082                PROVIDE (__bss_end, .)
+                0x0000036e                __data_load_start = LOADADDR (.data)
+                0x00000380                __data_load_end = (__data_load_start + SIZEOF (.data))
 
-.noinit         0x00800087        0x0
-                0x00800087                PROVIDE (__noinit_start, .)
+.noinit         0x00800082        0x0
+                0x00800082                PROVIDE (__noinit_start, .)
  *(.noinit*)
-                0x00800087                PROVIDE (__noinit_end, .)
-                0x00800087                _end = .
-                0x00800087                PROVIDE (__heap_start, .)
+                0x00800082                PROVIDE (__noinit_end, .)
+                0x00800082                _end = .
+                0x00800082                PROVIDE (__heap_start, .)
 
 .eeprom         0x00810000        0x0
  *(.eeprom*)
@@ -390,24 +382,24 @@ LOAD c:/program files/atmel/avr tools/avr toolchain/bin/../lib/gcc/avr/4.5.1/avr
  .debug_pubnames
                 0x00000090      0x126 sevenseg.o
 
-.debug_info     0x00000000      0x7d9
+.debug_info     0x00000000      0x7db
  *(.debug_info)
- .debug_info    0x00000000      0x136 001.o
- .debug_info    0x00000136      0x1f7 timer.o
- .debug_info    0x0000032d      0x4ac sevenseg.o
+ .debug_info    0x00000000      0x144 001.o
+ .debug_info    0x00000144      0x1f7 timer.o
+ .debug_info    0x0000033b      0x4a0 sevenseg.o
  *(.gnu.linkonce.wi.*)
 
-.debug_abbrev   0x00000000      0x3fb
+.debug_abbrev   0x00000000      0x41c
  *(.debug_abbrev)
- .debug_abbrev  0x00000000       0xba 001.o
- .debug_abbrev  0x000000ba      0x13d timer.o
- .debug_abbrev  0x000001f7      0x204 sevenseg.o
+ .debug_abbrev  0x00000000       0xd2 001.o
+ .debug_abbrev  0x000000d2      0x146 timer.o
+ .debug_abbrev  0x00000218      0x204 sevenseg.o
 
-.debug_line     0x00000000      0x55a
+.debug_line     0x00000000      0x584
  *(.debug_line)
  .debug_line    0x00000000      0x159 001.o
- .debug_line    0x00000159      0x119 timer.o
- .debug_line    0x00000272      0x2e8 sevenseg.o
+ .debug_line    0x00000159      0x141 timer.o
+ .debug_line    0x0000029a      0x2ea sevenseg.o
 
 .debug_frame    0x00000000      0x100
  *(.debug_frame)
@@ -415,19 +407,19 @@ LOAD c:/program files/atmel/avr tools/avr toolchain/bin/../lib/gcc/avr/4.5.1/avr
  .debug_frame   0x00000040       0x50 timer.o
  .debug_frame   0x00000090       0x70 sevenseg.o
 
-.debug_str      0x00000000      0x30c
+.debug_str      0x00000000      0x314
  *(.debug_str)
- .debug_str     0x00000000       0xc4 001.o
-                                0x10e (size before relaxing)
- .debug_str     0x000000c4       0x42 timer.o
-                                 0xe4 (size before relaxing)
- .debug_str     0x00000106      0x206 sevenseg.o
-                                0x2ef (size before relaxing)
+ .debug_str     0x00000000       0xbc 001.o
+                                0x106 (size before relaxing)
+ .debug_str     0x000000bc       0x52 timer.o
+                                 0xda (size before relaxing)
+ .debug_str     0x0000010e      0x206 sevenseg.o
+                                0x2da (size before relaxing)
 
-.debug_loc      0x00000000      0x29f
+.debug_loc      0x00000000      0x261
  *(.debug_loc)
- .debug_loc     0x00000000       0xb6 timer.o
- .debug_loc     0x000000b6      0x1e9 sevenseg.o
+ .debug_loc     0x00000000       0x78 timer.o
+ .debug_loc     0x00000078      0x1e9 sevenseg.o
 
 .debug_macinfo
  *(.debug_macinfo)
@@ -435,13 +427,13 @@ OUTPUT(001.elf elf32-avr)
 LOAD linker stubs
 
 .debug_pubtypes
-                0x00000000      0x103
+                0x00000000      0x125
  .debug_pubtypes
-                0x00000000       0x3b 001.o
+                0x00000000       0x4c 001.o
  .debug_pubtypes
-                0x0000003b       0x4f timer.o
+                0x0000004c       0x60 timer.o
  .debug_pubtypes
-                0x0000008a       0x79 sevenseg.o
+                0x000000ac       0x79 sevenseg.o
 
 .debug_ranges   0x00000000       0x18
  .debug_ranges  0x00000000       0x18 sevenseg.o

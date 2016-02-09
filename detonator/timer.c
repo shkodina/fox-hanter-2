@@ -4,16 +4,25 @@ void setTimer(Timer * g_timer, char hh, char mm, char ss){
 	g_timer->time[SS] = g_timer->time_init[SS] = ss;
 	g_timer->time[MM] = g_timer->time_init[MM] = mm;
 	g_timer->time[HH] = g_timer->time_init[HH] = hh;
-	g_timer->full_time_in_seconds = hh * HHCOEF + mm * MMCOEF + ss;
 	g_timer->state = OFF;
 }
 
-unsigned long decTimer(Timer * g_timer){
-	g_timer->full_time_in_seconds--;
-	g_timer->time[HH] = g_timer->full_time_in_seconds / HHCOEF;
-	g_timer->time[SS] = g_timer->full_time_in_seconds % MMCOEF;
-	g_timer->time[MM] = ( g_timer->full_time_in_seconds - g_timer->time[HH] * HHCOEF ) / MMCOEF;
-	return g_timer->full_time_in_seconds;
+char decTimer(Timer * g_timer){
+	if (g_timer->time[SS] == 0 &&
+		g_timer->time[MM] == 0 &&
+		g_timer->time[HH] == 0)
+		return 1;	
+
+	if (!g_timer->time[SS]--){
+		g_timer->time[SS] = TIMEMAX;
+		if (!g_timer->time[MM]--){
+			g_timer->time[MM] = TIMEMAX;
+			if (!g_timer->time[HH]--)
+				g_timer->time[HH] = TIMEMIN;
+		}
+	}
+	
+	return 0;
 }
 
 void resetTimer(Timer * g_timer){
