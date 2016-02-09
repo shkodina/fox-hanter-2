@@ -21,5 +21,6 @@ void setTimer(Timer * timer, char hh, char mm, char ss);
 char decTimer(Timer * timer);
 void resetTimer(Timer * timer);
 void startTimer(Timer * timer);
+void stopTimer(Timer * timer);
 
 #endif 

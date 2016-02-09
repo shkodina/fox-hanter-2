@@ -37,7 +37,7 @@ HEX_EEPROM_FLAGS += --change-section-lma .eeprom=0 --no-change-warnings
 
 
 ## Objects that must be built in order to link
-OBJECTS = 001.o timer.o sevenseg.o 
+OBJECTS = main.o timer.o sevenseg.o buttons.o led.o 
 
 ## Objects explicitly added by the user
 LINKONLYOBJECTS = 
@@ -46,13 +46,19 @@ LINKONLYOBJECTS =
 all: $(TARGET) 001.hex 001.eep 001.lss size
 
 ## Compile
-001.o: ../001.c
+main.o: ../main.c
 	$(CC) $(INCLUDES) $(CFLAGS) -c  $<
 
 timer.o: ../timer.c
 	$(CC) $(INCLUDES) $(CFLAGS) -c  $<
 
 sevenseg.o: ../sevenseg.c
+	$(CC) $(INCLUDES) $(CFLAGS) -c  $<
+
+buttons.o: ../buttons.c
+	$(CC) $(INCLUDES) $(CFLAGS) -c  $<
+
+led.o: ../led.c
 	$(CC) $(INCLUDES) $(CFLAGS) -c  $<
 
 ##Link

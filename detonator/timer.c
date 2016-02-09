@@ -32,3 +32,7 @@ void resetTimer(Timer * g_timer){
 void startTimer(Timer * g_timer){
 	g_timer->state = ON;
 }
+
+void stopTimer(Timer * g_timer){
+	g_timer->state = OFF;
+}

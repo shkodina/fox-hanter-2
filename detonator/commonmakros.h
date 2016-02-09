@@ -6,5 +6,7 @@
 #define UPBIT(port, bit) port = port | (1<<bit);
 #define DOWNBIT(port, bit) port = port & (~(1<<bit));
 
+enum BOOLEAN {FALSE = 0, TRUE = 1};
+#define INVBOOL(value) value = value == TRUE ? FALSE : TRUE;
 
 #endif

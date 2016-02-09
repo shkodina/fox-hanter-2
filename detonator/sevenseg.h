@@ -6,7 +6,7 @@
 #define ENABLESEVENSEGPORT PORTC
 #define ENABLESEVENSEGCONFIGPORT DDRC
 
-void initSevenSegPort();
+void initSevenSeg();
 void sevenSegShowCode(char number, char code );
 void sevenSegShowDigit(char * digits, char len, char point_mask, char blink_mask);
 void sevenSegShowGTimer(char * g_timer_time, char len, char blink_mask);
