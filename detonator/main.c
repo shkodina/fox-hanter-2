@@ -14,9 +14,20 @@
 #include "sevenseg.h"
 #include "commonmakros.h"
 #include "buttons.h"
+#include "rf73_spi.h"
 
 
 //----------------------------------------------------------------
+
+#define DETONATORPOINTNUMBER 2
+#define POINTNUMBERPOSITION 1
+#define POINTPOWERPOSITION 2
+
+#define STATISTICCOUNT 300 // unit sent 6 packs per sec, in 300 * 10 ms it will sent 18 packs
+#define PACKSTOSTOP 2
+#define PACKSTOSTART 9
+
+#define SLIDESTATISTICPARTSCOUNT 6 
 
 volatile Timer g_timer;
 
@@ -58,7 +69,7 @@ ISR (TIMER2_OVF_vect)
 {
 	cli();
 
-	ledTugle();
+	//ledTugle();
 	g_timeout_in_timer_setup++;
 
 	if (g_timer.state == ON)
@@ -158,47 +169,103 @@ ISR (TIMER1_OVF_vect)
 
 }
 
+//---------------------------------------------------------------
+
+
+
+void startDelayWithAnime(unsigned int wait_time){
+	#define BARLEN 6
+	#define BARBLOCKCOUNT 12
+
+	char prog_bar_1 = 0b10001000,
+		 prog_bar_2 = 0b00100010;
+
+	
+	char bar[BARLEN]; 
+
+	for (char t = 0; t < 6; t++)
+		bar[t] = 0;
+
+	unsigned int periods = wait_time / BARBLOCKCOUNT;
+
+	for (char block = 0; block < BARBLOCKCOUNT; block++){
+		bar[block / 2] |= (block % 2) ? (prog_bar_2 | prog_bar_1) : prog_bar_2;
+
+		for (unsigned int p = 0; p < periods; p++)
+			for (char i = 0; i < 2; i++){
+				sevenSegShowArrayCode(bar, BARLEN);
+
+			}
+	}
+
+
+}
+
 
 //---------------------------------------------------------------
 
 
 int main(){
 	
+	unsigned char rx_buf[MAX_PACKET_LEN];
 
+	Init_Spi();
+	RFM73_Initialize();
+	SwitchToRxMode();
 
-	setTimer(&g_timer, 1, 1, 8);
 
 	initLed();
 	initSevenSeg();
 	initButtons();
 
+	startDelayWithAnime(2000); // initial start
+
+	setTimer(&g_timer, 1, 23, 45); // set timer default value
 
 	setupTIMER1();
 	setupTIMER2();
 	sei();
+	
+	char per_part_packs[SLIDESTATISTICPARTSCOUNT];
+	char per_part_len = STATISTICCOUNT / SLIDESTATISTICPARTSCOUNT;
+	char per_part_cout = 0;
 
-
-	char laststate = RELEASED;
+	for (char i = 0; i < SLIDESTATISTICPARTSCOUNT; i++ )
+		per_part_packs[i] = 0;
 
 	while (1) {
-//		for (char i = 0; i < 6; i++)
-//			sevenSegShowCode(i, 0b11110110 );
-//			for (char ii = 0; ii < 8; ii++)
-//				sevenSegShowCode(i, 1 << ii );
-	//sevenSegShowGTimerTime(&g_timer);
-	//sevenSegShowGTimerInit(&g_timer, HH);
 
+		if (per_part_cout++ >= per_part_len){
 
-//		if (buttonCheckOncePush(&laststate, BUTTONSELECT))
-//			g_timer.state = g_timer.state == ON ? OFF : ON;
-//		if (getButtonWorkTheame() == NEXTPOSITION)
-//			g_timer.state = g_timer.state == ON ? OFF : ON;
-/*		if (buttonGetCurState(BUTTONSET) == PUSHED)
-			g_timer.state = ON;
-		else
-			g_timer.state = OFF;
-*/
+			char sum_packs = 0;
+			for (char i = 0; i < SLIDESTATISTICPARTSCOUNT; i++ )
+				sum_packs += per_part_packs[i];
+			
+			if (sum_packs >= PACKSTOSTART)
+				startTimer(&g_timer);
+
+			if (sum_packs <= PACKSTOSTOP)
+				stopTimer(&g_timer);
+
+			per_part_cout = 0;
+
+			for (char i = 0; i < SLIDESTATISTICPARTSCOUNT - 1; i++ )
+				per_part_packs[i] = per_part_packs[i+1];
+
+			per_part_packs[SLIDESTATISTICPARTSCOUNT - 1] = 0;		
+		}
+
+		UINT8 len = Receive_Packet(rx_buf, MAX_PACKET_LEN);
+		if (len > 0){
+			if (rx_buf[POINTNUMBERPOSITION] == DETONATORPOINTNUMBER){
+				ledTugle();
+				per_part_packs[SLIDESTATISTICPARTSCOUNT - 1]++;
+			}
+		}
+		_delay_ms(10);
+
 	}
+	
 
 }
 

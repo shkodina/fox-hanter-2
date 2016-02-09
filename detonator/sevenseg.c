@@ -29,8 +29,7 @@ const char SevenSegCodes[SEVENSEGCODSCOUNT] = {	0b11111010,		// 0
 #define POINT 0b00000001												
 #define NOCODE 0												
 
-enum Sleeps {SLEEPINSEVENSEG = 100, SLEEPINBLINK = 50000};
-enum InBlinkState {BLINKOFF = 0, BLINKON = 1};
+
 
 //*************************************************************************
 
@@ -58,6 +57,14 @@ void sevenSegShowCode(char number, char code ){
 	UPBIT(ENABLESEVENSEGPORT, number);
 	_delay_us(SLEEPINSEVENSEG);
 	DOWNBIT(ENABLESEVENSEGPORT, number);
+}
+
+//*************************************************************************
+
+void sevenSegShowArrayCode(char * codes, char len ){
+	char count = (len > SEVENSEGCOUNT) ? SEVENSEGCOUNT : len;
+	for (char i = 0; i < count; i++)
+		sevenSegShowCode(i, codes[i]);
 }
 
 //*************************************************************************
