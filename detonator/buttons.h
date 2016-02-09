@@ -17,7 +17,7 @@ enum ButtonPosition { BPOS_SELECT = 0, BPOS_SET = 1 };
 
 enum WorkTheame {NONE, SETTIMER, INCRISEVALUE, NEXTPOSITION};
 
-
+#define LONGPRESSTIME 10
 
 void initButtons();
 char buttonGetCurState(char button);

@@ -35,6 +35,28 @@ char buttonCheckOncePush(char * last_state, char button){
 
 //-----------------------------------------------------------------------
 
+char buttonCheckLongPush(char * last_state, char button, char * how_log_is_pressed){
+
+	if (buttonGetCurState(button) == RELEASED){ 
+		*last_state = RELEASED;
+		*how_log_is_pressed = 0;
+	}else{
+		if (*last_state == RELEASED){
+				*how_log_is_pressed++;
+				*last_state = PUSHED;
+		}else{
+			if (*how_log_is_pressed++ >= LONGPRESSTIME){
+				*how_log_is_pressed = 0;
+				return TRUE;
+			}
+		}
+	}
+
+	return FALSE;
+}
+
+//-----------------------------------------------------------------------
+
 char buttonCheckTwoButAtOnceTimeOncePush(char * last_state, char button1, char button2){
 
 	if (buttonGetCurState(button1) == PUSHED &&
